@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1024"
+     height="1024"
+     viewBox="0 0 1024 1024">
+
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#1f2933"/>
+      <stop offset="65%" stop-color="#151b22"/>
+      <stop offset="100%" stop-color="#0b0f14"/>
+    </radialGradient>
+
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#76b3e6"/>
+      <stop offset="100%" stop-color="#2f5f87"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16"
+                    flood-color="#000000"
+                    flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <circle cx="512" cy="512" r="500" fill="url(#bg)"/>
+  <circle cx="512" cy="512" r="484"
+          fill="none"
+          stroke="url(#ring)"
+          stroke-width="10"/>
+
+  <circle cx="512" cy="512" r="430"
+          fill="none"
+          stroke="#6aa6d8"
+          stroke-opacity="0.14"
+          stroke-width="2"/>
+
+  <g transform="translate(176.67,267.20) scale(2.266667)"
+     filter="url(#shadow)">
+    <title id="title">Grayhaven Systems Logo - Monogram + Wordmark</title>
+  <desc id="desc">Full monogram + wordmark logo.</desc>
+  <defs>
+    <linearGradient id="graphite" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5D6874"/>
+      <stop offset="1" stop-color="#3B4651"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#65B7E6"/>
+      <stop offset="1" stop-color="#2E8BC0"/>
+    </linearGradient>
+  </defs>
+
+  <g id="gh-monogram" transform="translate(0 12)">
+    <!-- Angular graphite G, tightly cropped to the left edge -->
+    <path fill="url(#graphite)" d="M0 47 L47 0 H160 V36 H63 L31 68 V124 L62 156 H116 V119 H75 V84 H153 V192 H47 L0 145 Z"/>
+
+    <!-- Blue inner G arm that visually leads into the H -->
+    <path fill="url(#blue)" d="M75 84 H153 V192 H116 V119 H75 Z"/>
+
+    <!-- Shared blue bridge/facet connecting the G and H -->
+    <path fill="#58ACE0" d="M153 92 H200 L176 112 H153 Z"/>
+    <path fill="#2E8BC0" d="M153 112 H200 L176 132 H153 Z" opacity="0.88"/>
+
+    <!-- Aligned H form. Its top is completed by the four-square pixel grid. -->
+    <g id="h-left-leg">
+      <path fill="url(#blue)" d="M168 0 H204 V192 H168 Z"/>
+    </g>
+    <g id="h-crossbar">
+      <path fill="url(#blue)" d="M204 92 H244 V128 H204 Z"/>
+    </g>
+    <!-- Right H leg lowered by 8px to create air between the pixel grid and vertical leg. -->
+    <g id="h-right-leg" transform="translate(0 8)">
+      <path fill="url(#blue)" d="M244 56 H280 V184 H244 Z"/>
+    </g>
+
+    <!-- Four dots forming the top of the H / digital infrastructure motif; shifted right by 8px. -->
+    <g id="h-dots" transform="translate(6 0)">
+      <path fill="#65B7E6" d="M218 0 H240 V22 H218 Z"/>
+      <path fill="#4B5560" d="M252 0 H274 V22 H252 Z"/>
+      <path fill="#58ACE0" d="M218 34 H240 V56 H218 Z"/>
+      <path fill="#4B5560" d="M252 34 H274 V56 H252 Z"/>
+    </g>
+  </g>
+  </g>
+
+</svg>
