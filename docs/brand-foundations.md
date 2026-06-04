@@ -5,7 +5,7 @@
 Grayhaven Systems LLC uses a modern dark professional
 infrastructure/devops aesthetic.
 
-The intended tone is premium, restrained, technical, approachable, and
+The brand tone is premium, restrained, technical, approachable, and
 enterprise-capable. The design language is inspired by dark developer tooling
 and dark aluminum surfaces found on various electronic devices.
 

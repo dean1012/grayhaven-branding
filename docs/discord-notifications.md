@@ -7,14 +7,14 @@ operational events.
 
 ## Embed Titles
 
-Current Ansible notification titles:
+Ansible notification titles:
 
 - `ℹ️ Ansible Configuration Started`
 - `✅ Ansible Configuration Completed`
 - `⚠️ Ansible Configuration Completed - Reboot Required`
 - `❌ Ansible Configuration Failed - Please Investigate`
 
-Future automation tools should follow the same pattern:
+Automation tools should follow the same pattern:
 
 ```text
 <icon> <System> <Action> <State>

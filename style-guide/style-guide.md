@@ -20,7 +20,7 @@ background-size: cover;
 ```
 
 Use this treatment for dark website pages and interactive previews when it
-supports the content. Keep the effect subtle; it should feel like space-gray
+supports the content. Keep the effect subtle; it should feel like dark aluminum
 depth, not a decorative glow.
 
 ## Headings

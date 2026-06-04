@@ -1,11 +1,11 @@
-# Grayhaven Branding
+# Grayhaven Systems LLC Branding
 
 Local source of truth for Grayhaven Systems LLC brand assets, colors, logo
 variants, and working style guidance.
 
-This repository is currently private/local. It is intended to keep branding
-decisions consistent across infrastructure documentation, website work,
-Discord/operational alerts, and future project contexts.
+This repository keeps branding decisions consistent across infrastructure
+documentation, website work, Discord/operational alerts, and related project
+contexts.
 
 ## Logo Assets
 
