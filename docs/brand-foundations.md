@@ -52,7 +52,7 @@ Use these colors for operational alert surfaces.
 | Warning | `#C9973A` |
 | Error | `#D64545` |
 
-## Current Decisions
+## Other Notes
 
 - Dark-mode contexts are primary.
 - Interface surfaces should feel calm and readable over long sessions.
