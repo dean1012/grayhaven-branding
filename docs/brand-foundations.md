@@ -38,7 +38,7 @@ Fallback stack for web contexts:
 
 ## Alert Palette
 
-Use these colors for displaying alerts.
+Use these colors for displaying alerts:
 
 | State | Color |
 | --- | --- |
