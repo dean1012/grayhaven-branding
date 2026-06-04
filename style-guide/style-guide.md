@@ -5,6 +5,21 @@
 This guide is intended for use with websites, letterheads, documentation, and
 other print or electronic media.
 
+## Web Backgrounds
+
+The preferred dark web background uses a Deep Graphite base with a restrained
+blue radial lift and dark aluminum gradient:
+
+```css
+background:
+  radial-gradient(circle at 50% 12%, rgba(88, 172, 224, 0.14), transparent 34rem),
+  linear-gradient(145deg, #1C1F24 0%, #22262C 48%, #191C21 100%);
+```
+
+Use this treatment for dark website pages and interactive previews when it
+supports the content. Keep the effect subtle; it should feel like space-gray
+depth, not a decorative glow.
+
 ## Headings
 
 Use the heading palette consistently:
