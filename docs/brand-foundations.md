@@ -7,7 +7,7 @@ infrastructure/devops aesthetic.
 
 The intended tone is premium, restrained, technical, approachable, and
 enterprise-capable. The design language is inspired by dark developer tooling
-and space-gray/macOS dark aluminum surfaces.
+and dark aluminum surfaces found on various electronic devices.
 
 Avoid pure black, neon/cyberpunk styling, flashy glow effects, loud gradients,
 and overly corporate SaaS blue.

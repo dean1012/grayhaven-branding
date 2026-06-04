@@ -14,6 +14,9 @@ blue radial lift and dark aluminum gradient:
 background:
   radial-gradient(circle at 50% 12%, rgba(88, 172, 224, 0.14), transparent 34rem),
   linear-gradient(145deg, #1C1F24 0%, #22262C 48%, #191C21 100%);
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
 ```
 
 Use this treatment for dark website pages and interactive previews when it
