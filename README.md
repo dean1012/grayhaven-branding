@@ -30,15 +30,9 @@ Brand foundations:
 
 - [Brand Foundations](docs/brand-foundations.md)
 - [Logo Usage](docs/logo-usage.md)
+- [Discord Notifications](docs/discord-notifications.md)
 
 Style guide:
 
 - [Web and Document Style Guide](style-guide/style-guide.md)
 - [Interactive Style Preview](style-guide/index.html)
-
-## Browser Links
-
-Use these WSL file links for quick visual review:
-
-- `file://wsl.localhost/AlmaLinux-10/home/jsmith/projects/grayhaven/grayhaven-branding/logo/index.html`
-- `file://wsl.localhost/AlmaLinux-10/home/jsmith/projects/grayhaven/grayhaven-branding/style-guide/index.html`

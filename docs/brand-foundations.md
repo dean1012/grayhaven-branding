@@ -1,5 +1,7 @@
 # Brand Foundations
 
+[Return to README](../README.md)
+
 Grayhaven Systems LLC uses a modern dark professional
 infrastructure/devops aesthetic.
 
@@ -39,37 +41,19 @@ Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 
 | Dark Logo Charcoal | `#2B333B` |
 | Muted Emerald | `#3FB68B` |
 
-## Heading Palette
-
-| Role | Color |
-| --- | --- |
-| H1 / Major Display | `#74C3EC` |
-| H2 / Section Heading | `#65B7E6` |
-| H3 / Subheading | `#AAB2BF` |
-| Body Text | `#AAB2BF` |
-| Primary Link | `#58ACE0` |
-| Link Hover | `#65B7E6` |
-
-H3 and body text may share color when typography, size, and weight provide the
-hierarchy. This keeps the brand restrained and avoids turning every heading
-level into a separate accent.
-
 ## Alert Palette
 
-Use these colors for operational alert surfaces, including Discord alerts and
-future website alert components.
+Use these colors for operational alert surfaces.
 
 | State | Color |
 | --- | --- |
-| Info / Started | `#58ACE0` |
-| Success / Completed | `#3FB68B` |
-| Attention / Reboot Required | `#C9973A` |
-| Failure / Investigate | `#D64545` |
+| Info | `#58ACE0` |
+| Success | `#3FB68B` |
+| Warning | `#C9973A` |
+| Error | `#D64545` |
 
 ## Current Decisions
 
 - Dark-mode contexts are primary.
-- Links should not be underlined by default.
-- Hover states should be subtle, using color shifts and low-opacity surfaces.
 - Interface surfaces should feel calm and readable over long sessions.
 - Logo variants should be chosen based on background, not recolored ad hoc.

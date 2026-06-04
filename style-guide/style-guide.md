@@ -1,10 +1,9 @@
 # Web and Document Style Guide
 
-This guide records current style decisions for web pages, infrastructure
-documentation, operational alerts, and documents such as Word files.
+[Return to README](../README.md)
 
-It is intentionally practical rather than exhaustive. It should be updated as
-the actual Grayhaven websites mature.
+This guide is intended for use with websites, letterheads, documentation, and
+other print or electronic media.
 
 ## Headings
 
@@ -35,46 +34,11 @@ Use:
 
 - Normal link: `#58ACE0`
 - Hover/focus link: `#65B7E6`
-- Optional hover background: `rgba(101, 183, 230, 0.10)`
+- Preferred hover background: `rgba(101, 183, 230, 0.10)`
 
-Hover states should be subtle and refined, not bright or neon.
-
-## Logo Backgrounds
-
-Use the light-background wordmark only on light surfaces.
-
-Use the dark-background wordmark on Deep Graphite, Gunmetal, Slate Grey, or
-similar dark/space-gray surfaces.
-
-Use the monogram/profile logo as a self-contained avatar or compact brand mark
-on both light and dark surfaces.
-
-## Alerts
-
-Operational alerts should follow the shared alert palette:
-
-| State | Color |
-| --- | --- |
-| Info | `#58ACE0` |
-| Success | `#3FB68B` |
-| Attention | `#C9973A` |
-| Failure | `#D64545` |
-
-Discord alert titles currently use:
-
-- `ℹ️ Ansible Configuration Started`
-- `✅ Ansible Configuration Completed`
-- `⚠️ Ansible Configuration Completed - Reboot Required`
-- `❌ Ansible Configuration Failed - Please Investigate`
-
-Alert bodies should include target, environment, and localized timestamp:
-
-```text
-<fqdn>
-
-Environment: prod
-YYYY-MM-DD H:MM AM/PM
-```
+Hover states should be subtle and refined, not bright or neon. The soft hover
+background is preferred for web interfaces, but a text-color-only hover is also
+appropriate where a background treatment would feel too heavy.
 
 ## Interactive Preview
 

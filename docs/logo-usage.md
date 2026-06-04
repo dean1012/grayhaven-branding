@@ -1,5 +1,7 @@
 # Logo Usage
 
+[Return to README](../README.md)
+
 Grayhaven currently uses a wordmark and a circular monogram/profile mark.
 
 The logo direction is accepted, but the assets require context-aware use. The
@@ -46,11 +48,3 @@ with transparent backgrounds where appropriate:
 - Wordmarks have transparent backgrounds.
 - The monogram/profile asset has transparent corners and a filled circular
   background.
-
-## Known Concerns
-
-- The original wordmark was too low-contrast on dark surfaces.
-- The standalone non-circular monogram is not the intended profile asset.
-- The circular monogram/profile mark is the preferred compact logo.
-- Future website repos should treat this repository as the source of truth for
-  logo choices until a public brand system is created.

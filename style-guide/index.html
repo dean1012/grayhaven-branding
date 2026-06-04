@@ -123,6 +123,10 @@
         background: linear-gradient(180deg, #f5f7fa, #dce2ea);
       }
 
+      .light-card p {
+        color: var(--deep-graphite);
+      }
+
       .dark-card {
         background: linear-gradient(180deg, rgba(42, 47, 54, 0.96), rgba(28, 31, 36, 0.94));
       }
@@ -166,14 +170,16 @@
   </head>
   <body>
     <main>
+      <p><a href="../README.md">Return to README</a></p>
+
       <section aria-label="Typography">
-        <h1>H1 Jerry Smith</h1>
-        <h2>H2 Infrastructure Automation</h2>
-        <h3>H3 Terraform, Ansible, AWS</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
         <p>
           Regular body text uses cool grey for comfortable long-form reading on
-          graphite interfaces. Links use
-          <a href="#">primary accent blue with no underline</a>.
+          graphite interfaces. Links use primary accent blue with no underline
+          and a <a href="#">soft hover background</a>.
         </p>
       </section>
 
@@ -200,23 +206,23 @@
       </section>
 
       <section aria-label="Alerts">
-        <h2>Operational Alerts</h2>
+        <h2>Alerts</h2>
         <div class="alert-grid">
           <div class="alert-card info">
-            <h3>ℹ️ Ansible Configuration Started</h3>
-            <p>grayhaven-sec-prod-bastion-01.grayhavensystems.com<br><br>Environment: prod<br>2026-06-04 2:08 PM</p>
+            <h3>ℹ️ Info Alert</h3>
+            <p>Alert text</p>
           </div>
           <div class="alert-card success">
-            <h3>✅ Ansible Configuration Completed</h3>
-            <p>grayhaven-sec-prod-bastion-01.grayhavensystems.com<br><br>Environment: prod<br>2026-06-04 2:08 PM</p>
+            <h3>✅ Success Alert</h3>
+            <p>Alert text</p>
           </div>
           <div class="alert-card attention">
-            <h3>⚠️ Ansible Configuration Completed - Reboot Required</h3>
-            <p>grayhaven-sec-prod-bastion-01.grayhavensystems.com<br><br>Environment: prod<br>2026-06-04 2:08 PM</p>
+            <h3>⚠️ Warning Alert</h3>
+            <p>Alert text</p>
           </div>
           <div class="alert-card failure">
-            <h3>❌ Ansible Configuration Failed - Please Investigate</h3>
-            <p>grayhaven-sec-prod-bastion-01.grayhavensystems.com<br><br>Environment: prod<br>2026-06-04 2:08 PM</p>
+            <h3>❌ Error Alert</h3>
+            <p>Alert text</p>
           </div>
         </div>
       </section>
