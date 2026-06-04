@@ -13,13 +13,13 @@ SVG logos live in [logo/svg](logo/svg):
 
 - [Wordmark for light backgrounds](logo/svg/grayhaven-logo-wordmark-light.svg)
 - [Wordmark for dark backgrounds](logo/svg/grayhaven-logo-wordmark-dark.svg)
-- [Canonical monogram/profile logo](logo/svg/grayhaven-logo-monogram.svg)
+- [Canonical monogram logo](logo/svg/grayhaven-logo-monogram.svg)
 
 PNG renders live in [logo/png](logo/png):
 
 - [Wordmark for light backgrounds](logo/png/grayhaven-logo-wordmark-light.png)
 - [Wordmark for dark backgrounds](logo/png/grayhaven-logo-wordmark-dark.png)
-- [Canonical monogram/profile logo](logo/png/grayhaven-logo-monogram.png)
+- [Canonical monogram logo](logo/png/grayhaven-logo-monogram.png)
 
 Logo preview:
 [logo/index.html](logo/index.html)

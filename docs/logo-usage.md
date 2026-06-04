@@ -43,5 +43,5 @@ Use PNG for platforms that do not support SVG uploads. PNG files are rendered
 with transparent backgrounds where appropriate:
 
 - Wordmarks have transparent backgrounds.
-- The monogram/profile asset has transparent corners and a filled circular
+- The monogram logo has transparent corners and a filled circular
   background.
