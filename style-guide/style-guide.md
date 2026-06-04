@@ -213,6 +213,14 @@ a:focus-visible {
 }
 ```
 
+Links that direct traffic to external websites should open in a new tab:
+
+```html
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">
+  External website
+</a>
+```
+
 [Back to top](#web-style-guide)
 
 ## Link Buttons
@@ -270,6 +278,20 @@ Use this HTML structure for a link button with an icon:
     <path d="..." />
   </svg>
   Email
+</a>
+```
+
+Use this HTML structure for a link button that directs traffic to an external
+website:
+
+```html
+<a
+  class="link-button"
+  href="https://example.com"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Website
 </a>
 ```
 
