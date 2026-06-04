@@ -31,6 +31,7 @@ Fallback stack for web contexts:
 | Primary Accent | `#58ACE0` |
 | Standard Hover | `#65B7E6` |
 | Elevated Hover or CTA | `#74C3EC` |
+| Pale Steel | `#BBC7D3` |
 | Muted Deep Accent | `#2E8BC0` |
 | Charcoal Border | `#444C56` |
 | Dark Logo Charcoal | `#2B333B` |

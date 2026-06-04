@@ -123,7 +123,7 @@ Use the heading palette consistently:
 | Element | Color |
 | --- | --- |
 | H1 / Major Display | `#74C3EC` |
-| H2 / Section Heading | `#65B7E6` |
+| H2 / Section Heading | `#BBC7D3` |
 | H3 / Subheading | `#AAB2BF` |
 
 Use:
@@ -139,7 +139,7 @@ h1 {
 
 h2 {
   margin-top: 1.8rem;
-  color: #65B7E6;
+  color: #BBC7D3;
   font-size: clamp(1.7rem, 4vw, 2.4rem);
   line-height: 1.1;
   letter-spacing: 0;
