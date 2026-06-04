@@ -130,7 +130,7 @@ Use:
 
 ```css
 h1 {
-  margin: 0 0 4.2rem;
+  margin: 0 0 2.4rem;
   color: #74C3EC;
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   line-height: 1;
