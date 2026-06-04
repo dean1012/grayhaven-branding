@@ -216,7 +216,7 @@ a:focus-visible {
 Links that direct traffic to external websites should open in a new tab:
 
 ```html
-<a href="https://example.com" target="_blank" rel="noopener noreferrer">
+<a href="#" target="_blank" rel="noopener noreferrer">
   External website
 </a>
 ```
@@ -267,7 +267,7 @@ Link buttons should respond appropriately to hover events:
 Use this HTML structure for a link button without an icon:
 
 ```html
-<a class="link-button" href="https://example.com">Website</a>
+<a class="link-button" href="#">Website</a>
 ```
 
 Use this HTML structure for a link button with an icon:
@@ -285,12 +285,7 @@ Use this HTML structure for a link button that directs traffic to an external
 website:
 
 ```html
-<a
-  class="link-button"
-  href="https://example.com"
-  target="_blank"
-  rel="noopener noreferrer"
->
+<a class="link-button" href="#" target="_blank" rel="noopener noreferrer">
   Website
 </a>
 ```
