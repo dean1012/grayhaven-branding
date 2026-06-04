@@ -116,8 +116,15 @@
       .alert-grid {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
         margin-top: 1.25rem;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .alert-grid {
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
       }
 
       .logo-card,
@@ -204,6 +211,12 @@
         color: var(--soft-white);
         background: rgba(101, 183, 230, 0.12);
         border-color: rgba(101, 183, 230, 0.62);
+      }
+
+      @media (max-width: 46rem) {
+        .logo-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>

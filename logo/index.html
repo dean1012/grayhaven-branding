@@ -64,7 +64,7 @@
       .grid {
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .panel {
@@ -109,6 +109,12 @@
         width: min(45%, 12rem);
         height: auto;
         margin: 2rem auto;
+      }
+
+      @media (max-width: 52rem) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
