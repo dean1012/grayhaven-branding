@@ -9,9 +9,6 @@ The brand tone is premium, restrained, technical, approachable, and
 enterprise-capable. The design language is inspired by dark developer tooling
 and dark aluminum surfaces found on various electronic devices.
 
-Avoid pure black, neon/cyberpunk styling, flashy glow effects, loud gradients,
-and overly corporate SaaS blue.
-
 ## Typography
 
 Primary typeface:
@@ -20,9 +17,7 @@ Primary typeface:
 
 Fallback stack for web contexts:
 
-```css
-Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
-```
+- `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
 
 ## Core Palette
 
@@ -43,7 +38,7 @@ Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 
 
 ## Alert Palette
 
-Use these colors for operational alert surfaces.
+Use these colors for displaying alerts.
 
 | State | Color |
 | --- | --- |
@@ -56,4 +51,5 @@ Use these colors for operational alert surfaces.
 
 - Dark-mode contexts are primary.
 - Interface surfaces should feel calm and readable over long sessions.
-- Logo variants should be chosen based on background, not recolored ad hoc.
+- Avoid pure black, neon/cyberpunk styling, flashy glow effects, loud
+  gradients, and overly corporate SaaS blue.

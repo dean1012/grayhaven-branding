@@ -34,6 +34,10 @@ Use the heading palette consistently:
 | H3 / Subheading | `#AAB2BF` |
 | Body Text | `#AAB2BF` |
 
+H1 elements use `4.2rem` of bottom margin in standard web page contexts. Use a
+tighter spacing only when the H1 appears inside a compact component rather than
+as a page-level heading.
+
 For documents where colored headings are appropriate, map Word/Docs heading
 styles to the same color intent:
 
