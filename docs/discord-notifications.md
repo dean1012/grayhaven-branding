@@ -7,34 +7,30 @@ operational events.
 
 ## Embed Titles
 
-Ansible notification titles:
+Example notification titles:
 
 - `ℹ️ Ansible Configuration Started`
 - `✅ Ansible Configuration Completed`
 - `⚠️ Ansible Configuration Completed - Reboot Required`
 - `❌ Ansible Configuration Failed - Please Investigate`
 
-Automation tools should follow the same pattern:
-
-```text
-<icon> <System> <Action> <State>
-```
+Other automation tools should follow the same pattern.
 
 ## Embed Body
 
-The embed body should include the target, environment, and localized timestamp:
+The embed body should include the message, environment, and localized timestamp:
 
 ```text
-<target>
+<message>
 
-Environment: prod
+Environment: <environment>
 YYYY-MM-DD H:MM AM/PM
 ```
 
 Example:
 
 ```text
-grayhaven-sec-prod-bastion-01.grayhavensystems.com
+example-host-01.internal
 
 Environment: prod
 2026-06-04 2:08 PM

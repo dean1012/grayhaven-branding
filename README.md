@@ -32,7 +32,6 @@ Brand foundations:
 - [Logo Usage](docs/logo-usage.md)
 - [Discord Notifications](docs/discord-notifications.md)
 
-Style guide:
+Style guides:
 
-- [Web and Document Style Guide](style-guide/style-guide.md)
-- [Interactive Style Preview](style-guide/index.html)
+- [Web](style-guide/style-guide.md)
