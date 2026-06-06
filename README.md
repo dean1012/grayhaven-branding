@@ -24,6 +24,19 @@ PNG renders live in [logo/png](logo/png):
 Logo preview:
 [logo/index.html](logo/index.html)
 
+## Icon Assets
+
+SVG icons live in [icons/svg](icons/svg):
+
+- [Discord webhook profile icon](icons/svg/discord-webhook-icon.svg)
+
+PNG renders live in [icons/png](icons/png):
+
+- [Discord webhook profile icon](icons/png/discord-webhook-icon.png)
+
+The Discord webhook profile icon is intended for use as the profile image for
+Grayhaven Systems LLC automation notifications in Discord.
+
 ## Documentation
 
 Brand foundations:
