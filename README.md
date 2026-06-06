@@ -34,9 +34,6 @@ PNG renders live in [icons/png](icons/png):
 
 - [Discord webhook profile icon](icons/png/discord-webhook-icon.png)
 
-The Discord webhook profile icon is intended for use as the profile image for
-Grayhaven Systems LLC automation notifications in Discord.
-
 ## Documentation
 
 Brand foundations:

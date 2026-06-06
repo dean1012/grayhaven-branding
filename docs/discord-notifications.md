@@ -5,6 +5,20 @@
 Automation tools should use a consistent Discord notification structure for
 operational events.
 
+## Table Of Contents
+
+- [Discord Setup](#discord-setup)
+- [Embed Titles](#embed-titles)
+- [Embed Body](#embed-body)
+- [Colors](#colors)
+
+## Discord Setup
+
+Discord notification webhooks should use the name `Automation` and the
+[Discord webhook profile icon](../icons/png/discord-webhook-icon.png).
+
+[Back to top](#discord-notifications)
+
 ## Embed Titles
 
 Example notification titles:
@@ -15,6 +29,8 @@ Example notification titles:
 - `❌ Ansible Configuration Failed - Please Investigate`
 
 Other automation tools should follow the same pattern.
+
+[Back to top](#discord-notifications)
 
 ## Embed Body
 
@@ -36,6 +52,8 @@ Environment: prod
 2026-06-04 2:08 PM
 ```
 
+[Back to top](#discord-notifications)
+
 ## Colors
 
 | State | Color |
@@ -46,3 +64,5 @@ Environment: prod
 | Error | `#D64545` |
 
 Discord displays embed colors as a side bar, not as the message background.
+
+[Back to top](#discord-notifications)
