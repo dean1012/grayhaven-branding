@@ -1,7 +1,5 @@
 # Logo Usage
 
-[Return to README](../README.md)
-
 Grayhaven Systems LLC provides a full wordmark logo in light and dark variants
 and a universal monogram logo in SVG and PNG formats.
 

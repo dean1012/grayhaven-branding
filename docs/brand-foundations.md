@@ -1,7 +1,5 @@
 # Brand Foundations
 
-[Return to README](../README.md)
-
 Grayhaven Systems LLC uses a modern dark professional
 infrastructure/devops aesthetic.
 
@@ -17,7 +15,8 @@ Primary typeface:
 
 Fallback stack for web contexts:
 
-- `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+- `Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,`
+  `"Segoe UI", sans-serif`
 
 ## Core Palette
 

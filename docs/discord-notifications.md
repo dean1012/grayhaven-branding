@@ -1,7 +1,5 @@
 # Discord Notifications
 
-[Return to README](../README.md)
-
 Automation tools should use a consistent Discord notification structure for
 operational events.
 

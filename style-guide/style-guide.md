@@ -1,7 +1,5 @@
 # Web Style Guide
 
-[Return to README](../README.md)
-
 This guide defines current web styling rules for Grayhaven Systems LLC
 websites, web previews, and web-based interfaces.
 
@@ -294,6 +292,6 @@ website:
 
 ## Interactive Preview
 
-[Click here](index.html) to view a rendered preview of this style guide.
+[View the rendered style guide preview](index.html).
 
 [Back to top](#web-style-guide)
