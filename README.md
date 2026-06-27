@@ -41,6 +41,7 @@ Brand foundations:
 - [Brand Foundations](docs/brand-foundations.md)
 - [Logo Usage](docs/logo-usage.md)
 - [Discord Notifications](docs/discord-notifications.md)
+- [Operator Tmux](docs/operator-tmux.md)
 
 Style guides:
 
