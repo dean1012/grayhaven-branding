@@ -7,32 +7,14 @@ This repository keeps branding decisions consistent across infrastructure
 documentation, website work, Discord/operational alerts, and related project
 contexts.
 
-## Logo Assets
+## How to use this repository
 
-SVG logos live in [logo/svg](logo/svg):
-
-- [Wordmark for light backgrounds](logo/svg/grayhaven-logo-wordmark-light.svg)
-- [Wordmark for dark backgrounds](logo/svg/grayhaven-logo-wordmark-dark.svg)
-- [Canonical monogram logo](logo/svg/grayhaven-logo-monogram.svg)
-
-PNG renders live in [logo/png](logo/png):
-
-- [Wordmark for light backgrounds](logo/png/grayhaven-logo-wordmark-light.png)
-- [Wordmark for dark backgrounds](logo/png/grayhaven-logo-wordmark-dark.png)
-- [Canonical monogram logo](logo/png/grayhaven-logo-monogram.png)
-
-Logo preview:
-[logo/index.html](logo/index.html)
-
-## Icon Assets
-
-SVG icons live in [icons/svg](icons/svg):
-
-- [Discord webhook profile icon](icons/svg/discord-webhook-icon.svg)
-
-PNG renders live in [icons/png](icons/png):
-
-- [Discord webhook profile icon](icons/png/discord-webhook-icon.png)
+Start with the guidance for the type of branded work you are doing, then use
+the approved assets and examples as the implementation reference. Brand
+foundations and logo usage apply across all outputs; the web style guide and
+its supporting documents apply to websites and web interfaces. Keep new work
+consistent with the existing tokens and patterns, and update the relevant
+guidance when an approved pattern changes.
 
 ## Documentation
 
@@ -46,3 +28,14 @@ Brand foundations:
 Style guides:
 
 - [Web](style-guide/style-guide.md)
+- [Asset Provenance](docs/asset-provenance.md)
+
+## Icon Assets
+
+SVG icons live in [icons/svg](icons/svg):
+
+- [Discord webhook profile icon](icons/svg/discord-webhook-icon.svg)
+
+PNG renders live in [icons/png](icons/png):
+
+- [Discord webhook profile icon](icons/png/discord-webhook-icon.png)

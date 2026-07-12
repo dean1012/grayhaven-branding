@@ -1,11 +1,28 @@
 # Brand Foundations
 
+[Back to README](../README.md)
+
 Grayhaven Systems LLC uses a modern dark professional
 infrastructure/devops aesthetic.
 
 The brand tone is premium, restrained, technical, approachable, and
 enterprise-capable. The design language is inspired by dark developer tooling
 and dark aluminum surfaces found on various electronic devices.
+
+## Table of Contents
+
+- [Naming](#naming)
+- [Typography](#typography)
+- [Core Palette](#core-palette)
+- [Alert Palette](#alert-palette)
+- [Other Notes](#other-notes)
+
+## Naming
+
+Use the full company name, **Grayhaven Systems LLC**, in prose, headings,
+metadata, and user-facing labels. Short forms such as “Grayhaven” are reserved
+for intentionally compact brand treatments or established repository and code
+identifiers.
 
 ## Typography
 
@@ -30,6 +47,7 @@ Fallback stack for web contexts:
 | Primary Accent | `#58ACE0` |
 | Standard Hover | `#65B7E6` |
 | Elevated Hover or CTA | `#74C3EC` |
+| Light Surface Accent | `#1F5F87` |
 | Pale Steel | `#BBC7D3` |
 | Muted Deep Accent | `#2E8BC0` |
 | Charcoal Border | `#444C56` |

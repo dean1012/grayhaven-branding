@@ -1,7 +1,32 @@
 # Logo Usage
 
+[Back to README](../README.md)
+
 Grayhaven Systems LLC provides a full wordmark logo in light and dark variants
 and a universal monogram logo in SVG and PNG formats.
+
+## Table of Contents
+
+- [Logo Assets](#logo-assets)
+- [Wordmark Usage](#wordmark-usage)
+- [Monogram Usage](#monogram-usage)
+- [File Formats](#file-formats)
+
+## Logo Assets
+
+SVG logos live in [logo/svg](../logo/svg):
+
+- [Wordmark for light backgrounds](../logo/svg/grayhaven-logo-wordmark-light.svg)
+- [Wordmark for dark backgrounds](../logo/svg/grayhaven-logo-wordmark-dark.svg)
+- [Canonical monogram logo](../logo/svg/grayhaven-logo-monogram.svg)
+
+PNG renders live in [logo/png](../logo/png):
+
+- [Wordmark for light backgrounds](../logo/png/grayhaven-logo-wordmark-light.png)
+- [Wordmark for dark backgrounds](../logo/png/grayhaven-logo-wordmark-dark.png)
+- [Canonical monogram logo](../logo/png/grayhaven-logo-monogram.png)
+
+Logo preview: [logo/index.html](../logo/index.html)
 
 ## Wordmark Usage
 
