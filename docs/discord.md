@@ -1,4 +1,4 @@
-# Discord Notifications
+# Discord
 
 [Back to README](../README.md)
 
@@ -8,6 +8,7 @@ operational events.
 ## Table Of Contents
 
 - [Discord Setup](#discord-setup)
+- [Icon Assets](#icon-assets)
 - [Embed Titles](#embed-titles)
 - [Embed Body](#embed-body)
 - [Colors](#colors)
@@ -17,7 +18,19 @@ operational events.
 Discord notification webhooks should use the name `Automation` and the
 [Discord webhook profile icon](../icons/png/discord-webhook-icon.png).
 
-[Back to top](#discord-notifications)
+[Back to top](#discord)
+
+## Icon Assets
+
+SVG icons live in [icons/svg](../icons/svg):
+
+- [Discord webhook profile icon](../icons/svg/discord-webhook-icon.svg)
+
+PNG renders live in [icons/png](../icons/png):
+
+- [Discord webhook profile icon](../icons/png/discord-webhook-icon.png)
+
+[Back to top](#discord)
 
 ## Embed Titles
 
@@ -30,7 +43,7 @@ Example notification titles:
 
 Other automation tools should follow the same pattern.
 
-[Back to top](#discord-notifications)
+[Back to top](#discord)
 
 ## Embed Body
 
@@ -52,7 +65,7 @@ Environment: prod
 2026-06-04 2:08 PM
 ```
 
-[Back to top](#discord-notifications)
+[Back to top](#discord)
 
 ## Colors
 
@@ -65,4 +78,4 @@ Environment: prod
 
 Discord displays embed colors as a side bar, not as the message background.
 
-[Back to top](#discord-notifications)
+[Back to top](#discord)

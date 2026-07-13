@@ -25,18 +25,9 @@ Brand foundations:
 
 Style guides:
 
-- [Discord Notifications](docs/discord-notifications.md)
+- [Discord](docs/discord.md)
+- [LinkedIn](docs/linkedin.md)
 - [Letterhead](docs/letterhead.md)
 - [Operator Tmux](docs/operator-tmux.md)
 - [Web](style-guide/style-guide.md)
 - [Asset Provenance](docs/asset-provenance.md)
-
-## Icon Assets
-
-SVG icons live in [icons/svg](icons/svg):
-
-- [Discord webhook profile icon](icons/svg/discord-webhook-icon.svg)
-
-PNG renders live in [icons/png](icons/png):
-
-- [Discord webhook profile icon](icons/png/discord-webhook-icon.png)

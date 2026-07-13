@@ -36,7 +36,7 @@ Do not apply web-specific rules to every task. First identify the output type:
   `docs/web-components.md`.
 - Logos and visual assets: read `docs/logo-usage.md` and inspect the approved
   source assets.
-- Discord notifications: read `docs/discord-notifications.md`.
+- Discord guidance: read `docs/discord.md`.
 - Terminal and tmux interfaces: read `docs/operator-tmux.md`.
 - General branded documents or new media: read `docs/brand-foundations.md`,
   then select the closest existing asset and document the adaptation.
