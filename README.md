@@ -22,11 +22,12 @@ Brand foundations:
 
 - [Brand Foundations](docs/brand-foundations.md)
 - [Logo Usage](docs/logo-usage.md)
-- [Discord Notifications](docs/discord-notifications.md)
-- [Operator Tmux](docs/operator-tmux.md)
 
 Style guides:
 
+- [Discord Notifications](docs/discord-notifications.md)
+- [Letterhead](docs/letterhead.md)
+- [Operator Tmux](docs/operator-tmux.md)
 - [Web](style-guide/style-guide.md)
 - [Asset Provenance](docs/asset-provenance.md)
 
