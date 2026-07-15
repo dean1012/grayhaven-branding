@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grayhaven Systems LLC Web Application Style Guide Preview</title>
+    <link rel="stylesheet" href="../style-guide/fonts.css?v=20260712">
+    <link rel="stylesheet" href="../style-guide/fontawesome.min.css?v=20260712">
+    <link rel="stylesheet" href="../style-guide/style-guide.css?v=20260715a">
+    <link rel="stylesheet" href="web-application.css?v=20260715">
+  </head>
+  <body class="application-preview">
+    <header class="app-header">
+      <div class="app-header-inner">
+        <a class="app-brand" href="#top" aria-label="Grayhaven Systems LLC application preview home">
+          <img src="../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
+          <span class="app-product">Web Application</span>
+        </a>
+        <nav class="app-nav app-nav-desktop" aria-label="Application preview desktop navigation">
+          <a href="#dashboard" aria-current="page"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard</a>
+          <a href="#forms"><i class="fa-solid fa-rectangle-list" aria-hidden="true"></i> Forms</a>
+          <a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i> Data</a>
+          <a href="#reports"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Reports</a>
+          <a href="../docs/web-application.md"><i class="fa-solid fa-book" aria-hidden="true"></i> Guide</a>
+        </nav>
+        <details class="app-nav-mobile">
+          <summary class="app-nav-toggle" aria-label="Application preview menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            <span>Menu</span>
+          </summary>
+          <nav class="app-nav-menu" aria-label="Application preview mobile navigation">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#forms">Forms</a>
+            <a href="#data">Data</a>
+            <a href="#reports">Reports</a>
+            <a href="../docs/web-application.md">Guide</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main class="app-shell" id="top">
+      <section class="app-intro" aria-labelledby="preview-title">
+        <p class="app-eyebrow">WEB APPLICATION STYLE GUIDE</p>
+        <h1 id="preview-title">Operational Interface Patterns</h1>
+        <p class="app-muted">
+          Application shells, forms, authentication, timers, tables, status,
+          live reports, and responsive states extend the general web guide.
+        </p>
+      </section>
+
+      <section class="app-preview-section" id="dashboard" aria-labelledby="dashboard-title">
+        <div class="app-page-heading">
+          <div>
+            <p class="app-eyebrow">DASHBOARD</p>
+            <h2 id="dashboard-title">Clients &amp; Contracts</h2>
+            <p class="app-muted">Application headings use title case and keep actions easy to find.</p>
+          </div>
+          <button class="app-button app-button-primary" type="button">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            Add Client
+          </button>
+        </div>
+
+        <article class="app-panel app-active-work" aria-labelledby="active-work-title">
+          <span class="app-running-dot" aria-hidden="true"></span>
+          <div class="app-active-copy">
+            <p class="app-eyebrow">ACTIVE TIMER</p>
+            <strong id="active-work-title">Example Client · Support Contract · Maintenance</strong>
+          </div>
+          <output class="app-elapsed" aria-label="Elapsed time">01:24:36</output>
+          <button class="app-button app-button-stop" type="button">
+            <i class="fa-solid fa-stop" aria-hidden="true"></i>
+            Stop Timer
+          </button>
+        </article>
+
+        <div class="app-card-grid">
+          <article class="app-panel app-client-card">
+            <div class="app-panel-heading">
+              <div>
+                <p class="app-eyebrow">CLIENT</p>
+                <h3>Example Client</h3>
+              </div>
+              <i class="fa-solid fa-building" aria-hidden="true"></i>
+            </div>
+            <p class="app-contact-line"><i class="fa-solid fa-user" aria-hidden="true"></i> Example Contact</p>
+            <div class="app-contract-row">
+              <span><i class="fa-solid fa-file-contract" aria-hidden="true"></i> Support Contract</span>
+              <span class="app-muted">$125/hour</span>
+            </div>
+            <button class="app-button app-button-secondary" type="button">Open Client</button>
+          </article>
+
+          <article class="app-panel app-task-tree">
+            <div class="app-panel-heading">
+              <div>
+                <p class="app-eyebrow">TASK TREE</p>
+                <h3>Contract Tasks</h3>
+              </div>
+              <span class="app-status-pill app-status-running"><i class="fa-solid fa-circle" aria-hidden="true"></i> Running</span>
+            </div>
+            <div class="app-task-row">
+              <span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Maintenance</span>
+              <div class="app-row-actions">
+                <button class="app-icon-button" type="button" aria-label="Start Maintenance timer"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
+                <details class="app-rename-control">
+                  <summary class="app-icon-button" aria-label="Rename Maintenance"><i class="fa-solid fa-pen" aria-hidden="true"></i></summary>
+                  <form class="app-rename-popover" autocomplete="off" data-protonpass-ignore="true">
+                    <label for="rename-task">Task Name</label>
+                    <input id="rename-task" type="text" value="Maintenance" autocomplete="off" data-protonpass-ignore="true">
+                    <button class="app-button app-button-primary" type="submit">Save</button>
+                  </form>
+                </details>
+              </div>
+            </div>
+            <div class="app-subtask-list">
+              <div class="app-task-row"><span><i class="fa-solid fa-turn-up app-subtask-icon" aria-hidden="true"></i> Patch Review</span></div>
+              <div class="app-task-row"><span><i class="fa-solid fa-turn-up app-subtask-icon" aria-hidden="true"></i> Monthly Report</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="app-preview-section" id="forms" aria-labelledby="forms-title">
+        <div class="app-page-heading">
+          <div>
+            <p class="app-eyebrow">FORMS &amp; AUTHENTICATION</p>
+            <h2 id="forms-title">Purposeful Browser Behavior</h2>
+            <p class="app-muted">Noncredential fields suppress inappropriate autofill; credential fields preserve it.</p>
+          </div>
+        </div>
+
+        <div class="app-form-grid">
+          <article class="app-panel app-form-panel">
+            <div class="app-panel-heading">
+              <h3>Add Client</h3>
+              <span class="app-status-pill app-status-info">Noncredential</span>
+            </div>
+            <form class="app-form" autocomplete="off" data-protonpass-ignore="true">
+              <label for="client-name">Client Name</label>
+              <span class="app-input-with-icon">
+                <i class="fa-solid fa-building" aria-hidden="true"></i>
+                <input id="client-name" type="text" placeholder="Example Client" autocomplete="off" data-protonpass-ignore="true">
+              </span>
+              <label for="contact-name">Contact Name</label>
+              <span class="app-input-with-icon">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                <input id="contact-name" type="text" placeholder="Example Contact" autocomplete="off" data-protonpass-ignore="true">
+              </span>
+              <label for="client-status">Status</label>
+              <select id="client-status" autocomplete="off" data-protonpass-ignore="true">
+                <option>Enabled</option>
+                <option>Disabled</option>
+              </select>
+              <div class="app-form-actions">
+                <button class="app-button app-button-secondary" type="button">Cancel</button>
+                <button class="app-button app-button-primary" type="submit">Add Client</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="app-panel app-auth-panel">
+            <img class="app-auth-logo" src="../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
+            <form class="app-form">
+              <label for="login-email">Email Address</label>
+              <span class="app-input-with-icon">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <input id="login-email" type="email" autocomplete="username" value="user@example.com" disabled>
+              </span>
+              <label for="login-password">Password</label>
+              <span class="app-input-with-icon">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <input id="login-password" type="password" autocomplete="current-password" value="password" disabled>
+              </span>
+              <button class="app-button app-button-primary" type="submit" disabled>Sign In</button>
+            </form>
+            <div class="app-auth-divider" aria-hidden="true"></div>
+            <fieldset class="app-totp-fieldset">
+              <legend><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Authenticator Code</legend>
+              <div class="app-totp-bubbles">
+                <input type="text" inputmode="numeric" value="1" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1" readonly>
+                <input type="text" inputmode="numeric" value="2" maxlength="1" aria-label="Digit 2" readonly>
+                <input type="text" inputmode="numeric" value="3" maxlength="1" aria-label="Digit 3" readonly>
+                <input type="text" inputmode="numeric" value="4" maxlength="1" aria-label="Digit 4" readonly>
+                <input type="text" inputmode="numeric" value="5" maxlength="1" aria-label="Digit 5" readonly>
+                <input type="text" inputmode="numeric" value="6" maxlength="1" aria-label="Digit 6" readonly>
+              </div>
+            </fieldset>
+          </article>
+        </div>
+
+        <div class="app-flash-grid">
+          <div class="app-flash app-flash-info" role="status"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Neutral information</div>
+          <div class="app-flash app-flash-success" role="status"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Action completed</div>
+          <div class="app-flash app-flash-warning" role="status"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Attention required</div>
+          <div class="app-flash app-flash-error" role="status"><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> Action failed</div>
+        </div>
+      </section>
+
+      <section class="app-preview-section" id="data" aria-labelledby="data-title">
+        <div class="app-page-heading">
+          <div>
+            <p class="app-eyebrow">DATA INTERFACES</p>
+            <h2 id="data-title">Audit Events</h2>
+            <p class="app-muted">Filters, source labels, tabular records, and pagination remain usable at narrow widths.</p>
+          </div>
+        </div>
+        <form class="app-table-filters" autocomplete="off" data-protonpass-ignore="true">
+          <label>Source
+            <select id="source-filter" autocomplete="off" data-protonpass-ignore="true">
+              <option>All Sources</option>
+              <option>Administrator</option>
+              <option>User</option>
+              <option>System</option>
+            </select>
+          </label>
+          <label>Action
+            <input id="action-filter" type="text" placeholder="Filter actions" autocomplete="off" data-protonpass-ignore="true">
+          </label>
+          <button class="app-button app-button-secondary" type="submit">Apply Filters</button>
+        </form>
+        <section class="app-table-scroll" aria-label="Audit events" tabindex="0">
+          <table class="app-data-table">
+            <thead>
+              <tr><th scope="col">Timestamp</th><th scope="col">Source</th><th scope="col">Actor</th><th scope="col">Action</th><th scope="col">Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026-07-15 09:42</td><td><span class="app-status-pill app-status-admin">Admin</span></td><td>Example Admin</td><td>client.created</td><td>Success</td></tr>
+              <tr><td>2026-07-15 09:38</td><td><span class="app-status-pill app-status-user">User</span></td><td>Example User</td><td>timer.started</td><td>Success</td></tr>
+              <tr><td>2026-07-15 09:30</td><td><span class="app-status-pill app-status-system">System</span></td><td>Application</td><td>report.snapshot</td><td>Success</td></tr>
+              <tr><td>2026-07-15 09:15</td><td><span class="app-status-pill app-status-public">Public</span></td><td>Shared Report</td><td>report.viewed</td><td>Success</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <nav class="app-pagination" aria-label="Audit event pages">
+          <span>Showing 1–4 of 68</span>
+          <div>
+            <button class="app-button app-button-secondary" type="button" disabled>Previous</button>
+            <button class="app-button app-button-secondary" type="button">Next</button>
+          </div>
+        </nav>
+      </section>
+
+      <section class="app-preview-section" id="reports" aria-labelledby="reports-title">
+        <div class="app-report-heading">
+          <div>
+            <p class="app-eyebrow">LIVE CLIENT REPORT</p>
+            <h2 id="reports-title">Support Contract</h2>
+            <p class="app-muted">Example Client · synchronized moments ago</p>
+          </div>
+          <p class="app-live-status" data-state="live" aria-live="polite"><span class="app-running-dot" aria-hidden="true"></span> Live</p>
+        </div>
+        <div class="app-summary-grid">
+          <article class="app-summary-card"><span>Total Duration</span><strong>18:42:16</strong></article>
+          <article class="app-summary-card"><span>Equivalent Cost</span><strong>$2,337.85</strong></article>
+        </div>
+        <div class="app-report-grid">
+          <article class="app-panel app-chart-panel">
+            <p class="app-eyebrow">DISTRIBUTION</p>
+            <h3>Time by Task</h3>
+            <svg class="app-chart" viewBox="0 0 200 200" role="img" aria-label="Time by task">
+              <circle class="app-chart-track" cx="100" cy="100" r="72"></circle>
+              <circle class="app-chart-series app-chart-series-0" cx="100" cy="100" r="72"></circle>
+              <circle class="app-chart-series app-chart-series-1" cx="100" cy="100" r="72"></circle>
+              <circle class="app-chart-series app-chart-series-2" cx="100" cy="100" r="72"></circle>
+            </svg>
+            <ul class="app-chart-legend">
+              <li><span class="app-legend-swatch app-legend-color-0"></span><span>Maintenance</span><strong>9:18:00</strong></li>
+              <li><span class="app-legend-swatch app-legend-color-1"></span><span>Patch Review</span><strong>5:40:16</strong></li>
+              <li><span class="app-legend-swatch app-legend-color-2"></span><span>Reporting</span><strong>3:44:00</strong></li>
+            </ul>
+          </article>
+          <article class="app-panel app-state-panel">
+            <p class="app-eyebrow">SUPPORTING STATES</p>
+            <div class="app-empty-state">
+              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+              <h3>No Additional Records</h3>
+              <p class="app-muted">Empty states explain what is missing and identify the next useful action.</p>
+            </div>
+            <div class="app-sensitive-value" role="note" aria-label="Example one-time recovery code">ABCD-EFGH-IJKL</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <strong class="app-footer-confidential">CONFIDENTIAL</strong>
+      <span>Web application component preview</span>
+    </footer>
+  </body>
+</html>

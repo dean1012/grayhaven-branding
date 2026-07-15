@@ -40,7 +40,8 @@ Use the following token families:
 
 - Core colors: `--deep-graphite`, `--gunmetal`, `--slate-grey`, `--soft-white`,
   `--cool-grey`, `--primary-accent`, `--standard-hover`, `--elevated-hover`,
-  `--light-surface-accent`, `--charcoal-border`, and `--muted-emerald`.
+  `--light-surface-accent`, `--pale-steel`, `--muted-deep-accent`,
+  `--charcoal-border`, `--dark-logo-charcoal`, and `--muted-emerald`.
 - Alerts: `--alert-info`, `--alert-success`, `--alert-warning`, and
   `--alert-error`.
 - Typography: `--font-primary` and the 300–800 font-weight tokens.
@@ -82,6 +83,8 @@ serve as decoration.
 - Keep component styles grouped by component and use clear, predictable class
   names.
 - Prefer one shared stylesheet over duplicated inline style blocks.
+- Keep all styling in linked stylesheets. Do not use `<style>` elements,
+  `style` attributes, or SVG presentation attributes in HTML.
 - Avoid unnecessary specificity, IDs for styling, and `!important`.
 - Use `:focus-visible` with a visible accent-colored outline.
 - Keep hover states restrained and provide equivalent keyboard focus states.
@@ -100,6 +103,8 @@ not a prerequisite for understanding or using the site.
 - Do not add JavaScript for behavior that native HTML and CSS already provide.
 - Keep DOM queries and event handlers local to the behavior they enhance.
 - Avoid global state, inline event attributes, and unrelated side effects.
+- Load JavaScript from linked files. Do not place executable `<script>` content
+  in HTML documents.
 - Do not make scrolling, navigation, content discovery, or contact access
   depend exclusively on JavaScript.
 - If JavaScript is unavailable, the site must retain a safe, usable fallback:

@@ -15,7 +15,10 @@
   --standard-hover: #65B7E6;
   --elevated-hover: #74C3EC;
   --light-surface-accent: #1F5F87;
+  --pale-steel: #BBC7D3;
+  --muted-deep-accent: #2E8BC0;
   --charcoal-border: #444C56;
+  --dark-logo-charcoal: #2B333B;
   --muted-emerald: #3FB68B;
 
   /* Alert Palette */
@@ -1171,6 +1174,45 @@ html:not(.js-enabled) body:has(#alerts:target) .navbar-links a[href="#alerts"] {
 .preview-logo-card .preview-monogram {
   width: min(42%, 8rem);
 }
+
+.preview-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.preview-color-token {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+  padding: var(--space-xs);
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--deep-graphite) 38%, transparent);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.78rem;
+}
+
+.preview-color-token::before {
+  width: 2.5rem;
+  height: 2.5rem;
+  content: "";
+  background: var(--token-color);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.preview-color-token code {
+  color: var(--soft-white);
+  overflow-wrap: anywhere;
+}
+
+.preview-color-token.pale-steel { --token-color: var(--pale-steel); }
+.preview-color-token.muted-deep-accent { --token-color: var(--muted-deep-accent); }
+.preview-color-token.dark-logo-charcoal { --token-color: var(--dark-logo-charcoal); }
 
 .preview-alert-grid {
   display: grid;
