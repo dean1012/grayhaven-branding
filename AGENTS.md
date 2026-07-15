@@ -48,4 +48,8 @@ echo "test" | gpg --clearsign \
 The agent must not run the cache-priming command. Wait for the user to confirm
 that it succeeded before continuing work that requires signed commits.
 
-Do not commit or push changes unless the user explicitly requests that work.
+Do not modify this repository unless Jerry explicitly requests the change. When
+Jerry explicitly requests a repository change, implement and validate the
+requested work, commit all related changes with signed commits, and push them
+unless he explicitly limits the work to local or uncommitted changes or asks
+for a review gate before pushing.
