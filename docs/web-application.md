@@ -509,6 +509,12 @@ records and timer changes should update without a page reload when the
 application supports live synchronization; the last received values remain a
 safe readable fallback when synchronization is unavailable.
 
+Live report pages use a report-specific fixed header with the wordmark,
+confidentiality marker, report type, and live status. They use a report-specific
+fixed footer for company identity and confidentiality. Only the report content
+between those elements scrolls. Do not reuse authenticated application
+navigation on the client-facing report shell.
+
 Chart series use the approved palette in this order:
 
 1. Primary Accent
@@ -570,7 +576,12 @@ Authenticated application footers are compact. Use the blue uppercase
 `CONFIDENTIAL` label as the left-side identity and optional build or version
 metadata as secondary text on the right. Public client reports may use the full
 company name plus the same confidentiality marker when report identity is
-needed.
+needed. Use a fixed-height column flex shell so the header and footer remain
+visible. The main content region between them is the only vertical scroll
+container, including on long pages. Apply the same behavior to live client web
+reports, using the report-specific header and footer instead of authenticated
+application navigation. Exported PDF documents use their separately approved
+document layout.
 
 ```html
 <footer class="app-footer">
@@ -580,6 +591,24 @@ needed.
 ```
 
 ```css
+.application-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.app-viewport {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.app-footer {
+  flex: 0 0 auto;
+}
+
 .app-footer-confidential {
   color: var(--primary-accent);
   font-weight: var(--font-weight-bold);

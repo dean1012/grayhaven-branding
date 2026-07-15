@@ -11,13 +11,19 @@
 }
 
 .application-preview {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .app-header {
   position: sticky;
   top: 0;
   z-index: 100;
+  flex: 0 0 auto;
   background: var(--navbar-bg);
   border-bottom: 1px solid var(--charcoal-border);
   backdrop-filter: var(--navbar-blur);
@@ -125,6 +131,12 @@
   border: 1px solid var(--charcoal-border);
   border-radius: var(--border-radius);
   box-shadow: var(--panel-shadow);
+}
+
+.app-viewport {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
 }
 
 .app-shell {
@@ -791,6 +803,7 @@
 
 .app-footer {
   display: flex;
+  flex: 0 0 auto;
   justify-content: space-between;
   padding-block: var(--space-md) var(--space-lg);
   color: var(--slate-grey);
