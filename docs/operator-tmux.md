@@ -18,7 +18,7 @@ Use these colors for the standard operator tmux theme:
 | --- | --- | --- |
 | Deep Graphite | Status bar and inactive window title backgrounds | `#1C1F24` |
 | Gunmetal | Current window and environment indicator backgrounds | `#2A2F36` |
-| Slate Grey | Inactive index and right status backgrounds | `#353B44` |
+| Slate Grey | Inactive index and right status backgrounds | `#77818E` |
 | Soft White | Main status, active pane, and title text | `#E6EAF0` |
 | Cool Grey | Inactive pane and inactive window title text | `#AAB2BF` |
 | Primary Accent | Active index, session segment, and pane border | `#58ACE0` |

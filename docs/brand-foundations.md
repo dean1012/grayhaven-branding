@@ -41,7 +41,7 @@ Fallback stack for web contexts:
 | --- | --- |
 | Deep Graphite | `#1C1F24` |
 | Gunmetal | `#2A2F36` |
-| Slate Grey | `#353B44` |
+| Slate Grey | `#77818E` |
 | Soft White | `#E6EAF0` |
 | Cool Grey | `#AAB2BF` |
 | Primary Accent | `#58ACE0` |
