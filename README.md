@@ -7,6 +7,21 @@ This repository keeps branding decisions consistent across infrastructure
 documentation, website work, Discord/operational alerts, and related project
 contexts.
 
+## License
+
+Grayhaven Systems LLC branding is proprietary. This repository is publicly
+visible as an implementation reference, but it is not open source and does not
+grant permission to reuse company names, logos, icons, wordmarks, monograms,
+marks, original artwork, documentation, or design guidance. All rights in
+those materials are reserved. See [LICENSE](LICENSE).
+
+Bundled Inter and Font Awesome files remain under their respective upstream
+licenses. Their scope, provenance, and notices are documented in
+[Asset Provenance](docs/asset-provenance.md) and
+[third-party-licenses](third-party-licenses/).
+
+See [Contributing](CONTRIBUTING.md) for the repository workflow.
+
 ## How to use this repository
 
 Start with the guidance for the type of branded work you are doing, then use
