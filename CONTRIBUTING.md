@@ -21,9 +21,8 @@ process as governing this one.
 
 ## External Contributions
 
-Issue reports that identify an error are welcome. External code, documentation,
-or asset contributions are not accepted unless Grayhaven Systems LLC agrees to
-them separately in writing before submission.
+External code, documentation, or asset contributions are not accepted unless
+Grayhaven Systems LLC agrees to them separately in writing before submission.
 
 Do not submit confidential information, credentials, customer data, third-party
 materials without complete provenance, or content that you do not have the
