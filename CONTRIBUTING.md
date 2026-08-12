@@ -8,7 +8,8 @@ or grant permission to reuse it.
 
 Grayhaven Systems LLC employees should:
 
-1. Read `AGENTS.md` and the referenced brand guidance.
+1. Read `README.md`, `docs/brand-foundations.md`, `docs/logo-usage.md`, and the
+   task-specific guidance for the affected deliverable.
 2. Make one focused change at a time.
 3. Validate affected Markdown, HTML, CSS, JavaScript, and assets.
 4. Sign every commit with the configured company signing key.
