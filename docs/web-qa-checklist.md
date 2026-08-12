@@ -1,6 +1,6 @@
 # Web QA Checklist
 
-[Back to Web Style Guide](../style-guide/style-guide.md)
+[Back to Web Style Guide](../web/style-guide/style-guide.md)
 
 This checklist provides recommended testing guidelines before deploying a
 website using Grayhaven Systems LLC branding. It is a manual review aid for

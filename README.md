@@ -44,6 +44,6 @@ Style guides:
 - [LinkedIn](docs/linkedin.md)
 - [Letterhead](docs/letterhead.md)
 - [Operator Tmux](docs/operator-tmux.md)
-- [Web](style-guide/style-guide.md)
+- [Web](web/style-guide/style-guide.md)
 - [Web Application](docs/web-application.md)
 - [Asset Provenance](docs/asset-provenance.md)

@@ -1,6 +1,6 @@
 # Web Metadata and Assets
 
-[Back to Web Style Guide](../style-guide/style-guide.md)
+[Back to Web Style Guide](../web/style-guide/style-guide.md)
 
 This document defines the metadata patterns and supporting assets for websites
 using Grayhaven Systems LLC branding. It is intended for human and AI-assisted

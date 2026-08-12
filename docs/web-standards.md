@@ -1,6 +1,6 @@
 # Web Standards
 
-[Back to Web Style Guide](../style-guide/style-guide.md)
+[Back to Web Style Guide](../web/style-guide/style-guide.md)
 
 This document defines the implementation standards for Grayhaven Systems LLC
 websites, previews, and web-based interfaces. It is intended to be useful to

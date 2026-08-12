@@ -36,7 +36,7 @@ document. All rights in them are reserved under the repository [license](../LICE
 
 - Upstream: [Font Awesome Free](https://fontawesome.com/)
 - Version: 6.5.1
-- Files: `style-guide/fontawesome.min.css` and `assets/webfonts/fa-*`
+- Files: `web/style-guide/fontawesome.min.css` and `assets/webfonts/fa-*`
 - Licenses: icons under CC BY 4.0, fonts under SIL OFL 1.1, and code under MIT.
 - Included notice:
   [Font Awesome Free license](../third-party-licenses/FONT-AWESOME.txt)

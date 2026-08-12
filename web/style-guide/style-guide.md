@@ -1,6 +1,6 @@
 # Web Style Guide
 
-[Back to README](../README.md)
+[Back to README](../../README.md)
 
 This guide is the entry point for Grayhaven Systems LLC web styling. The
 production-aligned implementation preview is available at
@@ -8,18 +8,18 @@ production-aligned implementation preview is available at
 
 ## Normative references
 
-- [Web Standards](../docs/web-standards.md) defines the rules for tokens,
+- [Web Standards](../../docs/web-standards.md) defines the rules for tokens,
   HTML, CSS, JavaScript, privacy, accessibility, assets, and responsive
   behavior.
-- [Web Components](../docs/web-components.md) defines reusable page and
+- [Web Components](../../docs/web-components.md) defines reusable page and
   component patterns.
-- [Web Metadata and Assets](../docs/web-metadata.md) defines metadata,
+- [Web Metadata and Assets](../../docs/web-metadata.md) defines metadata,
   structured-data, social-preview, and web-asset requirements.
-- [Web QA Checklist](../docs/web-qa-checklist.md) provides recommended manual
+- [Web QA Checklist](../../docs/web-qa-checklist.md) provides recommended manual
   checks before deploying a branded website.
-- [Web Application Style Guide](../docs/web-application.md) extends these
+- [Web Application Style Guide](../../docs/web-application.md) extends these
   foundations for authenticated applications and operational dashboards. Its
-  [live preview](../web-application/index.html) is maintained separately so
+  [live preview](../../web-application/index.html) is maintained separately so
   application patterns do not replace the general web component set.
 
 ## Component index

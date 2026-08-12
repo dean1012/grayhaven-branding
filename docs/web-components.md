@@ -1,6 +1,6 @@
 # Web Components
 
-[Back to Web Style Guide](../style-guide/style-guide.md)
+[Back to Web Style Guide](../web/style-guide/style-guide.md)
 
 This is the component-level companion to [Web Standards](web-standards.md).
 `grayhaven-branding` is the visual source of truth for Grayhaven Systems LLC

@@ -1,6 +1,6 @@
 # Web Application Style Guide
 
-[Return to Web Style Guide](../style-guide/style-guide.md)
+[Return to Web Style Guide](../web/style-guide/style-guide.md)
 
 This guide extends the general Grayhaven Systems LLC web standards for
 authenticated applications, administrative interfaces, operational dashboards,
