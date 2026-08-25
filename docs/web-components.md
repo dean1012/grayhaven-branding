@@ -39,9 +39,9 @@ sections, but should preserve the same hierarchy.
 
 ```html
 <header class="site-header">
-  <nav class="navbar" aria-label="Main navigation">
+  <div class="navbar">
     <!-- Navigation component -->
-  </nav>
+  </div>
 </header>
 
 <main>
@@ -72,15 +72,24 @@ sections, but should preserve the same hierarchy.
 ## Navigation
 
 Navigation provides site orientation, a root link, section links, and an
-optional contact action. The mobile menu must remain usable with JavaScript
-disabled. JavaScript may add active tracking, `aria-current`, and automatic
-menu closing.
+optional contact action. Use one horizontal desktop navigation and one compact
+mobile behavior: an icon-only native `details` menu with a 44 by 44 CSS pixel
+trigger and an accessible name. Breakpoint policy belongs in
+[Web Standards](web-standards.md), not in the component markup. JavaScript may
+add active tracking, `aria-current`, and automatic menu closing, but the menu
+and links must remain usable without it.
+
+The approved general-site presentation is the Grayhaven public-site treatment:
+an opaque Deep Graphite bar, a subtle Charcoal border, the full logo, subdued
+links with Primary Accent interaction states, and a compact contact action.
+Preserve that solid visual treatment when adopting the standardized native
+mobile interaction; do not add transparency, blur, or glass effects.
 
 ### Navigation HTML example
 
 ```html
 <header class="site-header">
-  <nav class="navbar" aria-label="Main navigation">
+  <div class="navbar">
     <div class="navbar-brand">
       <a href="./index.html" aria-label="Grayhaven Systems LLC home">
         <img
@@ -90,25 +99,20 @@ menu closing.
       </a>
     </div>
 
-    <div class="navbar-menu">
-      <input
-        class="navbar-menu-toggle"
-        type="checkbox"
-        id="menu-toggle"
-        aria-controls="nav-menu">
-      <label
-        class="navbar-toggle"
-        for="menu-toggle"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggle-bar"></span>
-        <span class="navbar-toggle-bar"></span>
-        <span class="navbar-toggle-bar"></span>
-      </label>
-      <ul class="navbar-links" id="nav-menu">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="#section-id">Section</a></li>
-      </ul>
-    </div>
+    <nav class="navbar-links navbar-links-desktop" aria-label="Desktop navigation">
+      <a href="./index.html" aria-current="page">Home</a>
+      <a href="#section-id">Section</a>
+    </nav>
+
+    <details class="navbar-menu-mobile">
+      <summary class="navbar-toggle" aria-label="Navigation menu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </summary>
+      <nav class="navbar-links navbar-links-mobile" aria-label="Mobile navigation">
+        <a href="./index.html" aria-current="page">Home</a>
+        <a href="#section-id">Section</a>
+      </nav>
+    </details>
 
     <a
       class="link-button navbar-contact"
@@ -118,7 +122,7 @@ menu closing.
       <i class="fa-solid fa-calendar" aria-hidden="true"></i>
       <span>Compact Button</span>
     </a>
-  </nav>
+  </div>
 </header>
 ```
 
@@ -130,7 +134,6 @@ menu closing.
   top: 0;
   z-index: 1000;
   background: var(--navbar-bg);
-  backdrop-filter: var(--navbar-blur);
   border-bottom: 1px solid var(--charcoal-border);
 }
 
@@ -154,9 +157,49 @@ menu closing.
 }
 
 .navbar-links {
-  display: none;
   gap: var(--space-md);
   align-items: center;
+}
+
+.navbar-links-desktop {
+  display: none;
+}
+
+.navbar-menu-mobile {
+  position: relative;
+  margin-left: auto;
+}
+
+.navbar-menu-mobile > summary {
+  list-style: none;
+}
+
+.navbar-menu-mobile > summary::-webkit-details-marker {
+  display: none;
+}
+
+.navbar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--soft-white);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+}
+
+.navbar-links-mobile {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  right: 0;
+  display: grid;
+  min-width: 13rem;
+  padding: var(--space-xs);
+  background: var(--navbar-bg);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--panel-shadow);
 }
 
 .navbar-links a {

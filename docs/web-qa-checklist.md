@@ -36,8 +36,13 @@ human or AI-assisted work; it is not a CI requirement.
 - [ ] Check tablet width and long navigation or button labels.
 - [ ] Check wide desktop width and the transition immediately below the full
       desktop navigation breakpoint.
+- [ ] Confirm site and application navigation switch at their separately
+      documented breakpoints without changing the approved desktop or mobile
+      implementation.
 - [ ] Confirm no text, buttons, tags, cards, or footer links are clipped or
       forced into unintended horizontal scrolling.
+- [ ] Confirm responsive tables become labeled stacked rows/cards with every
+      caption, value, structured detail, empty state, and row action preserved.
 - [ ] Confirm light and dark panel variants retain readable contrast.
 
 [Back to top](#web-qa-checklist)
@@ -45,13 +50,19 @@ human or AI-assisted work; it is not a CI requirement.
 ## Accessibility
 
 - [ ] Navigate the page using only the keyboard.
-- [ ] Confirm every interactive control has a visible `:focus-visible` state.
+- [ ] Confirm every focused field and compound field wrapper changes only its
+      existing one-pixel border to Primary Accent.
+- [ ] Confirm links, buttons, icon controls, and other non-field controls retain
+      their existing visible `:focus-visible` treatment.
 - [ ] Confirm icon-only controls have accessible names.
 - [ ] Confirm informative images have meaningful alternative text and
       decorative images have empty alternative text.
 - [ ] Confirm the active navigation state is communicated visually and, where
       available, with `aria-current`.
 - [ ] Confirm menu state is communicated accurately to assistive technology.
+- [ ] Confirm desktop navigation is horizontal and the mobile navigation uses
+      the icon-only 44 by 44 CSS pixel native `details` control with an
+      accessible name.
 - [ ] Confirm color is not the only way information is conveyed.
 
 [Back to top](#web-qa-checklist)

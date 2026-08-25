@@ -66,9 +66,10 @@ serve as decoration.
   images with empty alt text.
 - Icon-only controls require an accessible name with `aria-label`.
 - Use `aria-current` for the active navigation location when it is known.
-- CSS-only menu toggles must expose their native checked state without also
-  publishing a stale `aria-expanded` value; JavaScript may add the expanded
-  state when it is available.
+- Compact navigation uses a native `details` element with an icon-only
+  `summary` control. Give the summary an accessible name and let the native
+  open state communicate expansion without a duplicated `aria-expanded`
+  value.
 - External links opened in a new tab require
   `target="_blank" rel="noopener noreferrer"`.
 - Use HTML entities such as `&amp;` for visible ampersands in markup.
@@ -145,7 +146,20 @@ Use the production breakpoints only when the layout needs them:
 | `768px` and above | Desktop grids and footer layout |
 | `900px` and above | Two-column footer repository grid |
 | `1120px` and above | Wide desktop spacing and three-column footer grid |
-| `1721px` and above | Full desktop navigation |
+| `1721px` and above | General-site horizontal desktop navigation |
+
+Navigation breakpoints are layout policy, not part of the navigation component
+markup. General sites use the `1721px` threshold shown above. Applications may
+use a separate documented threshold chosen from their approved responsive
+layout based on navigation density; the Branding application preview uses
+`1120px`. Both contexts use the same horizontal desktop navigation and native
+`details` mobile implementation.
+
+Breakpoint differences must not create additional navigation behaviors or
+visual variants. Site and application navigation retain the approved opaque
+public-site presentation on both sides of their respective breakpoints. Their
+destinations and optional product labels may differ, but the solid surface,
+interaction model, and visual treatment do not.
 
 Test narrow mobile, tablet, wide desktop, and the transition immediately below
 the full desktop navigation breakpoint. Do not assume that a layout that works

@@ -1,7 +1,7 @@
 /**
  * Progressive navigation enhancement for the branding preview.
  *
- * Native anchors, target-based CSS, and the checkbox menu keep the preview
+ * Native anchors, target-based CSS, and the details menu keep the preview
  * usable without JavaScript. This layer adds active-section tracking,
  * aria-current, and automatic mobile-menu closing.
  */
@@ -11,10 +11,8 @@
 
   document.documentElement.classList.add('js-enabled');
 
-  const menuToggle = document.getElementById('previewMenuToggle');
-  const menuToggleLabel = document.querySelector('label[for="previewMenuToggle"]');
-  const navMenu = document.getElementById('previewMenu');
-  const navLinks = navMenu ? navMenu.querySelectorAll('a') : [];
+  const mobileMenu = document.getElementById('previewMobileMenu');
+  const navLinks = document.querySelectorAll('.navbar-links a');
   const sections = document.querySelectorAll('main section[id]');
 
   const setActiveNav = function (id) {
@@ -45,22 +43,10 @@
   window.addEventListener('scroll', setHomeAtTop, { passive: true });
   setHomeAtTop();
 
-  if (menuToggle && menuToggleLabel) {
-    menuToggleLabel.addEventListener('click', function (event) {
-      event.preventDefault();
-      menuToggle.checked = !menuToggle.checked;
-      menuToggleLabel.setAttribute('aria-expanded', String(menuToggle.checked));
-    });
-  }
-
   navLinks.forEach(function (link) {
     link.addEventListener('click', function () {
-      if (menuToggle) {
-        menuToggle.checked = false;
-      }
-
-      if (menuToggleLabel) {
-        menuToggleLabel.setAttribute('aria-expanded', 'false');
+      if (mobileMenu) {
+        mobileMenu.removeAttribute('open');
       }
 
       const href = link.getAttribute('href');

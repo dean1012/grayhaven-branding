@@ -26,7 +26,8 @@ production-aligned implementation preview is available at
 
 The preview demonstrates:
 
-- Sticky navigation with mobile fallback
+- Solid horizontal desktop navigation and icon-only native `details` mobile
+  navigation
 - Active navigation with JavaScript and CSS/no-JavaScript fallback
 - Hero and section title/subtitle patterns
 - Light and dark panel surfaces with matching text colors

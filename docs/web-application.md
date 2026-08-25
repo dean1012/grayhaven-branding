@@ -17,6 +17,7 @@ complete visual vocabulary with generic sample content.
 - [Inheritance and scope](#inheritance-and-scope)
 - [Application tokens](#application-tokens)
 - [Application shell and navigation](#application-shell-and-navigation)
+- [Breadcrumbs and truncation](#breadcrumbs-and-truncation)
 - [Page headings and panels](#page-headings-and-panels)
 - [Application actions](#application-actions)
 - [Forms and browser autofill](#forms-and-browser-autofill)
@@ -85,10 +86,16 @@ Use the canonical radii:
 
 ## Application shell and navigation
 
-An authenticated shell uses a sticky, compact header with the approved
+An authenticated shell uses a sticky, compact, solid header with the approved
 dark-background wordmark, an optional product label, primary destinations, and
-a sign-out action. A native `details` menu is the preferred mobile fallback
-because it remains operable without JavaScript.
+a sign-out action. There are exactly two navigation behaviors: horizontal
+desktop navigation and an icon-only native `details` mobile menu with a 44 by
+44 CSS pixel trigger and an accessible name. The application breakpoint is
+documented in [Web Standards](web-standards.md), outside this component.
+Use the same opaque Deep Graphite surface, Charcoal border, logo treatment,
+subdued links, Primary Accent interaction states, and compact action treatment
+as the approved general-site navigation. Application destinations and the
+optional product label may differ; the navbar presentation does not.
 
 Authentication screens omit the application header and navigation. Public
 shared-report pages may also omit authenticated navigation when no destination
@@ -121,7 +128,6 @@ is available to the viewer.
     <details class="app-nav-mobile">
       <summary class="app-nav-toggle" aria-label="Application menu">
         <i class="fa-solid fa-bars" aria-hidden="true"></i>
-        <span>Menu</span>
       </summary>
       <nav class="app-nav-menu" aria-label="Application navigation">...</nav>
     </details>
@@ -140,7 +146,6 @@ is available to the viewer.
   z-index: 100;
   background: var(--navbar-bg);
   border-bottom: 1px solid var(--charcoal-border);
-  backdrop-filter: var(--navbar-blur);
 }
 
 .app-header-inner,
@@ -160,6 +165,46 @@ is available to the viewer.
   border-left: 1px solid var(--charcoal-border);
   font-size: 0.9rem;
   font-weight: var(--font-weight-medium);
+}
+```
+
+[Back to top](#web-application-style-guide)
+
+## Breadcrumbs and truncation
+
+Use breadcrumbs for nested application locations. The first item identifies
+the application root, intermediate items are links, and the final item is plain
+text with `aria-current="page"`. Keep the ordered list on one line and truncate
+long labels without allowing the component to widen the viewport. Preserve the
+complete label in `title` when visible text may be truncated.
+
+```html
+<nav class="app-breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a class="app-breadcrumb-label" href="/">Dashboard</a></li>
+    <li><a class="app-breadcrumb-label" href="/records">Records</a></li>
+    <li class="app-breadcrumb-current" aria-current="page">
+      <span class="app-breadcrumb-label" title="Current Record">Current Record</span>
+    </li>
+  </ol>
+</nav>
+```
+
+```css
+.app-breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.app-breadcrumb-label {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 ```
 
@@ -324,6 +369,73 @@ apply the ignore attributes only to its noncredential fields.
 }
 ```
 
+Every focused field retains its existing one-pixel border and changes only that
+border color to Primary Accent. This applies to every native `input` type,
+`select`, `textarea`, and compound field wrapper. Do not add an outline, alter
+border width, add a glow, or shift layout. Buttons, links, icon controls, and
+other non-field controls retain their existing focus indicators.
+
+```css
+.app-form :is(input, select, textarea):focus-visible,
+.app-table-filters :is(input, select, textarea):focus-visible {
+  border-color: var(--primary-accent);
+  outline: none;
+}
+
+.app-compound-field:focus-within {
+  border-color: var(--primary-accent);
+}
+
+.app-compound-field > :is(input, select, textarea) {
+  border: 0;
+}
+```
+
+Use compound fields when a prefix, suffix, or adjacent action is visually part
+of one value. The wrapper owns the one-pixel border; its child field removes its
+own border. Keep the label outside the wrapper and give adjacent icon actions
+an accessible name.
+
+```html
+<label for="hourly-rate">Billable Rate</label>
+<span class="app-compound-field app-money-input">
+  <span aria-hidden="true">$</span>
+  <input id="hourly-rate" type="number" min="0" step="0.01">
+  <span>per hour</span>
+</span>
+
+<label for="completed-at">Completed At</label>
+<span class="app-compound-field app-datetime-control">
+  <input id="completed-at" type="datetime-local">
+  <button
+    class="app-icon-button"
+    type="button"
+    aria-label="Set completed time to now">
+    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+  </button>
+</span>
+
+<label for="notes">Notes</label>
+<textarea id="notes" rows="3"></textarea>
+```
+
+Read-only values use the same field geometry with a quieter surface. A
+copyable sensitive value combines the wrapping monospace value with an
+icon-only copy action; the consuming application owns clipboard behavior.
+
+```html
+<output class="app-readonly-value" aria-label="Current account identifier">
+  example-account
+</output>
+
+<div class="app-sensitive-value app-copyable-value">
+  <span>ABCD-EFGH-IJKL</span>
+  <button class="app-icon-button" type="button" aria-label="Copy recovery code">
+    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+  </button>
+</div>
+```
+
 [Back to top](#web-application-style-guide)
 
 ## Authentication and verification codes
@@ -395,11 +507,10 @@ Suggested semantic mapping:
 
 | Meaning | Token |
 | --- | --- |
-| Enabled, running, successful, administrator-origin | `--alert-success` |
-| Neutral, user-origin, informational | `--alert-info` |
-| Expiring, public-origin, reconnecting | `--alert-warning` |
+| Enabled, running, successful | `--alert-success` |
+| Neutral, informational | `--alert-info` |
+| Expiring, reconnecting | `--alert-warning` |
 | Disabled, stopped, failed, destructive | `--alert-error` |
-| System-origin audit event | `--slate-grey` |
 
 ```html
 <div class="app-flash app-flash-success" role="status">
@@ -413,7 +524,20 @@ Suggested semantic mapping:
 ```
 
 Derive the background and border from the same state token. Use soft white for
-badge text when a brighter state color would reduce readability.
+badge text when a brighter state color would reduce readability. Keep pills
+content-sized, allow long labels to wrap, and never let `white-space: nowrap`
+clip or widen the viewport.
+
+Audit source is a category, not severity. Use separately named source-label
+classes for administrator, user, public, and system origins. A source label may
+reuse approved palette colors, but its class and accessible text must not imply
+success, information, warning, or error state.
+
+```html
+<span class="app-status-pill app-audit-source app-audit-source-admin">
+  Administrator
+</span>
+```
 
 [Back to top](#web-application-style-guide)
 
@@ -453,10 +577,12 @@ small rename or edit popover when it provides a safe no-JavaScript fallback.
 
 ## Data tables, filters, and pagination
 
-Use tables for genuinely tabular records. Place wide tables inside a labeled
-horizontal scroll container; do not compress columns until values become
-unreadable. Headers use the primary accent, compact uppercase labels, and
-explicit scope attributes.
+Use tables for genuinely tabular records. At the documented application table
+breakpoint, convert each body row to a labeled stacked card rather than adding
+horizontal scrolling. Keep the semantic table, caption, scoped headers, every
+cell value, structured details, empty rows, and row actions in the document.
+Each body cell needs a `data-label` matching its column header so the stacked
+layout remains understandable.
 
 Alignment is semantic, not positional: descriptive columns align left and
 numeric values align right. Apply a class such as `app-table-numeric` to the
@@ -464,9 +590,9 @@ appropriate cells or scope a positional rule to a specific table type. Do not
 use `!important` to override a generic table rule.
 
 Filters appear before the table and collapse to one column on narrow screens.
-Pagination reports the current range as text and uses real links or buttons for
-available destinations. Disabled controls remain identifiable and are removed
-from the keyboard sequence where appropriate.
+Pagination reports a total plus the current page and page count. Use real links
+or buttons for available destinations and omit unavailable destinations or
+render clearly disabled controls outside the keyboard sequence.
 
 ```html
 <form class="app-table-filters" autocomplete="off" data-protonpass-ignore="true">
@@ -475,22 +601,31 @@ from the keyboard sequence where appropriate.
   <button class="app-button app-button-secondary" type="submit">Apply Filters</button>
 </form>
 
-<div class="app-table-scroll" role="region" aria-label="Audit events" tabindex="0">
-  <table class="app-data-table">
+<div class="app-table-wrap">
+  <table class="app-data-table app-responsive-table">
+    <caption class="app-visually-hidden">Audit events</caption>
     <thead>
-      <tr>
-        <th scope="col">Timestamp</th>
-        <th scope="col">Actor</th>
+      <tr><th scope="col">Timestamp</th><th scope="col">Actor</th>
         <th scope="col">Action</th>
-        <th scope="col" class="app-table-numeric">Duration</th>
-      </tr>
+        <th scope="col" class="app-table-numeric">Duration</th></tr>
     </thead>
-    <tbody>...</tbody>
+    <tbody>
+      <tr>
+        <td data-label="Timestamp">2026-08-25 09:30</td>
+        <td data-label="Actor">Example User</td>
+        <td data-label="Action">record.updated</td>
+        <td class="app-table-numeric" data-label="Duration">00:12:34</td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
+<div class="app-table-summary">
+  <span>68 events</span>
+  <span>Page 1 of 17</span>
+</div>
 <nav class="app-pagination" aria-label="Table pages">
-  <span>Showing 1–25 of 68</span>
+  <span aria-current="page">Page 1 of 17</span>
   <a class="app-button app-button-secondary" href="?page=2">Next</a>
 </nav>
 ```
@@ -625,7 +760,9 @@ document layout.
 - Stack heading actions, form actions, active-work controls, report headers,
   and footers before they collide.
 - Keep touch targets at least 44 by 44 CSS pixels for primary mobile controls.
-- Preserve horizontal table scrolling rather than clipping data.
+- Convert responsive tables to labeled stacked rows/cards without clipping or
+  dropping captions, header meaning, values, structured details, empty states,
+  or row actions.
 - Use `aria-current`, `aria-live`, field labels, table scopes, and accessible
   names as appropriate.
 - Ensure status, chart, and audit-source meanings remain understandable without

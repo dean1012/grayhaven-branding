@@ -6,8 +6,8 @@
     <title>Grayhaven Systems LLC Web Application Style Guide Preview</title>
     <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260712">
     <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260712">
-    <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260715a">
-    <link rel="stylesheet" href="web-application.css?v=20260715a">
+    <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260825">
+    <link rel="stylesheet" href="web-application.css?v=20260825">
   </head>
   <body class="application-preview">
     <header class="app-header">
@@ -26,10 +26,9 @@
         <details class="app-nav-mobile">
           <summary class="app-nav-toggle" aria-label="Application preview menu">
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            <span>Menu</span>
           </summary>
           <nav class="app-nav-menu" aria-label="Application preview mobile navigation">
-            <a href="#dashboard">Dashboard</a>
+            <a href="#dashboard" aria-current="page">Dashboard</a>
             <a href="#forms">Forms</a>
             <a href="#data">Data</a>
             <a href="#reports">Reports</a>
@@ -38,6 +37,18 @@
         </details>
       </div>
     </header>
+
+    <nav class="app-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a class="app-breadcrumb-label" href="#top" title="Dashboard">Dashboard</a></li>
+        <li><a class="app-breadcrumb-label" href="#data" title="Records">Records</a></li>
+        <li class="app-breadcrumb-current" aria-current="page">
+          <span class="app-breadcrumb-label" title="Example Record with a Long Name">
+            Example Record with a Long Name
+          </span>
+        </li>
+      </ol>
+    </nav>
 
     <main class="app-viewport">
       <div class="app-shell" id="top">
@@ -154,6 +165,23 @@
                 <option>Enabled</option>
                 <option>Disabled</option>
               </select>
+              <label for="client-notes">Notes</label>
+              <textarea id="client-notes" rows="3" autocomplete="off" data-protonpass-ignore="true">Example notes</textarea>
+              <label for="billable-rate">Billable Rate</label>
+              <span class="app-compound-field app-money-input">
+                <span class="app-money-prefix" aria-hidden="true">$</span>
+                <input id="billable-rate" type="number" min="0" step="0.01" value="125.00" autocomplete="off" data-protonpass-ignore="true">
+                <span class="app-money-suffix">per hour</span>
+              </span>
+              <label for="completed-at">Completed At</label>
+              <span class="app-compound-field app-datetime-control">
+                <input id="completed-at" type="datetime-local" value="2026-08-25T09:30" autocomplete="off" data-protonpass-ignore="true">
+                <button class="app-icon-button" type="button" aria-label="Set completed time to now">
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                </button>
+              </span>
+              <label for="current-account">Current Account</label>
+              <output id="current-account" class="app-readonly-value">example-account</output>
               <div class="app-form-actions">
                 <button class="app-button app-button-secondary" type="button">Cancel</button>
                 <button class="app-button app-button-primary" type="submit">Add Client</button>
@@ -221,21 +249,23 @@
           </label>
           <button class="app-button app-button-secondary" type="submit">Apply Filters</button>
         </form>
-        <section class="app-table-scroll" aria-label="Audit events" tabindex="0">
-          <table class="app-data-table">
+        <div class="app-table-wrap">
+          <table class="app-data-table app-responsive-table">
+            <caption class="app-visually-hidden">Audit events</caption>
             <thead>
               <tr><th scope="col">Timestamp</th><th scope="col">Source</th><th scope="col">Actor</th><th scope="col">Action</th><th scope="col">Result</th></tr>
             </thead>
             <tbody>
-              <tr><td>2026-07-15 09:42</td><td><span class="app-status-pill app-status-admin">Admin</span></td><td>Example Admin</td><td>client.created</td><td>Success</td></tr>
-              <tr><td>2026-07-15 09:38</td><td><span class="app-status-pill app-status-user">User</span></td><td>Example User</td><td>timer.started</td><td>Success</td></tr>
-              <tr><td>2026-07-15 09:30</td><td><span class="app-status-pill app-status-system">System</span></td><td>Application</td><td>report.snapshot</td><td>Success</td></tr>
-              <tr><td>2026-07-15 09:15</td><td><span class="app-status-pill app-status-public">Public</span></td><td>Shared Report</td><td>report.viewed</td><td>Success</td></tr>
+              <tr><td data-label="Timestamp">2026-08-25 09:42</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-admin">Administrator</span></td><td data-label="Actor">Example Admin</td><td data-label="Action">client.created</td><td data-label="Result">Success</td></tr>
+              <tr><td data-label="Timestamp">2026-08-25 09:38</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-user">User</span></td><td data-label="Actor">Example User</td><td data-label="Action">timer.started</td><td data-label="Result">Success</td></tr>
+              <tr><td data-label="Timestamp">2026-08-25 09:30</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-system">System</span></td><td data-label="Actor">Application</td><td data-label="Action">report.snapshot</td><td data-label="Result">Success</td></tr>
+              <tr><td data-label="Timestamp">2026-08-25 09:15</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-public">Public</span></td><td data-label="Actor">Shared Report</td><td data-label="Action">report.viewed</td><td data-label="Result">Success</td></tr>
             </tbody>
           </table>
-        </section>
+        </div>
+        <div class="app-table-summary"><span>68 events</span><span>Page 1 of 17</span></div>
         <nav class="app-pagination" aria-label="Audit event pages">
-          <span>Showing 1–4 of 68</span>
+          <span aria-current="page">Page 1 of 17</span>
           <div>
             <button class="app-button app-button-secondary" type="button" disabled>Previous</button>
             <button class="app-button app-button-secondary" type="button">Next</button>
@@ -279,7 +309,12 @@
               <h3>No Additional Records</h3>
               <p class="app-muted">Empty states explain what is missing and identify the next useful action.</p>
             </div>
-            <div class="app-sensitive-value" role="note" aria-label="Example one-time recovery code">ABCD-EFGH-IJKL</div>
+            <div class="app-sensitive-value app-copyable-value" role="note" aria-label="Example one-time recovery code">
+              <span>ABCD-EFGH-IJKL</span>
+              <button class="app-icon-button" type="button" aria-label="Copy recovery code">
+                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+              </button>
+            </div>
           </article>
         </div>
       </section>
