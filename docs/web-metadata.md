@@ -12,7 +12,6 @@ contact details, and availability must be verified for the site being built.
 - [Document metadata](#document-metadata)
 - [Social sharing metadata](#social-sharing-metadata)
 - [Structured data](#structured-data)
-- [Approved service entries](#approved-service-entries)
 - [Web assets](#web-assets)
 - [Implementation checklist](#implementation-checklist)
 
@@ -21,10 +20,10 @@ contact details, and availability must be verified for the site being built.
 Every public page should have accurate values for its current content:
 
 ```html
-<title>Grayhaven Systems LLC | Practical Infrastructure Consulting</title>
+<title>Grayhaven Systems LLC | Page-specific title</title>
 <meta
   name="description"
-  content="Accurate page-specific service description.">
+  content="Accurate page-specific description.">
 <link rel="canonical" href="https://example.invalid/">
 <meta name="theme-color" content="#1C1F24">
 ```
@@ -45,7 +44,7 @@ card metadata. The same approved social preview image may be used for both:
 <meta property="og:url" content="https://example.invalid/">
 <meta
   property="og:title"
-  content="Grayhaven Systems LLC | Practical Infrastructure Consulting">
+  content="Grayhaven Systems LLC | Page-specific title">
 <meta property="og:description" content="Accurate page-specific description.">
 <meta property="og:site_name" content="Grayhaven Systems LLC">
 <meta property="og:image" content="https://example.invalid/assets/og-image.png">
@@ -56,7 +55,7 @@ card metadata. The same approved social preview image may be used for both:
 <meta name="twitter:card" content="summary_large_image">
 <meta
   name="twitter:title"
-  content="Grayhaven Systems LLC | Practical Infrastructure Consulting">
+  content="Grayhaven Systems LLC | Page-specific title">
 <meta name="twitter:description" content="Accurate page-specific description.">
 <meta name="twitter:image" content="https://example.invalid/assets/og-image.png">
 <meta name="twitter:image:alt" content="Grayhaven Systems LLC">
@@ -70,9 +69,9 @@ support previews. Keep the image, title, description, and alt text aligned.
 ## Structured data
 
 Use JSON-LD when it accurately describes the page. A company homepage may
-identify the organization and its services; service entries should match the
-visible service names and descriptions. Do not claim a tool, location, service
-channel, or capability that the current site does not support.
+identify the organization and relevant offerings; structured-data entries should
+match the visible names and descriptions. Do not claim a tool, location, service
+channel, or capability that the current property does not support.
 
 The organization entry should generally include:
 
@@ -82,38 +81,22 @@ The organization entry should generally include:
 - an accurate description and `sameAs` profiles, when applicable
 - `knowsAbout` terms that are actually represented on the site
 
-Each service entry should use `@type: Service`, a visible `name`, an accurate
-`serviceType`, the organization as `provider`, the appropriate `areaServed`,
-and a page-specific `description`. Use `availableChannel` only when the site
-actually describes those channels.
+Each offering entry should use the schema type that accurately describes it, a
+visible `name`, an accurate type or category, the organization as `provider`,
+and a page-specific `description`. Include `areaServed` or
+`availableChannel` only when the property actually describes those details.
 
 Example shape:
 
 ```json
 {
   "@type": "Service",
-  "name": "Infrastructure Automation",
-  "serviceType": "Infrastructure automation consulting",
+  "name": "Example offering",
+  "serviceType": "Example offering category",
   "provider": { "@id": "https://example.invalid/#organization" },
-  "areaServed": "Worldwide",
-  "description": "Accurate description matching the visible service content."
+  "description": "Accurate description matching the visible offering content."
 }
 ```
-
-[Back to top](#web-metadata-and-assets)
-
-## Approved service entries
-
-These are the current Grayhaven Systems LLC service-area names for web use:
-
-1. Infrastructure Automation
-2. Configuration Management
-3. Infrastructure Modernization & Cloud Migration
-4. Linux Systems Administration
-
-Use the exact names unless a page context requires a clearly labeled shorter
-form. Keep the structured-data descriptions synchronized with the visible
-summary cards and expanded sections.
 
 [Back to top](#web-metadata-and-assets)
 
@@ -178,7 +161,8 @@ themselves should be replaced deliberately when the approved artwork changes.
 - [ ] Social preview image dimensions and alt text are correct.
 - [ ] Favicon and Apple touch icon links point to local assets.
 - [ ] Structured data validates and matches visible content.
-- [ ] Service names and descriptions match the approved service-area language.
+- [ ] Offering names and descriptions match the visible content and the
+      property's current terminology.
 - [ ] No analytics, tracking, or unnecessary third-party metadata scripts were
       added.
 

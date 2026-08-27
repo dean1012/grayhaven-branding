@@ -23,9 +23,9 @@ complete visual vocabulary with generic sample content.
 - [Forms and browser autofill](#forms-and-browser-autofill)
 - [Authentication and verification codes](#authentication-and-verification-codes)
 - [Notifications and status](#notifications-and-status)
-- [Active work and task trees](#active-work-and-task-trees)
+- [Active status and hierarchical records](#active-status-and-hierarchical-records)
 - [Data tables, filters, and pagination](#data-tables-filters-and-pagination)
-- [Dashboards and live reports](#dashboards-and-live-reports)
+- [Summaries, charts, and live status](#summaries-charts-and-live-status)
 - [Empty, error, and sensitive-value states](#empty-error-and-sensitive-value-states)
 - [Application footer](#application-footer)
 - [Responsive and accessibility requirements](#responsive-and-accessibility-requirements)
@@ -224,13 +224,13 @@ heading, and body-text roles.
 ```html
 <div class="app-page-heading">
   <div>
-    <p class="app-eyebrow">CLIENTS</p>
-    <h1>Clients &amp; Contracts</h1>
-    <p class="app-muted">Manage client records and contract work.</p>
+    <p class="app-eyebrow">RECORDS</p>
+    <h1>Records</h1>
+    <p class="app-muted">Manage records in this workspace.</p>
   </div>
-  <a class="app-button app-button-primary" href="/clients/new">
+  <a class="app-button app-button-primary" href="/records/new">
     <i class="fa-solid fa-plus" aria-hidden="true"></i>
-    Add Client
+    Create Record
   </a>
 </div>
 
@@ -262,9 +262,9 @@ and the same focus-visible treatment as labeled buttons.
   Save Changes
 </button>
 <button class="app-button app-button-secondary" type="button">Cancel</button>
-<button class="app-button app-button-start" type="button">Start Timer</button>
-<button class="app-button app-button-stop" type="button">Stop Timer</button>
-<button class="app-icon-button" type="button" aria-label="Rename task">
+<button class="app-button app-button-start" type="button">Start</button>
+<button class="app-button app-button-stop" type="button">Stop</button>
+<button class="app-icon-button" type="button" aria-label="Rename item">
   <i class="fa-solid fa-pen" aria-hidden="true"></i>
 </button>
 ```
@@ -280,18 +280,19 @@ when it improves recognition, and a clear action row. Placeholder text is never
 a substitute for a label. Use the browser’s correct input type and preserve
 native keyboard and assistive-technology behavior.
 
-Password managers can mistake operational, financial, client, or task fields
-for credentials. Apply both of the following attributes to noncredential forms
-and their user-editable fields when autofill would be incorrect:
+Password managers can mistake noncredential fields for credentials. Apply the
+following attributes to noncredential forms and their user-editable fields when
+autofill would be incorrect:
 
 ```html
-autocomplete="off" data-protonpass-ignore="true"
+autocomplete="off"
 ```
 
 Apply the attributes at form level and to each applicable `input`, `select`, or
-`textarea`. Hidden CSRF fields do not require the attributes.
+`textarea`. Security-sensitive hidden fields should follow the consuming
+application's own security policy.
 
-Do **not** apply `data-protonpass-ignore="true"` to login identifiers,
+Do **not** apply the noncredential autofill setting to login identifiers,
 usernames, current passwords, new passwords, recovery codes, passkeys, or other
 credential fields. Those fields must use the correct standard `autocomplete`
 value such as `username`, `current-password`, `new-password`, or `one-time-code`
@@ -301,21 +302,20 @@ apply the ignore attributes only to its noncredential fields.
 ### Noncredential form HTML example
 
 ```html
-<form class="app-form" method="post" autocomplete="off" data-protonpass-ignore="true">
-  <label for="client-name">Client Name</label>
+<form class="app-form" method="post" autocomplete="off">
+  <label for="record-name">Record Name</label>
   <span class="app-input-with-icon">
     <i class="fa-solid fa-building" aria-hidden="true"></i>
     <input
-      id="client-name"
+      id="record-name"
       name="name"
       type="text"
       autocomplete="off"
-      data-protonpass-ignore="true"
       required>
   </span>
   <div class="app-form-actions">
     <a class="app-button app-button-secondary" href="/">Cancel</a>
-    <button class="app-button app-button-primary" type="submit">Add Client</button>
+    <button class="app-button app-button-primary" type="submit">Create Record</button>
   </div>
 </form>
 ```
@@ -397,20 +397,20 @@ own border. Keep the label outside the wrapper and give adjacent icon actions
 an accessible name.
 
 ```html
-<label for="hourly-rate">Billable Rate</label>
-<span class="app-compound-field app-money-input">
-  <span aria-hidden="true">$</span>
-  <input id="hourly-rate" type="number" min="0" step="0.01">
-  <span>per hour</span>
+<label for="quantity">Quantity</label>
+<span class="app-compound-field app-value-input">
+  <span aria-hidden="true">#</span>
+  <input id="quantity" type="number" min="0" step="1" value="42">
+  <span>units</span>
 </span>
 
-<label for="completed-at">Completed At</label>
+<label for="scheduled-at">Scheduled Date and Time</label>
 <span class="app-compound-field app-datetime-control">
-  <input id="completed-at" type="datetime-local">
+  <input id="scheduled-at" type="datetime-local">
   <button
     class="app-icon-button"
     type="button"
-    aria-label="Set completed time to now">
+    aria-label="Set date and time to now">
     <i class="fa-solid fa-clock" aria-hidden="true"></i>
   </button>
 </span>
@@ -424,8 +424,8 @@ copyable sensitive value combines the wrapping monospace value with an
 icon-only copy action; the consuming application owns clipboard behavior.
 
 ```html
-<output class="app-readonly-value" aria-label="Current account identifier">
-  example-account
+<output class="app-readonly-value" aria-label="Generated identifier">
+  example-identifier
 </output>
 
 <div class="app-sensitive-value app-copyable-value">
@@ -444,9 +444,9 @@ Authentication pages are focused, centered, and free of authenticated
 navigation. Display the wordmark above a single credential panel without
 promotional copy between the logo and the form.
 
-Ask for a time-based one-time password only after the primary identifier and
-password have been accepted. Render six visually separate circular fields while
-supporting keyboard progression, deletion, full-code paste, and
+When an application uses a time-based one-time password, render six visually
+separate circular fields while supporting keyboard progression, deletion,
+full-code paste, and
 `autocomplete="one-time-code"`. The fields must remain usable without motion.
 
 ```html
@@ -515,7 +515,7 @@ Suggested semantic mapping:
 ```html
 <div class="app-flash app-flash-success" role="status">
   <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-  Client added successfully.
+  Record created successfully.
 </div>
 <span class="app-status-pill app-status-running">
   <i class="fa-solid fa-circle" aria-hidden="true"></i>
@@ -541,34 +541,35 @@ success, information, warning, or error state.
 
 [Back to top](#web-application-style-guide)
 
-## Active work and task trees
+## Active status and hierarchical records
 
-An active-work panel makes the current context, elapsed value, and stop action
-immediately visible. Use tabular numerals for updating durations. A pulsing live
-dot is optional and must stop under reduced motion.
+An active-status panel makes the current context, changing value, and primary
+action immediately visible. Use tabular numerals for updating values. A pulsing
+live dot is optional and must stop under reduced motion.
 
-Task trees use indentation and a subtle border to show hierarchy. Repeated task
-actions belong at the end of each row. Use a native `details` element for a
+Hierarchical records use indentation and a subtle border to show hierarchy.
+Repeated row actions belong at the end of each row. Use a native `details`
+element for a
 small rename or edit popover when it provides a safe no-JavaScript fallback.
 
 ```html
-<section class="panel panel-dark app-active-work" aria-labelledby="active-title">
+<section class="panel panel-dark app-active-status" aria-labelledby="active-title">
   <span class="app-running-dot" aria-hidden="true"></span>
   <div>
-    <p class="app-eyebrow">ACTIVE TIMER</p>
-    <strong id="active-title">Client · Contract · Task</strong>
+    <p class="app-eyebrow">ACTIVE ITEM</p>
+    <strong id="active-title">Current item</strong>
   </div>
-  <output class="app-elapsed" aria-label="Elapsed time">01:24:36</output>
-  <button class="app-button app-button-stop" type="button">Stop Timer</button>
+  <output class="app-updating-value" aria-label="Current value">42</output>
+  <button class="app-button app-button-secondary" type="button">Pause</button>
 </section>
 
-<div class="app-task-tree">
-  <div class="app-task-row">
-    <span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Parent Task</span>
-    <button class="app-icon-button" type="button" aria-label="Rename parent task">...</button>
+<div class="app-record-tree">
+  <div class="app-record-row">
+    <span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Parent Item</span>
+    <button class="app-icon-button" type="button" aria-label="Rename parent item">...</button>
   </div>
-  <div class="app-subtask-list">
-    <div class="app-task-row">Subtask</div>
+  <div class="app-child-record-list">
+    <div class="app-record-row">Child item</div>
   </div>
 </div>
 ```
@@ -595,33 +596,33 @@ or buttons for available destinations and omit unavailable destinations or
 render clearly disabled controls outside the keyboard sequence.
 
 ```html
-<form class="app-table-filters" autocomplete="off" data-protonpass-ignore="true">
+<form class="app-table-filters" autocomplete="off">
   <label for="event-filter">Event Type</label>
-  <select id="event-filter" name="event" autocomplete="off" data-protonpass-ignore="true">...</select>
+  <select id="event-filter" name="event" autocomplete="off">...</select>
   <button class="app-button app-button-secondary" type="submit">Apply Filters</button>
 </form>
 
 <div class="app-table-wrap">
   <table class="app-data-table app-responsive-table">
-    <caption class="app-visually-hidden">Audit events</caption>
+    <caption class="app-visually-hidden">Example records</caption>
     <thead>
-      <tr><th scope="col">Timestamp</th><th scope="col">Actor</th>
-        <th scope="col">Action</th>
-        <th scope="col" class="app-table-numeric">Duration</th></tr>
+      <tr><th scope="col">Date</th><th scope="col">Category</th>
+        <th scope="col">Label</th>
+        <th scope="col">Status</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td data-label="Timestamp">2026-08-25 09:30</td>
-        <td data-label="Actor">Example User</td>
-        <td data-label="Action">record.updated</td>
-        <td class="app-table-numeric" data-label="Duration">00:12:34</td>
+        <td data-label="Date">2026-08-25</td>
+        <td data-label="Category">General</td>
+        <td data-label="Label">Example record</td>
+        <td data-label="Status">Ready</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div class="app-table-summary">
-  <span>68 events</span>
+  <span>68 records</span>
   <span>Page 1 of 17</span>
 </div>
 <nav class="app-pagination" aria-label="Table pages">
@@ -632,23 +633,22 @@ render clearly disabled controls outside the keyboard sequence.
 
 [Back to top](#web-application-style-guide)
 
-## Dashboards and live reports
+## Summaries, charts, and live status
 
-Dashboard summary cards prioritize a label, a current value, and supporting
-context. Browser-based live reports may add summary totals, charts, legends,
-and session tables while retaining the same panel and table foundations.
+Summary cards prioritize a label, a current value, and supporting context.
+Data views may add totals, charts, legends, and tables while retaining the same
+panel and table foundations.
 
 Live status must include a text label and `aria-live="polite"`. Use “Live,”
 “Reconnecting,” or “Report Ended” rather than relying on a colored dot. New
-records and timer changes should update without a page reload when the
+records and status changes should update without a page reload when the
 application supports live synchronization; the last received values remain a
 safe readable fallback when synchronization is unavailable.
 
-Live report pages use a report-specific fixed header with the wordmark,
-confidentiality marker, report type, and live status. They use a report-specific
-fixed footer for company identity and confidentiality. Only the report content
-between those elements scrolls. Do not reuse authenticated application
-navigation on the client-facing report shell.
+Live views may use a fixed header and footer appropriate to their audience,
+with only the primary content between those elements scrolling. Keep identity,
+access, and disclosure treatment aligned with the consuming application's
+requirements.
 
 Chart series use the approved palette in this order:
 
@@ -670,11 +670,14 @@ use chart-series classes rather than `fill` attributes in HTML.
   <span class="app-running-dot" aria-hidden="true"></span>
   <span>Live</span>
 </p>
-<svg class="app-chart" viewBox="0 0 200 200" role="img" aria-label="Time by task">
-  <path class="app-chart-series-0" d="..."><title>Task A: 3 hours</title></path>
+<svg class="app-chart" viewBox="0 0 200 200" role="img" aria-label="Value by category">
+  <path class="app-chart-series-0" d="..."><title>Category A: 3 units</title></path>
 </svg>
 <ul class="app-chart-legend">
-  <li><span class="app-legend-swatch app-chart-series-0"></span> Task A · 3 hours</li>
+  <li>
+    <span class="app-legend-swatch app-chart-series-0"></span>
+    Category A · 3 units
+  </li>
 </ul>
 ```
 
@@ -686,7 +689,7 @@ Empty states explain why no records appear and, when authorized, provide one
 clear next action. Error states identify the failure in plain language and
 offer a safe recovery path without exposing internal details.
 
-Sensitive one-time values, recovery material, and setup secrets use a bordered
+Sensitive one-time values and setup secrets use a bordered
 monospace block with wrapping enabled. Label the value and explain whether it
 can be viewed again. QR codes require a quiet light background for reliable
 scanning and equivalent textual setup information.
@@ -694,12 +697,12 @@ scanning and equivalent textual setup information.
 ```html
 <section class="panel panel-dark app-empty-state">
   <i class="fa-solid fa-inbox" aria-hidden="true"></i>
-  <h2>No Clients Yet</h2>
-  <p>Add a client to begin organizing contract work.</p>
+  <h2>No Records Yet</h2>
+  <p>Create a record to begin organizing this workspace.</p>
 </section>
 
-<div class="app-sensitive-value" aria-label="One-time recovery code">
-  ABCD-EFGH-IJKL
+<div class="app-sensitive-value" aria-label="Example protected value">
+  example-protected-value
 </div>
 ```
 
@@ -707,20 +710,15 @@ scanning and equivalent textual setup information.
 
 ## Application footer
 
-Authenticated application footers are compact. Use the blue uppercase
-`CONFIDENTIAL` label as the left-side identity and optional build or version
-metadata as secondary text on the right. Public client reports may use the full
-company name plus the same confidentiality marker when report identity is
-needed. Use a fixed-height column flex shell so the header and footer remain
-visible. The main content region between them is the only vertical scroll
-container, including on long pages. Apply the same behavior to live client web
-reports, using the report-specific header and footer instead of authenticated
-application navigation. Exported PDF documents use their separately approved
-document layout.
+Application footers are compact and may include identity, status, or build
+metadata as appropriate. Use a column flex shell when the header and footer
+must remain visible while the main content scrolls. Disclosure labels,
+exported-document layouts, and access behavior belong to the consuming
+application's requirements.
 
 ```html
 <footer class="app-footer">
-  <strong class="app-footer-confidential">CONFIDENTIAL</strong>
+  <strong class="app-footer-identity">Grayhaven Systems LLC</strong>
   <span>Build 1.0.0</span>
 </footer>
 ```
@@ -744,7 +742,7 @@ document layout.
   flex: 0 0 auto;
 }
 
-.app-footer-confidential {
+.app-footer-identity {
   color: var(--primary-accent);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.16em;

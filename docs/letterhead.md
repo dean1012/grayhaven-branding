@@ -27,8 +27,8 @@ own page and paragraph controls.
   2. `Practical infrastructure automation,`
   3. `modernization, and cloud migration`
   4. `grayhavensystems.com`
-- Place a horizontal divider below the identity block and wordmark. Use the
-  primary Grayhaven blue, `#58ACE0`.
+- Place a horizontal divider below the identity block and wordmark. Use
+  Primary Accent blue, `#58ACE0`.
 
 ## Typography and colors
 

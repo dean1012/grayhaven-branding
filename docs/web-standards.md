@@ -136,17 +136,18 @@ unnecessary visitor data.
 
 ## Responsive breakpoints
 
-Use the production breakpoints only when the layout needs them:
+Use the documented breakpoint policy for the consuming site or application only
+when the layout needs it:
 
 | Breakpoint | Purpose |
 | --- | --- |
 | `400px` and below | Smallest tag and link adjustments |
-| `575px` and below | Compact mobile header and icon-only contact control |
+| `575px` and below | Compact mobile header and icon-only action control |
 | `640px` and above | Tablet container padding |
 | `768px` and above | Desktop grids and footer layout |
-| `900px` and above | Two-column footer repository grid |
+| `900px` and above | Two-column footer link grid |
 | `1120px` and above | Wide desktop spacing and three-column footer grid |
-| `1721px` and above | General-site horizontal desktop navigation |
+| `1721px` and above | Wide-screen horizontal desktop navigation |
 
 Navigation breakpoints are layout policy, not part of the navigation component
 markup. General sites use the `1721px` threshold shown above. Applications may

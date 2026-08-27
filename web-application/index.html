@@ -3,327 +3,64 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grayhaven Systems LLC Web Application Style Guide Preview</title>
-    <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260712">
-    <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260712">
-    <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260825">
-    <link rel="stylesheet" href="web-application.css?v=20260825">
+    <title>Grayhaven Systems LLC Application Components Preview</title>
+    <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260827">
+    <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260827">
+    <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260827">
+    <link rel="stylesheet" href="web-application.css?v=20260827">
   </head>
-  <body class="application-preview">
-    <header class="app-header">
-      <div class="app-header-inner">
-        <a class="app-brand" href="#top" aria-label="Grayhaven Systems LLC application preview home">
+  <body class="component-preview">
+    <header class="component-header">
+      <div class="component-header-inner">
+        <a class="component-brand" href="#top" aria-label="Grayhaven Systems LLC component preview home">
           <img src="../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
-          <span class="app-product">Web Application</span>
+          <span>Application Components</span>
         </a>
-        <nav class="app-nav app-nav-desktop" aria-label="Application preview desktop navigation">
-          <a href="#dashboard" aria-current="page"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Dashboard</a>
-          <a href="#forms"><i class="fa-solid fa-rectangle-list" aria-hidden="true"></i> Forms</a>
-          <a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i> Data</a>
-          <a href="#reports"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Reports</a>
-          <a href="../docs/web-application.md"><i class="fa-solid fa-book" aria-hidden="true"></i> Guide</a>
+        <nav class="component-nav component-nav-desktop" aria-label="Component preview navigation">
+          <a href="#navigation" aria-current="page">Navigation</a><a href="#controls">Controls</a>
+          <a href="#data">Data</a><a href="#states">States</a><a href="../docs/web-application.md">Reference</a>
         </nav>
-        <details class="app-nav-mobile">
-          <summary class="app-nav-toggle" aria-label="Application preview menu">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-          </summary>
-          <nav class="app-nav-menu" aria-label="Application preview mobile navigation">
-            <a href="#dashboard" aria-current="page">Dashboard</a>
-            <a href="#forms">Forms</a>
-            <a href="#data">Data</a>
-            <a href="#reports">Reports</a>
-            <a href="../docs/web-application.md">Guide</a>
+        <details class="component-nav-mobile">
+          <summary class="component-nav-toggle" aria-label="Component preview menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></summary>
+          <nav class="component-nav-menu" aria-label="Component preview mobile navigation">
+            <a href="#navigation">Navigation</a><a href="#controls">Controls</a><a href="#data">Data</a><a href="#states">States</a><a href="../docs/web-application.md">Reference</a>
           </nav>
         </details>
       </div>
     </header>
-
-    <nav class="app-breadcrumbs" aria-label="Breadcrumb">
-      <ol>
-        <li><a class="app-breadcrumb-label" href="#top" title="Dashboard">Dashboard</a></li>
-        <li><a class="app-breadcrumb-label" href="#data" title="Records">Records</a></li>
-        <li class="app-breadcrumb-current" aria-current="page">
-          <span class="app-breadcrumb-label" title="Example Record with a Long Name">
-            Example Record with a Long Name
-          </span>
-        </li>
-      </ol>
+    <nav class="component-breadcrumbs" aria-label="Breadcrumb">
+      <ol><li><a href="#top">Home</a></li><li><a href="#data">Components</a></li><li aria-current="page">Reference</li></ol>
     </nav>
-
-    <main class="app-viewport">
-      <div class="app-shell" id="top">
-      <section class="app-intro" aria-labelledby="preview-title">
-        <p class="app-eyebrow">WEB APPLICATION STYLE GUIDE</p>
-        <h1 id="preview-title">Operational Interface Patterns</h1>
-        <p class="app-muted">
-          Application shells, forms, authentication, timers, tables, status,
-          live reports, and responsive states extend the general web guide.
-        </p>
-      </section>
-
-      <section class="app-preview-section" id="dashboard" aria-labelledby="dashboard-title">
-        <div class="app-page-heading">
-          <div>
-            <p class="app-eyebrow">DASHBOARD</p>
-            <h2 id="dashboard-title">Clients &amp; Contracts</h2>
-            <p class="app-muted">Application headings use title case and keep actions easy to find.</p>
+    <main class="component-viewport">
+      <div class="component-shell" id="top">
+        <section class="component-intro" aria-labelledby="preview-title">
+          <p class="component-eyebrow">APPLICATION COMPONENTS</p>
+          <h1 id="preview-title">Reusable Interface Patterns</h1>
+          <p class="component-muted">Neutral examples of shells, controls, data presentation, status communication, and responsive states.</p>
+        </section>
+        <section class="component-section" id="navigation" aria-labelledby="navigation-title">
+          <div class="component-heading"><div><p class="component-eyebrow">NAVIGATION</p><h2 id="navigation-title">Shells, headings, and actions</h2></div><button class="component-button component-button-primary" type="button">Primary action</button></div>
+          <article class="component-panel"><div class="component-panel-heading"><div><p class="component-eyebrow">PANEL</p><h3>Example workspace</h3></div><span class="component-status component-status-info">Draft</span></div><p class="component-muted">Panels group related content while preserving a clear heading and action hierarchy.</p><div class="component-action-row"><button class="component-button component-button-secondary" type="button">Secondary action</button><button class="component-button component-button-secondary" type="button">More options</button></div></article>
+        </section>
+        <section class="component-section" id="controls" aria-labelledby="controls-title">
+          <div class="component-heading"><div><p class="component-eyebrow">CONTROLS</p><h2 id="controls-title">Fields and credential visuals</h2><p class="component-muted">Neutral field examples show labels, compound controls, read-only values, and an optional one-time code treatment.</p></div></div>
+          <div class="component-grid">
+            <article class="component-panel"><div class="component-panel-heading"><h3>Field set</h3><span class="component-status component-status-info">Example</span></div><form class="component-form" autocomplete="off"><label for="example-name">Display name</label><input id="example-name" type="text" placeholder="Example value" autocomplete="off"><label for="example-kind">Category</label><select id="example-kind"><option>General</option><option>Priority</option></select><label for="example-value">Compound value</label><span class="component-compound"><span aria-hidden="true">#</span><input id="example-value" type="text" value="42"><span>units</span></span><label for="example-notes">Notes</label><textarea id="example-notes" rows="3">Example notes</textarea><span class="component-readonly-label">Read-only value</span><output class="component-readonly">example-value</output><div class="component-action-row"><button class="component-button component-button-secondary" type="button">Cancel</button><button class="component-button component-button-primary" type="submit">Save example</button></div></form></article>
+            <article class="component-panel"><div class="component-panel-heading"><h3>Credential visual</h3><span class="component-status component-status-info">Optional</span></div><label for="example-email">Email address</label><input id="example-email" type="email" autocomplete="username" value="user@example.com"><p class="component-readonly-label" id="example-code-label">One-time code</p><div class="component-code" role="group" aria-labelledby="example-code-label"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div><p class="component-muted">This demonstrates visual states, not an authentication flow.</p></article>
           </div>
-          <button class="app-button app-button-primary" type="button">
-            <i class="fa-solid fa-plus" aria-hidden="true"></i>
-            Add Client
-          </button>
-        </div>
-
-        <article class="app-panel app-active-work" aria-labelledby="active-work-title">
-          <span class="app-running-dot" aria-hidden="true"></span>
-          <div class="app-active-copy">
-            <p class="app-eyebrow">ACTIVE TIMER</p>
-            <strong id="active-work-title">Example Client · Support Contract · Maintenance</strong>
-          </div>
-          <output class="app-elapsed" aria-label="Elapsed time">01:24:36</output>
-          <button class="app-button app-button-stop" type="button">
-            <i class="fa-solid fa-stop" aria-hidden="true"></i>
-            Stop Timer
-          </button>
-        </article>
-
-        <div class="app-card-grid">
-          <article class="app-panel app-client-card">
-            <div class="app-panel-heading">
-              <div>
-                <p class="app-eyebrow">CLIENT</p>
-                <h3>Example Client</h3>
-              </div>
-              <i class="fa-solid fa-building" aria-hidden="true"></i>
-            </div>
-            <p class="app-contact-line"><i class="fa-solid fa-user" aria-hidden="true"></i> Example Contact</p>
-            <div class="app-contract-row">
-              <span><i class="fa-solid fa-file-contract" aria-hidden="true"></i> Support Contract</span>
-              <span class="app-muted">$125/hour</span>
-            </div>
-            <button class="app-button app-button-secondary" type="button">Open Client</button>
-          </article>
-
-          <article class="app-panel app-task-tree">
-            <div class="app-panel-heading">
-              <div>
-                <p class="app-eyebrow">TASK TREE</p>
-                <h3>Contract Tasks</h3>
-              </div>
-              <span class="app-status-pill app-status-running"><i class="fa-solid fa-circle" aria-hidden="true"></i> Running</span>
-            </div>
-            <div class="app-task-row">
-              <span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Maintenance</span>
-              <div class="app-row-actions">
-                <button class="app-icon-button" type="button" aria-label="Start Maintenance timer"><i class="fa-solid fa-play" aria-hidden="true"></i></button>
-                <details class="app-rename-control">
-                  <summary class="app-icon-button" aria-label="Rename Maintenance"><i class="fa-solid fa-pen" aria-hidden="true"></i></summary>
-                  <form class="app-rename-popover" autocomplete="off" data-protonpass-ignore="true">
-                    <label for="rename-task">Task Name</label>
-                    <input id="rename-task" type="text" value="Maintenance" autocomplete="off" data-protonpass-ignore="true">
-                    <button class="app-button app-button-primary" type="submit">Save</button>
-                  </form>
-                </details>
-              </div>
-            </div>
-            <div class="app-subtask-list">
-              <div class="app-task-row"><span><i class="fa-solid fa-turn-up app-subtask-icon" aria-hidden="true"></i> Patch Review</span></div>
-              <div class="app-task-row"><span><i class="fa-solid fa-turn-up app-subtask-icon" aria-hidden="true"></i> Monthly Report</span></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="app-preview-section" id="forms" aria-labelledby="forms-title">
-        <div class="app-page-heading">
-          <div>
-            <p class="app-eyebrow">FORMS &amp; AUTHENTICATION</p>
-            <h2 id="forms-title">Purposeful Browser Behavior</h2>
-            <p class="app-muted">Noncredential fields suppress inappropriate autofill; credential fields preserve it.</p>
-          </div>
-        </div>
-
-        <div class="app-form-grid">
-          <article class="app-panel app-form-panel">
-            <div class="app-panel-heading">
-              <h3>Add Client</h3>
-              <span class="app-status-pill app-status-info">Noncredential</span>
-            </div>
-            <form class="app-form" autocomplete="off" data-protonpass-ignore="true">
-              <label for="client-name">Client Name</label>
-              <span class="app-input-with-icon">
-                <i class="fa-solid fa-building" aria-hidden="true"></i>
-                <input id="client-name" type="text" placeholder="Example Client" autocomplete="off" data-protonpass-ignore="true">
-              </span>
-              <label for="contact-name">Contact Name</label>
-              <span class="app-input-with-icon">
-                <i class="fa-solid fa-user" aria-hidden="true"></i>
-                <input id="contact-name" type="text" placeholder="Example Contact" autocomplete="off" data-protonpass-ignore="true">
-              </span>
-              <label for="client-status">Status</label>
-              <select id="client-status" autocomplete="off" data-protonpass-ignore="true">
-                <option>Enabled</option>
-                <option>Disabled</option>
-              </select>
-              <label for="client-notes">Notes</label>
-              <textarea id="client-notes" rows="3" autocomplete="off" data-protonpass-ignore="true">Example notes</textarea>
-              <label for="billable-rate">Billable Rate</label>
-              <span class="app-compound-field app-money-input">
-                <span class="app-money-prefix" aria-hidden="true">$</span>
-                <input id="billable-rate" type="number" min="0" step="0.01" value="125.00" autocomplete="off" data-protonpass-ignore="true">
-                <span class="app-money-suffix">per hour</span>
-              </span>
-              <label for="completed-at">Completed At</label>
-              <span class="app-compound-field app-datetime-control">
-                <input id="completed-at" type="datetime-local" value="2026-08-25T09:30" autocomplete="off" data-protonpass-ignore="true">
-                <button class="app-icon-button" type="button" aria-label="Set completed time to now">
-                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                </button>
-              </span>
-              <label for="current-account">Current Account</label>
-              <output id="current-account" class="app-readonly-value">example-account</output>
-              <div class="app-form-actions">
-                <button class="app-button app-button-secondary" type="button">Cancel</button>
-                <button class="app-button app-button-primary" type="submit">Add Client</button>
-              </div>
-            </form>
-          </article>
-
-          <article class="app-panel app-auth-panel">
-            <img class="app-auth-logo" src="../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
-            <form class="app-form">
-              <label for="login-email">Email Address</label>
-              <span class="app-input-with-icon">
-                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                <input id="login-email" type="email" autocomplete="username" value="user@example.com" disabled>
-              </span>
-              <label for="login-password">Password</label>
-              <span class="app-input-with-icon">
-                <i class="fa-solid fa-lock" aria-hidden="true"></i>
-                <input id="login-password" type="password" autocomplete="current-password" value="password" disabled>
-              </span>
-              <button class="app-button app-button-primary" type="submit" disabled>Sign In</button>
-            </form>
-            <div class="app-auth-divider" aria-hidden="true"></div>
-            <fieldset class="app-totp-fieldset">
-              <legend><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Authenticator Code</legend>
-              <div class="app-totp-bubbles">
-                <input type="text" inputmode="numeric" value="1" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1" readonly>
-                <input type="text" inputmode="numeric" value="2" maxlength="1" aria-label="Digit 2" readonly>
-                <input type="text" inputmode="numeric" value="3" maxlength="1" aria-label="Digit 3" readonly>
-                <input type="text" inputmode="numeric" value="4" maxlength="1" aria-label="Digit 4" readonly>
-                <input type="text" inputmode="numeric" value="5" maxlength="1" aria-label="Digit 5" readonly>
-                <input type="text" inputmode="numeric" value="6" maxlength="1" aria-label="Digit 6" readonly>
-              </div>
-            </fieldset>
-          </article>
-        </div>
-
-        <div class="app-flash-grid">
-          <div class="app-flash app-flash-info" role="status"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Neutral information</div>
-          <div class="app-flash app-flash-success" role="status"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Action completed</div>
-          <div class="app-flash app-flash-warning" role="status"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Attention required</div>
-          <div class="app-flash app-flash-error" role="status"><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> Action failed</div>
-        </div>
-      </section>
-
-      <section class="app-preview-section" id="data" aria-labelledby="data-title">
-        <div class="app-page-heading">
-          <div>
-            <p class="app-eyebrow">DATA INTERFACES</p>
-            <h2 id="data-title">Audit Events</h2>
-            <p class="app-muted">Filters, source labels, tabular records, and pagination remain usable at narrow widths.</p>
-          </div>
-        </div>
-        <form class="app-table-filters" autocomplete="off" data-protonpass-ignore="true">
-          <label>Source
-            <select id="source-filter" autocomplete="off" data-protonpass-ignore="true">
-              <option>All Sources</option>
-              <option>Administrator</option>
-              <option>User</option>
-              <option>System</option>
-            </select>
-          </label>
-          <label>Action
-            <input id="action-filter" type="text" placeholder="Filter actions" autocomplete="off" data-protonpass-ignore="true">
-          </label>
-          <button class="app-button app-button-secondary" type="submit">Apply Filters</button>
-        </form>
-        <div class="app-table-wrap">
-          <table class="app-data-table app-responsive-table">
-            <caption class="app-visually-hidden">Audit events</caption>
-            <thead>
-              <tr><th scope="col">Timestamp</th><th scope="col">Source</th><th scope="col">Actor</th><th scope="col">Action</th><th scope="col">Result</th></tr>
-            </thead>
-            <tbody>
-              <tr><td data-label="Timestamp">2026-08-25 09:42</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-admin">Administrator</span></td><td data-label="Actor">Example Admin</td><td data-label="Action">client.created</td><td data-label="Result">Success</td></tr>
-              <tr><td data-label="Timestamp">2026-08-25 09:38</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-user">User</span></td><td data-label="Actor">Example User</td><td data-label="Action">timer.started</td><td data-label="Result">Success</td></tr>
-              <tr><td data-label="Timestamp">2026-08-25 09:30</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-system">System</span></td><td data-label="Actor">Application</td><td data-label="Action">report.snapshot</td><td data-label="Result">Success</td></tr>
-              <tr><td data-label="Timestamp">2026-08-25 09:15</td><td data-label="Source"><span class="app-status-pill app-audit-source app-audit-source-public">Public</span></td><td data-label="Actor">Shared Report</td><td data-label="Action">report.viewed</td><td data-label="Result">Success</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="app-table-summary"><span>68 events</span><span>Page 1 of 17</span></div>
-        <nav class="app-pagination" aria-label="Audit event pages">
-          <span aria-current="page">Page 1 of 17</span>
-          <div>
-            <button class="app-button app-button-secondary" type="button" disabled>Previous</button>
-            <button class="app-button app-button-secondary" type="button">Next</button>
-          </div>
-        </nav>
-      </section>
-
-      <section class="app-preview-section" id="reports" aria-labelledby="reports-title">
-        <div class="app-report-heading">
-          <div>
-            <p class="app-eyebrow">LIVE CLIENT REPORT</p>
-            <h2 id="reports-title">Support Contract</h2>
-            <p class="app-muted">Example Client · synchronized moments ago</p>
-          </div>
-          <p class="app-live-status" data-state="live" aria-live="polite"><span class="app-running-dot" aria-hidden="true"></span> Live</p>
-        </div>
-        <div class="app-summary-grid">
-          <article class="app-summary-card"><span>Total Duration</span><strong>18:42:16</strong></article>
-          <article class="app-summary-card"><span>Equivalent Cost</span><strong>$2,337.85</strong></article>
-        </div>
-        <div class="app-report-grid">
-          <article class="app-panel app-chart-panel">
-            <p class="app-eyebrow">DISTRIBUTION</p>
-            <h3>Time by Task</h3>
-            <svg class="app-chart" viewBox="0 0 200 200" role="img" aria-label="Time by task">
-              <circle class="app-chart-track" cx="100" cy="100" r="72"></circle>
-              <circle class="app-chart-series app-chart-series-0" cx="100" cy="100" r="72"></circle>
-              <circle class="app-chart-series app-chart-series-1" cx="100" cy="100" r="72"></circle>
-              <circle class="app-chart-series app-chart-series-2" cx="100" cy="100" r="72"></circle>
-            </svg>
-            <ul class="app-chart-legend">
-              <li><span class="app-legend-swatch app-legend-color-0"></span><span>Maintenance</span><strong>9:18:00</strong></li>
-              <li><span class="app-legend-swatch app-legend-color-1"></span><span>Patch Review</span><strong>5:40:16</strong></li>
-              <li><span class="app-legend-swatch app-legend-color-2"></span><span>Reporting</span><strong>3:44:00</strong></li>
-            </ul>
-          </article>
-          <article class="app-panel app-state-panel">
-            <p class="app-eyebrow">SUPPORTING STATES</p>
-            <div class="app-empty-state">
-              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
-              <h3>No Additional Records</h3>
-              <p class="app-muted">Empty states explain what is missing and identify the next useful action.</p>
-            </div>
-            <div class="app-sensitive-value app-copyable-value" role="note" aria-label="Example one-time recovery code">
-              <span>ABCD-EFGH-IJKL</span>
-              <button class="app-icon-button" type="button" aria-label="Copy recovery code">
-                <i class="fa-solid fa-copy" aria-hidden="true"></i>
-              </button>
-            </div>
-          </article>
-        </div>
-      </section>
+        </section>
+        <section class="component-section" id="data" aria-labelledby="data-title">
+          <div class="component-heading"><div><p class="component-eyebrow">DATA</p><h2 id="data-title">Tables and summaries</h2><p class="component-muted">Responsive records, filtering, pagination, summaries, and chart styling use neutral sample data.</p></div></div>
+          <form class="component-filters" autocomplete="off"><label>Category <select><option>All categories</option><option>General</option><option>Priority</option></select></label><label>Search <input type="search" placeholder="Filter records"></label><button class="component-button component-button-secondary" type="submit">Apply</button></form>
+          <div class="component-table-wrap"><table class="component-table"><caption class="component-visually-hidden">Example records</caption><thead><tr><th scope="col">Date</th><th scope="col">Category</th><th scope="col">Label</th><th scope="col">Status</th></tr></thead><tbody><tr><td data-label="Date">2026-08-27</td><td data-label="Category">General</td><td data-label="Label">Example record</td><td data-label="Status"><span class="component-status component-status-success">Ready</span></td></tr><tr><td data-label="Date">2026-08-26</td><td data-label="Category">Priority</td><td data-label="Label">Another record</td><td data-label="Status"><span class="component-status component-status-warning">Review</span></td></tr><tr><td data-label="Date">2026-08-25</td><td data-label="Category">General</td><td data-label="Label">Third record</td><td data-label="Status"><span class="component-status component-status-neutral">Archived</span></td></tr></tbody></table></div>
+          <div class="component-pagination"><span>3 records · Page 1 of 1</span><div><button class="component-button component-button-secondary" type="button" disabled>Previous</button><button class="component-button component-button-secondary" type="button" disabled>Next</button></div></div><div class="component-summary-grid"><article><span>Total items</span><strong>128</strong></article><article><span>Completion</span><strong>84%</strong></article></div>
+        </section>
+        <section class="component-section" id="states" aria-labelledby="states-title">
+          <div class="component-heading"><div><p class="component-eyebrow">STATES</p><h2 id="states-title">Notifications, charts, and empty states</h2></div></div><div class="component-notice-grid"><div class="component-notice component-notice-info" role="status">Information message</div><div class="component-notice component-notice-success" role="status">Success message</div><div class="component-notice component-notice-warning" role="status">Warning message</div><div class="component-notice component-notice-error" role="status">Error message</div></div>
+          <div class="component-grid"><article class="component-panel"><h3>Distribution</h3><div class="component-chart" role="img" aria-label="Example distribution chart"><span class="component-chart-bar-a"></span><span class="component-chart-bar-b"></span><span class="component-chart-bar-c"></span></div><ul class="component-legend"><li><span>Category A</span><strong>55%</strong></li><li><span>Category B</span><strong>30%</strong></li><li><span>Category C</span><strong>15%</strong></li></ul></article><article class="component-panel"><div class="component-empty"><i class="fa-solid fa-inbox" aria-hidden="true"></i><h3>No additional items</h3><p class="component-muted">Empty states explain what is missing and identify the next useful action.</p></div><div class="component-copyable" role="note" aria-label="Example copyable value"><span>example-copy-value</span><button class="component-icon-button" type="button" aria-label="Copy example value"><i class="fa-solid fa-copy" aria-hidden="true"></i></button></div></article></div>
+        </section>
       </div>
     </main>
-
-    <footer class="app-footer">
-      <strong class="app-footer-confidential">CONFIDENTIAL</strong>
-      <span>Web application component preview</span>
-    </footer>
+    <footer class="component-footer"><strong>COMPONENT REFERENCE</strong><span>Reusable application pattern preview</span></footer>
   </body>
 </html>

@@ -21,11 +21,11 @@ component for a small content variation.
 - [Section titles and subtitles](#section-titles-and-subtitles)
 - [Panel surfaces](#panel-surfaces)
 - [Links and buttons](#links-and-buttons)
-- [Summary service cards](#summary-service-cards)
+- [Summary content cards](#summary-content-cards)
 - [Expanded content section](#expanded-content-section)
 - [Technology badges](#technology-badges)
 - [CTA panel](#cta-panel)
-- [Project/repository cards](#projectrepository-cards)
+- [Resource and link cards](#resource-and-link-cards)
 - [Alerts and callouts](#alerts-and-callouts)
 - [Footer](#footer)
 - [Responsive and accessibility states](#responsive-and-accessibility-states)
@@ -79,9 +79,10 @@ trigger and an accessible name. Breakpoint policy belongs in
 add active tracking, `aria-current`, and automatic menu closing, but the menu
 and links must remain usable without it.
 
-The approved general-site presentation is the Grayhaven public-site treatment:
-an opaque Deep Graphite bar, a subtle Charcoal border, the full logo, subdued
-links with Primary Accent interaction states, and a compact contact action.
+The approved general-site presentation is the Grayhaven Systems LLC public-site
+treatment: an opaque Deep Graphite bar, a subtle Charcoal border, the full logo,
+subdued links with Primary Accent interaction states, and a compact contact
+action.
 Preserve that solid visual treatment when adopting the standardized native
 mobile interaction; do not add transparency, blur, or glass effects.
 
@@ -338,8 +339,8 @@ Panels may use either a dark aluminum surface or a light neutral surface. The
 text, icon, border, and supporting content colors must change with the surface;
 never place light text on the light variant or dark text on the dark variant.
 The generic `panel-light` and `panel-dark` classes describe the surface pattern;
-service-card variants may use their own component classes, such as
-`service-card light`, while following the same color rules.
+content-card variants may use their own component classes, such as
+`content-card light`, while following the same color rules.
 
 ### Panel surfaces HTML example
 
@@ -498,22 +499,22 @@ only for an action performed in the current page.
 
 [Back to top](#web-components)
 
-## Summary service cards
+## Summary content cards
 
-Service cards summarize a capability with an icon, title, description,
+Content cards summarize a capability with an icon, title, description,
 capability list, and optional actions. Keep the copy concise and avoid claims
 that are too implementation-specific for the component’s purpose.
 
-### Summary service cards HTML example
+### Summary content cards HTML example
 
 ```html
-<div class="service-grid">
-  <article class="service-card">
-    <div class="service-card-icon">
+<div class="content-grid">
+  <article class="content-card">
+    <div class="content-card-icon">
       <i class="fa-solid fa-gear" aria-hidden="true"></i>
     </div>
-    <h3 class="service-card-title">Service card title</h3>
-    <p class="service-card-desc">Short sample description.</p>
+    <h3 class="content-card-title">Content card title</h3>
+    <p class="content-card-desc">Short sample description.</p>
     <ul class="capability-list">
       <li>
         <i class="fa-solid fa-check" aria-hidden="true"></i>
@@ -524,11 +525,11 @@ that are too implementation-specific for the component’s purpose.
         Example item
       </li>
     </ul>
-    <div class="service-card-actions">
+    <div class="content-card-actions">
       <a class="scroll-link" href="#section-id">View details</a>
       <a
         class="external-link"
-        href="https://example.invalid/project"
+        href="https://example.invalid/resource"
         target="_blank"
         rel="noopener noreferrer">
         External link
@@ -538,16 +539,16 @@ that are too implementation-specific for the component’s purpose.
 </div>
 ```
 
-### Summary service cards CSS example
+### Summary content cards CSS example
 
 ```css
-.service-grid {
+.content-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
 }
 
-.service-card {
+.content-card {
   display: flex;
   flex-direction: column;
   padding: var(--space-lg);
@@ -557,19 +558,19 @@ that are too implementation-specific for the component’s purpose.
   box-shadow: var(--panel-shadow);
 }
 
-.service-card-icon {
+.content-card-icon {
   margin-bottom: var(--space-sm);
   color: var(--primary-accent);
   font-size: 2rem;
 }
 
-.service-card-title {
+.content-card-title {
   margin-bottom: var(--space-xs);
   color: var(--soft-white);
   font-size: 1.25rem;
 }
 
-.service-card-desc {
+.content-card-desc {
   flex-grow: 1;
   margin-bottom: var(--space-md);
   color: var(--cool-grey);
@@ -593,7 +594,7 @@ that are too implementation-specific for the component’s purpose.
 
 .capability-list li i { color: var(--muted-emerald); }
 
-.service-card-actions {
+.content-card-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -638,8 +639,8 @@ optional external link.
     <div class="expanded-section-tech">
       <span class="tech-badge">Technology badge</span>
       <a
-        class="external-link expanded-section-repo-link"
-        href="https://example.invalid/project"
+        class="external-link expanded-section-resource-link"
+        href="https://example.invalid/resource"
         target="_blank"
         rel="noopener noreferrer">
         External link
@@ -703,7 +704,7 @@ optional external link.
   border-top: 1px solid var(--charcoal-border);
 }
 
-.expanded-section-repo-link { margin-left: auto; }
+.expanded-section-resource-link { margin-left: auto; }
 ```
 
 [Back to top](#web-components)
@@ -787,24 +788,24 @@ the destination is a booking or request form.
 
 [Back to top](#web-components)
 
-## Project/repository cards
+## Resource and link cards
 
-Use repository cards for selected examples of work. Keep sample or production
-descriptions accurate, short, and distinct from the compact footer index.
+Use cards for selected examples, resources, or other links. Keep descriptions
+accurate, short, and distinct from any compact footer link collection.
 
-### Project/repository cards HTML example
+### Resource and link cards HTML example
 
 ```html
-<div class="repo-grid">
-  <article class="repo-card">
-    <div class="repo-card-icon">
+<div class="resource-grid">
+  <article class="resource-card">
+    <div class="resource-card-icon">
       <i class="fa-solid fa-cube" aria-hidden="true"></i>
     </div>
-    <h3 class="repo-card-title">Project card title</h3>
-    <p class="repo-card-desc">Short project description.</p>
+    <h3 class="resource-card-title">Resource card title</h3>
+    <p class="resource-card-desc">Short resource description.</p>
     <a
-      class="external-link repo-card-link"
-      href="https://example.invalid/project"
+      class="external-link resource-card-link"
+      href="https://example.invalid/resource"
       target="_blank"
       rel="noopener noreferrer">
       External link
@@ -814,7 +815,7 @@ descriptions accurate, short, and distinct from the compact footer index.
 <div class="examples-section-more">
   <a
     class="external-link"
-    href="https://example.invalid/projects"
+    href="https://example.invalid/resources"
     target="_blank"
     rel="noopener noreferrer">
     More examples link
@@ -822,16 +823,16 @@ descriptions accurate, short, and distinct from the compact footer index.
 </div>
 ```
 
-### Project/repository cards CSS example
+### Resource and link cards CSS example
 
 ```css
-.repo-grid {
+.resource-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-md);
 }
 
-.repo-card {
+.resource-card {
   display: flex;
   flex-direction: column;
   padding: var(--space-lg);
@@ -841,19 +842,19 @@ descriptions accurate, short, and distinct from the compact footer index.
   box-shadow: var(--panel-shadow);
 }
 
-.repo-card-icon {
+.resource-card-icon {
   margin-bottom: var(--space-sm);
   color: var(--primary-accent);
   font-size: 1.75rem;
 }
 
-.repo-card-title {
+.resource-card-title {
   margin-bottom: var(--space-xs);
   color: var(--soft-white);
   font-size: 1.15rem;
 }
 
-.repo-card-desc {
+.resource-card-desc {
   flex-grow: 1;
   margin-bottom: var(--space-md);
   color: var(--cool-grey);
@@ -932,7 +933,7 @@ not rely on emoji or color alone.
 
 ## Footer
 
-The footer combines a brand area, compact repository index, and icon-only
+The footer combines a brand area, compact link collection, and icon-only
 community or contact links. Icon-only links require an accessible name.
 
 ### Footer HTML example
@@ -948,16 +949,16 @@ community or contact links. Icon-only links require an accessible name.
           alt="Grayhaven Systems LLC">
         <p class="site-footer-tagline">Footer tagline example.</p>
       </div>
-      <div class="site-footer-repos">
-        <h4 class="site-footer-heading">Repository links</h4>
-        <div class="footer-repo-grid">
+      <div class="site-footer-resources">
+        <h4 class="site-footer-heading">Useful links</h4>
+        <div class="footer-resource-grid">
           <a
-            class="footer-repo-card"
-            href="https://example.invalid/project"
+            class="footer-resource-card"
+            href="https://example.invalid/resource"
             target="_blank"
             rel="noopener noreferrer">
             <i class="fa-solid fa-cube" aria-hidden="true"></i>
-            <span>Repository example</span>
+            <span>Resource example</span>
           </a>
         </div>
       </div>
@@ -994,13 +995,13 @@ community or contact links. Icon-only links require an accessible name.
   gap: var(--space-xl);
 }
 
-.footer-repo-grid {
+.footer-resource-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-xs);
 }
 
-.footer-repo-card,
+.footer-resource-card,
 .site-footer-social-link {
   color: var(--cool-grey);
   background: rgb(42 47 54 / 60%);
@@ -1008,7 +1009,7 @@ community or contact links. Icon-only links require an accessible name.
   border-radius: var(--border-radius-sm);
 }
 
-.footer-repo-card {
+.footer-resource-card {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1016,7 +1017,7 @@ community or contact links. Icon-only links require an accessible name.
   padding: 0.5rem 0.75rem;
 }
 
-.footer-repo-card span {
+.footer-resource-card span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
