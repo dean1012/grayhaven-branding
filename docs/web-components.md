@@ -203,6 +203,15 @@ mobile interaction; do not add transparency, blur, or glass effects.
   box-shadow: var(--panel-shadow);
 }
 
+.navbar-links-mobile a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+}
+
 .navbar-links a {
   color: var(--cool-grey);
   font-size: 0.9rem;

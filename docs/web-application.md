@@ -166,6 +166,29 @@ is available to the viewer.
   font-size: 0.9rem;
   font-weight: var(--font-weight-medium);
 }
+
+.app-nav-menu {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  right: 0;
+  z-index: 20;
+  display: grid;
+  min-width: 13rem;
+  padding: var(--space-xs);
+  background: var(--navbar-bg);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+.app-nav-menu a,
+.app-nav-menu button {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+}
 ```
 
 [Back to top](#web-application-style-guide)
@@ -217,9 +240,16 @@ concise supporting text, and actions aligned opposite the heading on wider
 screens. Capitalize section headings in title case; keep short common words
 such as “and,” “by,” and “of” lowercase where appropriate.
 
+Each application page has one `h1`. Use `2.5rem` on desktop and reduce it to
+`2rem` below `768px`. Small uppercase eyebrow text identifies context; it is
+not a heading and does not replace the page `h1`. Sections within the page use
+`h2`, and headings inside those sections continue the hierarchy with `h3` as
+needed.
+
 Application panels use the general dark panel surface. Cards may be denser and
 wider than marketing cards, but must retain the same border, radius, shadow,
-heading, and body-text roles.
+heading, and body-text roles. Keep a full spacing step between a panel heading
+and its body, then use `1.25rem` between vertically stacked body elements.
 
 ```html
 <div class="app-page-heading">
@@ -238,8 +268,53 @@ heading, and body-text roles.
   <div class="app-panel-heading">
     <h2 id="panel-title">Section Title</h2>
   </div>
-  ...
+  <div class="app-panel-stack">
+    <p>Supporting panel content.</p>
+    <div class="app-form-actions">...</div>
+  </div>
 </section>
+```
+
+```css
+.app-page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.4rem;
+}
+
+.app-page-heading h1 {
+  margin-bottom: 0.55rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.app-eyebrow {
+  margin-bottom: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+}
+
+.app-panel-stack {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: var(--space-sm);
+}
+
+@media (width < 768px) {
+  .app-page-heading {
+    align-items: stretch;
+    flex-direction: column;
+    margin-bottom: 1.7rem;
+  }
+
+  .app-page-heading h1 {
+    font-size: 2rem;
+  }
+}
 ```
 
 [Back to top](#web-application-style-guide)

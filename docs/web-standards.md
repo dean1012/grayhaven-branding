@@ -156,6 +156,13 @@ layout based on navigation density; the Branding application preview uses
 `1120px`. Both contexts use the same horizontal desktop navigation and native
 `details` mobile implementation.
 
+Use range media-query syntax at exclusive breakpoint boundaries. For example,
+the application preview switches to mobile navigation with
+`@media (width < 1120px)` and returns to desktop navigation at `1120px` and
+above. Do not express that boundary as `max-width: 1119px`; fractional CSS
+pixels and display scaling can otherwise leave a narrow boundary where the
+wrong navigation remains visible.
+
 Breakpoint differences must not create additional navigation behaviors or
 visual variants. Site and application navigation retain the approved opaque
 public-site presentation on both sides of their respective breakpoints. Their
