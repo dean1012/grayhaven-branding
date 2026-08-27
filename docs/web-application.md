@@ -303,16 +303,18 @@ apply the ignore attributes only to its noncredential fields.
 
 ```html
 <form class="app-form" method="post" autocomplete="off">
-  <label for="record-name">Record Name</label>
-  <span class="app-input-with-icon">
-    <i class="fa-solid fa-building" aria-hidden="true"></i>
-    <input
-      id="record-name"
-      name="name"
-      type="text"
-      autocomplete="off"
-      required>
-  </span>
+  <label>
+    Record Name
+    <span class="app-input-with-icon">
+      <i class="fa-solid fa-building" aria-hidden="true"></i>
+      <input
+        id="record-name"
+        name="name"
+        type="text"
+        autocomplete="off"
+        required>
+    </span>
+  </label>
   <div class="app-form-actions">
     <a class="app-button app-button-secondary" href="/">Cancel</a>
     <button class="app-button app-button-primary" type="submit">Create Record</button>
@@ -324,15 +326,19 @@ apply the ignore attributes only to its noncredential fields.
 
 ```html
 <form class="app-form" method="post">
-  <label for="email">Email Address</label>
-  <input id="email" name="email" type="email" autocomplete="username" required>
-  <label for="password">Password</label>
-  <input
-    id="password"
-    name="password"
-    type="password"
-    autocomplete="current-password"
-    required>
+  <label>
+    Email Address
+    <input id="email" name="email" type="email" autocomplete="username" required>
+  </label>
+  <label>
+    Password
+    <input
+      id="password"
+      name="password"
+      type="password"
+      autocomplete="current-password"
+      required>
+  </label>
 </form>
 ```
 
@@ -341,10 +347,13 @@ apply the ignore attributes only to its noncredential fields.
 ```css
 .app-form {
   display: grid;
-  gap: var(--space-sm);
+  gap: 1.25rem;
+  margin-top: var(--space-md);
 }
 
 .app-form label {
+  display: grid;
+  gap: 0.45rem;
   color: var(--soft-white);
   font-size: 0.86rem;
   font-weight: var(--font-weight-medium);
@@ -369,6 +378,52 @@ apply the ignore attributes only to its noncredential fields.
 }
 ```
 
+Treat each label and its control as one field group. Use the smaller `0.45rem`
+gap within that group and the larger `1.25rem` form gap between groups. A form
+that follows introductory panel content begins after `var(--space-md)` rather
+than running directly into the heading or description.
+
+Wrap native selects so every application can use the same predictable chevron
+placement. Remove the native arrow, reserve `3rem` at the end of the select,
+and place the decorative chevron `1.5rem` from the edge. The wrapper does not
+replace the visible label or the native select behavior.
+
+```html
+<label>
+  Category
+  <span class="app-select-control">
+    <select id="category" name="category">
+      <option>General</option>
+      <option>Priority</option>
+    </select>
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </span>
+</label>
+```
+
+```css
+.app-select-control {
+  position: relative;
+  display: block;
+}
+
+.app-select-control select {
+  width: 100%;
+  padding-right: 3rem;
+  appearance: none;
+}
+
+.app-select-control i {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  color: var(--soft-white);
+  font-size: 0.78rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+```
+
 Every focused field retains its existing one-pixel border and changes only that
 border color to Primary Accent. This applies to every native `input` type,
 `select`, `textarea`, and compound field wrapper. Do not add an outline, alter
@@ -388,6 +443,19 @@ other non-field controls retain their existing focus indicators.
 
 .app-compound-field > :is(input, select, textarea) {
   border: 0;
+}
+
+.app-compound-field > span:first-child {
+  padding-left: 0.75rem;
+}
+
+.app-compound-field > span:last-child {
+  padding-right: 0.9rem;
+  white-space: nowrap;
+}
+
+.app-compound-field > input {
+  padding: 0.65rem 0.35rem;
 }
 ```
 
@@ -494,6 +562,39 @@ full-code paste, and
 Any script that coordinates the individual cells belongs in a linked
 application JavaScript file. The server must validate the complete code as one
 credential regardless of its visual presentation.
+
+```css
+.app-totp-fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.app-totp-fieldset legend {
+  padding: 0;
+  margin-bottom: 0.65rem;
+}
+
+.app-totp-bubbles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.5vw, 0.65rem);
+  width: 100%;
+}
+
+.app-totp-bubbles input {
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: var(--circle-radius);
+  font-size: 1.35rem;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  caret-color: var(--primary-accent);
+}
+```
 
 [Back to top](#web-application-style-guide)
 

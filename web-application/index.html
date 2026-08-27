@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260827">
     <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260827">
     <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260827">
-    <link rel="stylesheet" href="web-application.css?v=20260827">
+    <link rel="stylesheet" href="web-application.css?v=20260827b">
   </head>
   <body class="component-preview">
     <header class="component-header">
@@ -45,13 +45,40 @@
         <section class="component-section" id="controls" aria-labelledby="controls-title">
           <div class="component-heading"><div><p class="component-eyebrow">CONTROLS</p><h2 id="controls-title">Fields and credential visuals</h2><p class="component-muted">Neutral field examples show labels, compound controls, read-only values, and an optional one-time code treatment.</p></div></div>
           <div class="component-grid">
-            <article class="component-panel"><div class="component-panel-heading"><h3>Field set</h3><span class="component-status component-status-info">Example</span></div><form class="component-form" autocomplete="off"><label for="example-name">Display name</label><input id="example-name" type="text" placeholder="Example value" autocomplete="off"><label for="example-kind">Category</label><select id="example-kind"><option>General</option><option>Priority</option></select><label for="example-value">Compound value</label><span class="component-compound"><span aria-hidden="true">#</span><input id="example-value" type="text" value="42"><span>units</span></span><label for="example-notes">Notes</label><textarea id="example-notes" rows="3">Example notes</textarea><span class="component-readonly-label">Read-only value</span><output class="component-readonly">example-value</output><div class="component-action-row"><button class="component-button component-button-secondary" type="button">Cancel</button><button class="component-button component-button-primary" type="submit">Save example</button></div></form></article>
-            <article class="component-panel"><div class="component-panel-heading"><h3>Credential visual</h3><span class="component-status component-status-info">Optional</span></div><label for="example-email">Email address</label><input id="example-email" type="email" autocomplete="username" value="user@example.com"><p class="component-readonly-label" id="example-code-label">One-time code</p><div class="component-code" role="group" aria-labelledby="example-code-label"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div><p class="component-muted">This demonstrates visual states, not an authentication flow.</p></article>
+            <article class="component-panel">
+              <div class="component-panel-heading"><h3>Field set</h3><span class="component-status component-status-info">Example</span></div>
+              <form class="component-form" autocomplete="off">
+                <label>Display name<input id="example-name" type="text" placeholder="Example value" autocomplete="off"></label>
+                <label>Category<span class="component-select"><select id="example-kind"><option>General</option><option>Priority</option></select><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></label>
+                <label>Compound value<span class="component-compound"><span aria-hidden="true">#</span><input id="example-value" type="text" value="42"><span>units</span></span></label>
+                <label>Notes<textarea id="example-notes" rows="3">Example notes</textarea></label>
+                <div class="component-field"><span class="component-readonly-label">Read-only value</span><output class="component-readonly">example-value</output></div>
+                <div class="component-action-row"><button class="component-button component-button-secondary" type="button">Cancel</button><button class="component-button component-button-primary" type="submit">Save example</button></div>
+              </form>
+            </article>
+            <article class="component-panel">
+              <div class="component-panel-heading"><h3>Credential visual</h3><span class="component-status component-status-info">Optional</span></div>
+              <div class="component-stack">
+                <label>Email address<input id="example-email" type="email" autocomplete="username" value="user@example.com"></label>
+                <fieldset class="component-code-fieldset">
+                  <legend>One-time code</legend>
+                  <div class="component-code">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" aria-label="One-time code digit 1" value="1">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 2" value="2">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 3" value="3">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 4" value="4">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 5" value="5">
+                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 6" value="6">
+                  </div>
+                </fieldset>
+                <p class="component-muted">This demonstrates visual states, not an authentication flow.</p>
+              </div>
+            </article>
           </div>
         </section>
         <section class="component-section" id="data" aria-labelledby="data-title">
           <div class="component-heading"><div><p class="component-eyebrow">DATA</p><h2 id="data-title">Tables and summaries</h2><p class="component-muted">Responsive records, filtering, pagination, summaries, and chart styling use neutral sample data.</p></div></div>
-          <form class="component-filters" autocomplete="off"><label>Category <select><option>All categories</option><option>General</option><option>Priority</option></select></label><label>Search <input type="search" placeholder="Filter records"></label><button class="component-button component-button-secondary" type="submit">Apply</button></form>
+          <form class="component-filters" autocomplete="off"><label>Category <span class="component-select"><select><option>All categories</option><option>General</option><option>Priority</option></select><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></label><label>Search <input type="search" placeholder="Filter records"></label><button class="component-button component-button-secondary" type="submit">Apply</button></form>
           <div class="component-table-wrap"><table class="component-table"><caption class="component-visually-hidden">Example records</caption><thead><tr><th scope="col">Date</th><th scope="col">Category</th><th scope="col">Label</th><th scope="col">Status</th></tr></thead><tbody><tr><td data-label="Date">2026-08-27</td><td data-label="Category">General</td><td data-label="Label">Example record</td><td data-label="Status"><span class="component-status component-status-success">Ready</span></td></tr><tr><td data-label="Date">2026-08-26</td><td data-label="Category">Priority</td><td data-label="Label">Another record</td><td data-label="Status"><span class="component-status component-status-warning">Review</span></td></tr><tr><td data-label="Date">2026-08-25</td><td data-label="Category">General</td><td data-label="Label">Third record</td><td data-label="Status"><span class="component-status component-status-neutral">Archived</span></td></tr></tbody></table></div>
           <div class="component-pagination"><span>3 records · Page 1 of 1</span><div><button class="component-button component-button-secondary" type="button" disabled>Previous</button><button class="component-button component-button-secondary" type="button" disabled>Next</button></div></div><div class="component-summary-grid"><article><span>Total items</span><strong>128</strong></article><article><span>Completion</span><strong>84%</strong></article></div>
         </section>

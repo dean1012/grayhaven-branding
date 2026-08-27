@@ -41,17 +41,26 @@
 .component-button:hover, .component-button:focus-visible { border-color: var(--primary-accent); }
 .component-button-primary { color: var(--deep-graphite); background: var(--primary-accent); border-color: var(--primary-accent); }
 .component-button:disabled { opacity: .42; cursor: not-allowed; }
-.component-form, .component-panel > label { display: grid; gap: var(--space-xs); }
-.component-form label, .component-panel > label, .component-readonly-label { color: var(--soft-white); font-size: .86rem; font-weight: var(--font-weight-medium); }
-.component-form input, .component-form select, .component-form textarea, .component-panel > input, .component-filters input, .component-filters select { width: 100%; min-width: 0; min-height: var(--component-control); padding: .65rem .75rem; color: var(--soft-white); background: var(--deep-graphite); border: 1px solid var(--charcoal-border); border-radius: var(--border-radius); }
+.component-form, .component-stack { display: grid; gap: 1.25rem; margin-top: var(--space-md); }
+.component-form label, .component-stack > label, .component-field { display: grid; gap: .45rem; }
+.component-form label, .component-stack > label, .component-readonly-label, .component-code-fieldset legend { color: var(--soft-white); font-size: .86rem; font-weight: var(--font-weight-medium); }
+.component-form input, .component-form select, .component-form textarea, .component-stack input, .component-filters input, .component-filters select { width: 100%; min-width: 0; min-height: var(--component-control); padding: .65rem .75rem; color: var(--soft-white); background: var(--deep-graphite); border: 1px solid var(--charcoal-border); border-radius: var(--border-radius); }
 .component-form textarea { min-height: 6rem; resize: vertical; }
-.component-form :is(input, select, textarea):focus-visible, .component-panel > input:focus-visible, .component-filters :is(input, select):focus-visible { border-color: var(--primary-accent); outline: none; }
+.component-form :is(input, select, textarea):focus-visible, .component-stack input:focus-visible, .component-filters :is(input, select):focus-visible { border-color: var(--primary-accent); outline: none; }
+.component-select { position: relative; display: block; }
+.component-select select { padding-right: 3rem; appearance: none; }
+.component-select i { position: absolute; top: 50%; right: 1.5rem; color: var(--soft-white); font-size: .78rem; transform: translateY(-50%); pointer-events: none; }
 .component-compound { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; min-width: 0; min-height: var(--component-control); background: var(--deep-graphite); border: 1px solid var(--charcoal-border); border-radius: var(--border-radius); overflow: hidden; }
 .component-compound:focus-within { border-color: var(--primary-accent); }
-.component-compound input { min-width: 0; border: 0; border-radius: 0; outline: 0; }
+.component-compound > span:first-child { padding-left: .75rem; }
+.component-compound > span:last-child { padding-right: .9rem; white-space: nowrap; }
+.component-compound input { min-width: 0; padding: .65rem .35rem; border: 0; border-radius: 0; outline: 0; }
 .component-readonly { display: block; min-width: 0; padding: .65rem .75rem; overflow-wrap: anywhere; background: color-mix(in srgb, var(--deep-graphite) 55%, transparent); border: 1px solid var(--charcoal-border); border-radius: var(--border-radius); }
-.component-code { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; min-width: 0; margin-block: var(--space-xs) var(--space-sm); }
-.component-code span { display: grid; place-items: center; min-width: 0; aspect-ratio: 1; color: var(--soft-white); background: var(--deep-graphite); border: 1px solid var(--charcoal-border); border-radius: 50%; font-weight: var(--font-weight-semibold); }
+.component-code-fieldset { min-width: 0; padding: 0; margin: 0; border: 0; }
+.component-code-fieldset legend { padding: 0; margin-bottom: .65rem; }
+.component-code { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(.35rem, 1.5vw, .65rem); width: min(100%, 30rem); min-width: 0; }
+.component-code input { min-width: 0; min-height: 0; aspect-ratio: 1; padding: 0; border-radius: 50%; font-size: 1.35rem; font-weight: var(--font-weight-semibold); text-align: center; caret-color: var(--primary-accent); }
+.component-stack > .component-muted { margin: 0; }
 .component-status { display: inline-flex; flex-wrap: wrap; max-width: 100%; padding: .2rem .55rem; color: var(--soft-white); border-radius: var(--component-pill); font-size: .72rem; font-weight: var(--font-weight-semibold); overflow-wrap: anywhere; }
 .component-status-info { background: var(--component-accent); }.component-status-success { background: color-mix(in srgb, var(--alert-success) 18%, transparent); }.component-status-warning { background: color-mix(in srgb, var(--alert-warning) 18%, transparent); }.component-status-neutral { background: color-mix(in srgb, var(--slate-grey) 18%, transparent); }
 .component-filters { display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; gap: var(--space-sm); margin-bottom: var(--space-md); }
