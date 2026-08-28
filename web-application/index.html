@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260827">
     <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260827">
     <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260827">
-    <link rel="stylesheet" href="web-application.css?v=20260827d">
+    <link rel="stylesheet" href="web-application.css?v=20260828">
   </head>
-  <body class="component-preview">
+  <body class="component-preview" data-preview-default-section="navigation">
     <header class="component-header">
       <div class="component-header-inner">
         <a class="component-brand" href="#top" aria-label="Grayhaven Systems LLC component preview home">
@@ -17,20 +17,20 @@
           <span>Application Components</span>
         </a>
         <nav class="component-nav component-nav-desktop" aria-label="Component preview navigation">
-          <a href="#navigation" aria-current="page">Navigation</a><a href="#controls">Controls</a>
-          <a href="#data">Data</a><a href="#states">States</a><a href="../docs/web-application.md">Reference</a>
+          <a href="#navigation"><i class="fa-solid fa-compass" aria-hidden="true"></i>Navigation</a><a href="#controls"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Controls</a>
+          <a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i>Data</a><a href="#states"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>States</a><a href="../docs/web-application.md"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Reference</a>
         </nav>
-        <details class="component-nav-mobile">
+        <details class="component-nav-mobile" id="previewMobileMenu">
           <summary class="component-nav-toggle" aria-label="Component preview menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></summary>
           <nav class="component-nav-menu" aria-label="Component preview mobile navigation">
-            <a href="#navigation">Navigation</a><a href="#controls">Controls</a><a href="#data">Data</a><a href="#states">States</a><a href="../docs/web-application.md">Reference</a>
+            <a href="#navigation"><i class="fa-solid fa-compass" aria-hidden="true"></i>Navigation</a><a href="#controls"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Controls</a><a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i>Data</a><a href="#states"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>States</a><a href="../docs/web-application.md"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Reference</a>
           </nav>
         </details>
       </div>
+      <nav class="component-breadcrumbs" aria-label="Breadcrumb">
+        <ol><li><a class="component-breadcrumb-label" href="#top" title="Example">Example</a></li><li aria-current="page"><span class="component-breadcrumb-label" title="Component Reference">Component Reference</span></li></ol>
+      </nav>
     </header>
-    <nav class="component-breadcrumbs" aria-label="Breadcrumb">
-      <ol><li><a href="#top">Home</a></li><li><a href="#data">Components</a></li><li aria-current="page">Reference</li></ol>
-    </nav>
     <main class="component-viewport">
       <div class="component-shell" id="top">
         <section class="component-intro" aria-labelledby="preview-title">
@@ -95,5 +95,6 @@
       </div>
     </main>
     <footer class="component-footer"><strong>COMPONENT REFERENCE</strong><span>Reusable application pattern preview</span></footer>
+    <script src="../web/style-guide/preview.js?v=20260828" defer></script>
   </body>
 </html>

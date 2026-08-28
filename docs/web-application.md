@@ -92,6 +92,10 @@ a sign-out action. There are exactly two navigation behaviors: horizontal
 desktop navigation and an icon-only native `details` mobile menu with a 44 by
 44 CSS pixel trigger and an accessible name. The application breakpoint is
 documented in [Web Standards](web-standards.md), outside this component.
+Every navigation destination and action pairs its text label with a locally
+bundled Font Awesome icon. Use the same icon and label in the desktop and
+mobile menus; mark decorative icons `aria-hidden="true"` so the visible label
+provides the accessible name.
 Use the same opaque Deep Graphite surface, Charcoal border, logo treatment,
 subdued links, Primary Accent interaction states, and compact action treatment
 as the approved general-site navigation. Application destinations and the
@@ -118,7 +122,7 @@ is available to the viewer.
     <nav class="app-nav app-nav-desktop" aria-label="Application navigation">
       <a href="/" aria-current="page">
         <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
-        Dashboard
+        Example
       </a>
       <button class="app-nav-action" type="button">
         <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
@@ -132,6 +136,20 @@ is available to the viewer.
       <nav class="app-nav-menu" aria-label="Application navigation">...</nav>
     </details>
   </div>
+  <nav class="app-breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li>
+        <a class="app-breadcrumb-label" href="/" title="Example">
+          Example
+        </a>
+      </li>
+      <li aria-current="page">
+        <span class="app-breadcrumb-label" title="Current Page">
+          Current Page
+        </span>
+      </li>
+    </ol>
+  </nav>
 </header>
 
 <main class="app-shell">...</main>
@@ -149,6 +167,7 @@ is available to the viewer.
 }
 
 .app-header-inner,
+.app-breadcrumbs,
 .app-shell {
   width: min(var(--app-container-max), calc(100% - 2 * var(--container-padding)));
   margin-inline: auto;
@@ -201,10 +220,16 @@ text with `aria-current="page"`. Keep the ordered list on one line and truncate
 long labels without allowing the component to widen the viewport. Preserve the
 complete label in `title` when visible text may be truncated.
 
+Place the breadcrumb row inside the application header, immediately after the
+primary header row. Prefix every item with a subdued `›`; render linked
+ancestors in Primary Accent and the current page in Soft White at medium
+weight. This keeps the breadcrumb visually and structurally part of the navbar
+while preserving a distinct second row.
+
 ```html
 <nav class="app-breadcrumbs" aria-label="Breadcrumb">
   <ol>
-    <li><a class="app-breadcrumb-label" href="/">Dashboard</a></li>
+    <li><a class="app-breadcrumb-label" href="/">Example</a></li>
     <li><a class="app-breadcrumb-label" href="/records">Records</a></li>
     <li class="app-breadcrumb-current" aria-current="page">
       <span class="app-breadcrumb-label" title="Current Record">Current Record</span>
@@ -220,6 +245,36 @@ complete label in `title` when visible text may be truncated.
   gap: var(--space-xs);
   min-width: 0;
   overflow: hidden;
+}
+
+.app-breadcrumbs li {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  min-width: 0;
+  color: var(--soft-white);
+  font-weight: var(--font-weight-medium);
+}
+
+.app-breadcrumbs li:last-child {
+  flex: 1 1 auto;
+}
+
+.app-breadcrumbs li::before {
+  margin-right: var(--space-xs);
+  color: var(--cool-grey);
+  content: "›";
+}
+
+.app-breadcrumbs a {
+  color: var(--primary-accent);
+}
+
+.app-breadcrumbs a:hover,
+.app-breadcrumbs a:focus-visible {
+  color: var(--standard-hover);
+  background: color-mix(in srgb, var(--standard-hover) 10%, transparent);
+  border-radius: var(--border-radius-sm);
 }
 
 .app-breadcrumb-label {

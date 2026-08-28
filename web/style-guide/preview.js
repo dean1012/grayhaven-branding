@@ -12,8 +12,11 @@
   document.documentElement.classList.add('js-enabled');
 
   const mobileMenu = document.getElementById('previewMobileMenu');
-  const navLinks = document.querySelectorAll('.navbar-links a');
+  const navLinks = document.querySelectorAll(
+    '.navbar-links a, .component-nav a, .component-nav-menu a'
+  );
   const sections = document.querySelectorAll('main section[id]');
+  const defaultSection = document.body.dataset.previewDefaultSection || 'top';
 
   const setActiveNav = function (id) {
     navLinks.forEach(function (link) {
@@ -32,16 +35,45 @@
     });
   };
 
-  setActiveNav('top');
+  setActiveNav(defaultSection);
 
-  const setHomeAtTop = function () {
+  const header = document.querySelector('header');
+
+  const updateActiveNav = function () {
     if (window.scrollY <= 4) {
-      setActiveNav('top');
+      setActiveNav(defaultSection);
+      return;
     }
+
+    const documentHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    const bottomGap = documentHeight - (window.scrollY + window.innerHeight);
+    const bottomThreshold = Math.max(64, window.innerHeight * 0.06);
+
+    if (sections.length > 0 && bottomGap <= bottomThreshold) {
+      setActiveNav(sections[sections.length - 1].id);
+      return;
+    }
+
+    const headerOffset = header ? header.getBoundingClientRect().height : 0;
+    const activationOffset = Math.min(320, window.innerHeight * 0.24);
+    const activationPoint = window.scrollY + headerOffset + activationOffset;
+    let activeSection = defaultSection;
+
+    sections.forEach(function (section) {
+      if (section.offsetTop <= activationPoint) {
+        activeSection = section.id;
+      }
+    });
+
+    setActiveNav(activeSection);
   };
 
-  window.addEventListener('scroll', setHomeAtTop, { passive: true });
-  setHomeAtTop();
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  window.addEventListener('resize', updateActiveNav);
+  updateActiveNav();
 
   navLinks.forEach(function (link) {
     link.addEventListener('click', function () {
@@ -51,32 +83,10 @@
 
       const href = link.getAttribute('href');
       if (href === './index.html') {
-        setActiveNav('top');
+        setActiveNav(defaultSection);
       } else if (href && href.startsWith('#')) {
         setActiveNav(href.slice(1));
       }
     });
   });
-
-  if ('IntersectionObserver' in window && sections.length > 0) {
-    const navObserver = new IntersectionObserver(function (entries) {
-      if (window.scrollY <= 4) {
-        setActiveNav('top');
-        return;
-      }
-
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActiveNav(entry.target.id);
-        }
-      });
-    }, {
-      rootMargin: '-60px 0px -70% 0px',
-      threshold: 0
-    });
-
-    sections.forEach(function (section) {
-      navObserver.observe(section);
-    });
-  }
 })();
