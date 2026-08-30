@@ -1,0 +1,46 @@
+/* Preview-only composition for the generic sample website. */
+
+.sample-site-main {
+  min-height: 70vh;
+}
+
+.sample-site-section {
+  padding-block: var(--space-2xl);
+  scroll-margin-top: 5rem;
+}
+
+.sample-site-section + .sample-site-section {
+  border-top: 1px solid color-mix(in srgb, var(--charcoal-border) 65%, transparent);
+}
+
+.sample-site-copy {
+  max-width: 760px;
+  margin: 0 auto var(--space-xl);
+  text-align: center;
+}
+
+.sample-site-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.sample-site-panel {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
+
+.sample-site-cta {
+  margin-top: var(--space-xl);
+}
+
+html:not(.js-enabled)
+  body:not(:has(#overview:target, #details:target, #resources:target))
+  [data-section-nav] a[data-section-id="top"],
+html:not(.js-enabled) body:has(#overview:target)
+  [data-section-nav] a[href="#overview"],
+html:not(.js-enabled) body:has(#details:target)
+  [data-section-nav] a[href="#details"],
+html:not(.js-enabled) body:has(#resources:target)
+  [data-section-nav] a[href="#resources"] {
+  color: var(--primary-accent);
+}

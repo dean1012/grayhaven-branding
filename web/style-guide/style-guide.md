@@ -1,46 +1,714 @@
-# Web Style Guide
+# Website
 
-[Back to README](../../README.md)
+[Back to README](../../README.md) ·
+[Sample website](index.html) ·
+[Shared Web Components](../../docs/web-components.md) ·
+[Components preview](../components/index.html)
 
-This guide is the entry point for Grayhaven Systems LLC web styling. The
-component preview is available at
-[style-guide/index.html](index.html).
+Use this page only for the Grayhaven Systems LLC public-website shell: solid
+sticky navigation, normal document scrolling, hero and editorial section
+rhythm, full footer, and website breakpoints. Build ordinary page content from
+the [shared component reference](../../docs/web-components.md); do not redefine
+buttons, panels, cards, badges, links, or other reusable pieces here.
 
-## Normative references
+## Asset order
 
-- [Web Standards](../../docs/web-standards.md) defines the rules for tokens,
-  HTML, CSS, JavaScript, privacy, accessibility, assets, and responsive
-  behavior.
-- [Web Components](../../docs/web-components.md) defines reusable page and
-  component patterns.
-- [Web Metadata and Assets](../../docs/web-metadata.md) defines metadata,
-  structured-data, social-preview, and web-asset requirements.
-- [Web QA Checklist](../../docs/web-qa-checklist.md) provides recommended manual
-  checks before deploying a branded website.
-- [Web Application Style Guide](../../docs/web-application.md) extends these
-  foundations with reusable application components. Its
-  [component preview](../../web-application/index.html) is maintained separately
-  so application patterns do not replace the general web component set.
+```html
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="fontawesome.min.css">
+<link rel="stylesheet" href="shared-components.css">
+<link rel="stylesheet" href="style-guide.css">
+<script src="section-navigation.js" defer></script>
+```
 
-## Component index
+- Shared component CSS and behavior:
+  [`web/shared-components.css`](../shared-components.css) and
+  [`web/shared-components.js`](../shared-components.js)
+- Website shell CSS: [`web/style-guide/style-guide.css`](style-guide.css)
+- Optional active-section enhancement:
+  [`web/section-navigation.js`](../section-navigation.js)
 
-The preview demonstrates:
+## Website shell HTML
 
-- Solid horizontal desktop navigation and icon-only native `details` mobile
-  navigation
-- Active navigation with JavaScript and CSS/no-JavaScript fallback
-- Hero and section title/subtitle patterns
-- Light and dark panel surfaces with matching text colors
-- Link buttons, external links, and scroll links
-- Summary content cards
-- Expanded content sections and category badges
-- CTA panel with compact and large button treatments
-- Resource cards and more-examples link
-- Alert states
-- Footer brand area, resource cards, and social/community links
+Replace the example destinations and content. Keep normal document scrolling;
+do not apply the web-application fixed viewport shell.
 
-Application shells, forms, tables, status, and dashboard component patterns are
-demonstrated in the separate web application preview.
+```html
+<body data-section-default="top">
+  <header class="site-header">
+    <div class="navbar">
+      <div class="navbar-brand">
+        <a href="/" aria-label="Grayhaven Systems LLC website home">
+          <img
+            class="navbar-logo"
+            src="grayhaven-logo-wordmark-dark.svg"
+            alt="Grayhaven Systems LLC"
+          >
+        </a>
+      </div>
 
-Use the component reference for markup and behavior requirements rather than
-copying an isolated declaration from the preview stylesheet.
+      <nav
+        class="navbar-links navbar-links-desktop"
+        data-section-nav
+        aria-label="Website navigation"
+      >
+        <a href="/" data-section-id="top">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>Home
+        </a>
+        <a href="#overview">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>Overview
+        </a>
+      </nav>
+
+      <details class="navbar-menu-mobile" data-mobile-nav>
+        <summary class="navbar-toggle" aria-label="Website navigation menu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </summary>
+        <nav
+          class="navbar-links navbar-links-mobile"
+          data-section-nav
+          aria-label="Website mobile navigation"
+        >
+          <a href="/" data-section-id="top">
+            <i class="fa-solid fa-house" aria-hidden="true"></i>Home
+          </a>
+          <a href="#overview">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>Overview
+          </a>
+        </nav>
+      </details>
+
+      <a class="button button-secondary navbar-contact" href="/contact">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="page-title">
+      <div class="hero-content">
+        <img
+          class="hero-logo"
+          src="grayhaven-logo-wordmark-dark.svg"
+          alt="Grayhaven Systems LLC"
+        >
+        <h1 class="hero-headline" id="page-title">
+          <span class="hero-headline-line">Primary statement</span>
+          <span class="hero-headline-line hero-headline-ampersand">&amp;</span>
+          <span class="hero-headline-line">supporting statement</span>
+        </h1>
+        <p class="hero-subtext">Concise supporting copy.</p>
+      </div>
+    </section>
+
+    <section class="container section-spacing" id="overview">
+      <h2 class="section-title">Overview</h2>
+      <p class="section-subtitle">Compose approved shared components here.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer-main">
+        <div class="site-footer-brand">
+          <img
+            class="site-footer-logo"
+            src="grayhaven-logo-wordmark-dark.svg"
+            alt="Grayhaven Systems LLC"
+          >
+          <p class="site-footer-tagline">Brief organization description.</p>
+        </div>
+        <div>
+          <h2 class="site-footer-heading">Resources</h2>
+          <div class="site-footer-resource-grid">
+            <a class="resource-link-card" href="/resource">
+              <i class="fa-solid fa-book" aria-hidden="true"></i>
+              <span>Resource</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer-bottom">
+        <p class="site-footer-copyright">Copyright notice</p>
+      </div>
+    </div>
+  </footer>
+</body>
+```
+
+Desktop and mobile navigation contain the same destinations and icons. The
+mobile implementation is one native `details` menu with a 44 by 44 CSS pixel
+summary control. The desktop implementation is one horizontal link row. The
+navbar remains opaque and solid at every breakpoint.
+
+## Website shell CSS
+
+Copy the complete shell source. Shared component and sample-preview selectors
+do not belong in this file.
+
+```css
+/* Grayhaven Systems LLC public-website shell. */
+
+/* Reusable components are defined only in ../shared-components.css. */
+
+/* stylelint-disable no-descending-specificity --
+ * shell rules stay grouped by component.
+ */
+
+:root {
+  --navbar-height: 4rem;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--cool-grey);
+  background:
+    radial-gradient(
+      circle at 50% 12%,
+      rgb(88 172 224 / 14%),
+      transparent 34rem
+    ),
+    linear-gradient(145deg, #1c1f24 0%, #22262c 48%, #191c21 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--soft-white);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--charcoal-border);
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  max-width: none;
+  height: var(--navbar-height);
+  margin-inline: auto;
+  padding: 0 var(--container-padding);
+}
+
+.navbar-brand {
+  min-width: 0;
+  flex-shrink: 0;
+  margin-right: auto;
+}
+
+.navbar-brand a {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: auto;
+  height: 3rem;
+  flex-shrink: 0;
+}
+
+.navbar-links {
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar-links-desktop {
+  display: none;
+}
+
+.navbar-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cool-grey);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.navbar-links-mobile a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 0.25rem;
+}
+
+.navbar-links-mobile a + a {
+  border-top: 1px solid color-mix(in srgb, var(--charcoal-border) 70%, transparent);
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus-visible,
+.navbar-links a[aria-current],
+.navbar-links a.is-active {
+  color: var(--primary-accent);
+}
+
+.navbar-menu-mobile {
+  position: relative;
+  order: 3;
+}
+
+.navbar-menu-mobile > summary {
+  list-style: none;
+}
+
+.navbar-menu-mobile > summary::-webkit-details-marker {
+  display: none;
+}
+
+.navbar-links-mobile {
+  position: fixed;
+  top: var(--navbar-height);
+  right: var(--container-padding);
+  left: var(--container-padding);
+  display: none;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  max-height: calc(100vh - var(--navbar-height));
+  padding: 0 var(--space-sm);
+  overflow-y: auto;
+  background: var(--navbar-bg);
+  border: 1px solid var(--charcoal-border);
+  border-top: 0;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+.navbar-menu-mobile[open] > .navbar-links-mobile {
+  display: grid;
+}
+
+.navbar-contact {
+  order: 2;
+  white-space: nowrap;
+}
+
+.navbar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  color: var(--soft-white);
+  background: none;
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+  list-style: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.navbar-toggle:hover {
+  border-color: var(--primary-accent);
+}
+
+.navbar-toggle:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+.navbar-menu-mobile[open] > .navbar-toggle {
+  color: var(--primary-accent);
+  border-color: var(--primary-accent);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding-block: 4.5rem 3.5rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 1000px;
+  padding-inline: var(--container-padding);
+}
+
+.hero-logo {
+  width: auto;
+  height: 6rem;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+}
+
+.hero-headline {
+  max-width: 940px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  color: var(--soft-white);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.2;
+}
+
+.hero-headline-line {
+  display: block;
+}
+
+.hero-headline-ampersand {
+  color: var(--primary-accent);
+}
+
+.hero-subtext {
+  max-width: 720px;
+  margin-inline: auto;
+  color: #c1c8d2;
+  font-size: clamp(1rem, 2.25vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.cta-panel {
+  background:
+    linear-gradient(180deg, rgb(88 172 224 / 6%), transparent),
+    var(--gunmetal);
+  border-block: 1px solid var(--charcoal-border);
+}
+
+.cta-panel-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-xl);
+  text-align: center;
+}
+
+.cta-panel-headline {
+  color: var(--elevated-hover);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+}
+
+.expanded-section {
+  padding-block: var(--space-3xl);
+}
+
+.expanded-section-icon {
+  margin-bottom: var(--space-md);
+  color: var(--primary-accent);
+  font-size: 2.5rem;
+}
+
+.expanded-section-title {
+  margin-bottom: var(--space-md);
+  color: var(--soft-white);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+}
+
+.expanded-section-description {
+  max-width: 900px;
+  margin-bottom: var(--space-xl);
+  color: var(--cool-grey);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.expanded-section-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.expanded-section-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--charcoal-border);
+}
+
+.expanded-section-link {
+  align-self: center;
+  margin-left: auto;
+}
+
+.site-footer {
+  padding-block: var(--space-xl) var(--space-lg);
+  background: var(--deep-graphite);
+  border-top: 1px solid var(--charcoal-border);
+}
+
+.site-footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.site-footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.site-footer-logo {
+  width: auto;
+  height: 3rem;
+}
+
+.site-footer-tagline {
+  color: var(--cool-grey);
+  font-size: 0.85rem;
+}
+
+.site-footer-heading {
+  margin-bottom: var(--space-sm);
+  color: var(--soft-white);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.site-footer-resource-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xs);
+}
+
+.site-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--charcoal-border);
+}
+
+.site-footer-social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.site-footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--gunmetal) 60%, transparent);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 1.25rem;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.site-footer-social-link:hover {
+  color: var(--primary-accent);
+  border-color: var(--primary-accent);
+}
+
+.site-footer-copyright {
+  color: var(--slate-grey);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media (width >=640px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}
+
+@media (width <=575px) {
+  .navbar {
+    gap: 0.5rem;
+  }
+
+  .navbar-contact {
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+  }
+
+  .navbar-contact span {
+    display: none;
+  }
+
+  .navbar-links-mobile a {
+    font-size: 0.765rem;
+    line-height: 1.4;
+    white-space: normal;
+  }
+}
+
+@media (width >=768px) {
+  .expanded-section-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer-main {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .site-footer-brand {
+    align-items: flex-start;
+    max-width: 280px;
+    text-align: left;
+  }
+
+  .site-footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (width >=900px) {
+  .site-footer-resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >=1120px) {
+  :root {
+    --container-padding: 2.5rem;
+    --space-2xl: 7rem;
+    --space-3xl: 9rem;
+  }
+
+  .site-footer-resource-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (width >=1721px) {
+  .navbar {
+    max-width: none;
+    justify-content: flex-start;
+  }
+
+  .navbar-brand {
+    margin-right: 0;
+  }
+
+  .hero-headline {
+    margin-bottom: 3.8rem;
+  }
+
+  .navbar-links-desktop {
+    position: static;
+    display: flex;
+    order: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+    margin-left: var(--space-lg);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .navbar-menu-mobile {
+    display: none;
+  }
+
+  .navbar-contact {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .navbar-links-desktop a {
+    display: inline;
+    width: auto;
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+```
+
+## Scrolling and footer acceptance
+
+- The document is the vertical scroll container.
+- The solid site header remains sticky while the page scrolls.
+- The full footer follows the content and is reachable at document end.
+- Content never receives the application's fixed-height or nested-scroll rules.
+- Enough real section content must exist to test active navigation naturally.
+
+## Navigation enhancement
+
+Native anchors and CSS `:target` styling are the required fallback. The
+optional shared section script tracks window scrolling, applies
+`aria-current="location"`, selects the final section near document end, closes
+the mobile menu after navigation, and closes it on Escape.
+
+## Breakpoints
+
+- `575px` and below: compact header spacing and icon-only contact action.
+- `640px` and above: tablet container padding.
+- `768px` and above: two-column editorial/footer arrangements.
+- `900px` and above: two-column footer resources.
+- `1120px` and above: wide spacing and three-column footer resources.
+- `1721px` and above: horizontal desktop navigation; below it use the native
+  mobile `details` menu.
+
+Range media-query syntax is required. Do not create another desktop or mobile
+navigation behavior for an individual website.

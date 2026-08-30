@@ -3,278 +3,356 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grayhaven Systems LLC Web Style Guide Preview</title>
-    <link rel="stylesheet" href="fonts.css?v=20260712">
-    <link rel="stylesheet" href="fontawesome.min.css?v=20260712">
-    <link rel="stylesheet" href="style-guide.css?v=20260825">
+    <title>Grayhaven Systems LLC Sample Website Preview</title>
+    <link rel="stylesheet" href="fonts.css?v=20260830">
+    <link rel="stylesheet" href="fontawesome.min.css?v=20260830">
+    <link rel="stylesheet" href="../shared-components.css?v=20260830">
+    <link rel="stylesheet" href="style-guide.css?v=20260830">
+    <link rel="stylesheet" href="sample-website.css?v=20260830">
   </head>
-  <body>
-    <header class="site-header preview-header">
+  <body data-section-default="top">
+    <header class="site-header">
       <div class="navbar">
         <div class="navbar-brand">
-          <a href="./index.html" aria-label="Grayhaven Systems LLC home">
+          <a
+            href="./index.html"
+            aria-label="Grayhaven Systems LLC sample website home"
+          >
             <img
               class="navbar-logo"
               src="../../logo/svg/grayhaven-logo-wordmark-dark.svg"
-              alt="Grayhaven Systems LLC">
+              alt="Grayhaven Systems LLC"
+           >
           </a>
         </div>
-        <nav class="navbar-links navbar-links-desktop" aria-label="Style guide desktop navigation">
-          <a href="./index.html">Home</a>
-          <a href="#foundations">Foundations</a>
-          <a href="#components">Components</a>
-          <a href="#expanded-example">Expanded Content Section</a>
-          <a href="#patterns">Patterns</a>
-          <a href="#alerts">Alerts &amp; Callouts</a>
-          <a href="../../web-application/index.html">Web Application</a>
+        <nav
+          class="navbar-links navbar-links-desktop"
+          data-section-nav
+          aria-label="Sample website desktop navigation"
+        >
+          <a href="./index.html" data-section-id="top"
+            ><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a
+          >
+          <a href="#overview"
+            ><i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+            Overview</a
+          >
+          <a href="#details"
+            ><i class="fa-solid fa-list-check" aria-hidden="true"></i>
+            Details</a
+          >
+          <a href="#resources"
+            ><i class="fa-solid fa-book" aria-hidden="true"></i> Resources</a
+          >
+          <a href="../components/index.html"
+            ><i class="fa-solid fa-cubes" aria-hidden="true"></i> Components</a
+          >
         </nav>
-        <details class="navbar-menu-mobile" id="previewMobileMenu">
-          <summary class="navbar-toggle" aria-label="Style guide navigation menu">
+        <details class="navbar-menu-mobile" data-mobile-nav>
+          <summary
+            class="navbar-toggle"
+            aria-label="Sample website navigation menu"
+          >
             <i class="fa-solid fa-bars" aria-hidden="true"></i>
           </summary>
-          <nav class="navbar-links navbar-links-mobile" aria-label="Style guide mobile navigation">
-            <a href="./index.html">Home</a>
-            <a href="#foundations">Foundations</a>
-            <a href="#components">Components</a>
-            <a href="#expanded-example">Expanded Content Section</a>
-            <a href="#patterns">Patterns</a>
-            <a href="#alerts">Alerts &amp; Callouts</a>
-            <a href="../../web-application/index.html">Web Application</a>
+          <nav
+            class="navbar-links navbar-links-mobile"
+            data-section-nav
+            aria-label="Sample website mobile navigation"
+          >
+            <a href="./index.html" data-section-id="top"
+              ><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a
+            >
+            <a href="#overview"
+              ><i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              Overview</a
+            >
+            <a href="#details"
+              ><i class="fa-solid fa-list-check" aria-hidden="true"></i>
+              Details</a
+            >
+            <a href="#resources"
+              ><i class="fa-solid fa-book" aria-hidden="true"></i> Resources</a
+            >
+            <a href="../components/index.html"
+              ><i class="fa-solid fa-cubes" aria-hidden="true"></i>
+              Components</a
+            >
           </nav>
         </details>
         <a
-          class="link-button navbar-contact"
+          class="button button-secondary navbar-contact"
           href="./style-guide.md"
-          aria-label="Back to Web Style Guide">
-          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-          <span>Back to Web Style Guide</span>
+          aria-label="Open website source guide"
+        >
+          <i class="fa-solid fa-code" aria-hidden="true"></i
+          ><span>Source guide</span>
         </a>
       </div>
     </header>
 
-    <main class="preview-main">
-      <section class="hero preview-intro preview-hero" id="top" aria-labelledby="preview-title">
+    <main class="sample-site-main">
+      <section class="hero" id="top" aria-labelledby="sample-site-title">
         <div class="hero-content">
           <img
             class="hero-logo"
             src="../../logo/svg/grayhaven-logo-wordmark-dark.svg"
-            alt="Grayhaven Systems LLC hero logo">
-          <p class="preview-label">Web style guide</p>
-          <h1 class="hero-headline" id="preview-title">
-            <span class="hero-headline-line">Example hero headline</span>
-            <span class="hero-headline-line hero-headline-ampersand">&amp;</span>
-            <span class="hero-headline-line">Supporting statement</span>
+            alt="Grayhaven Systems LLC"
+         >
+          <h1 class="hero-headline" id="sample-site-title">
+            <span class="hero-headline-line">A focused sample website</span>
+            <span class="hero-headline-line hero-headline-ampersand"
+              >&amp;</span
+            >
+            <span class="hero-headline-line">a clear supporting statement</span>
           </h1>
           <p class="hero-subtext">
-            Sample hero copy demonstrates a headline, logo,
-            ampersand, and supporting text treatment.
+            This neutral one-page example demonstrates the approved public-site
+            shell while composing a small subset of shared components.
           </p>
         </div>
       </section>
 
-      <section class="preview-section container" id="foundations" aria-labelledby="foundations-title">
-        <p class="preview-label">Foundations</p>
-        <h2 class="section-title" id="foundations-title">Typography and surfaces</h2>
-        <p class="section-subtitle">
-          Inter, cool grey body text, pale steel headings, restrained blue
-          accents, and dark aluminum surfaces form the core visual language.
-        </p>
-        <div class="preview-logo-row">
-          <div class="preview-logo-card light">
-            <p class="preview-label">Light surface</p>
-            <img src="../../logo/svg/grayhaven-logo-wordmark-light.svg" alt="Grayhaven Systems LLC light-background wordmark">
-          </div>
-          <div class="preview-logo-card">
-            <p class="preview-label">Dark surface</p>
-            <img src="../../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC dark-background wordmark">
-          </div>
+      <section
+        class="sample-site-section container"
+        id="overview"
+        aria-labelledby="overview-title"
+      >
+        <div class="sample-site-copy">
+          <p class="eyebrow">OVERVIEW</p>
+          <h2 class="section-title" id="overview-title">
+            Concise content at a comfortable pace
+          </h2>
+          <p class="section-subtitle">
+            A public website uses normal document scrolling, generous section
+            spacing, and short paths to useful information.
+          </p>
         </div>
-        <div class="preview-palette" role="group" aria-label="Extended core palette tokens">
-          <div class="preview-color-token pale-steel"><code>--pale-steel</code></div>
-          <div class="preview-color-token muted-deep-accent"><code>--muted-deep-accent</code></div>
-          <div class="preview-color-token dark-logo-charcoal"><code>--dark-logo-charcoal</code></div>
-        </div>
-      </section>
-
-      <section class="preview-section container" id="components" aria-labelledby="components-title">
-        <p class="preview-label">Components</p>
-        <h2 id="components-title">Actions and content cards</h2>
-        <p>Actions are explicit, links remain recognizable, and cards summarize a capability without becoming a dense feature matrix. The content below is neutral sample data for demonstrating the component.</p>
-        <div class="content-grid">
-          <article class="content-card light">
-            <div class="content-card-icon"><i class="fa-solid fa-gear" aria-hidden="true"></i></div>
-            <h3 class="content-card-title">Content card title</h3>
-            <p class="content-card-desc">A concise summary describes the capability and the outcome without making the card a feature matrix.</p>
-            <ul class="capability-list">
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example one</li>
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example two</li>
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example three</li>
-            </ul>
-            <div class="content-card-actions">
-              <a class="scroll-link" href="#expanded-example"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> View details</a>
-              <button class="external-link demo-link" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link</button>
+        <div class="content-grid content-grid-three">
+          <article class="content-card">
+            <div class="content-card-icon">
+              <i class="fa-solid fa-compass" aria-hidden="true"></i>
             </div>
+            <h3 class="content-card-title">First topic</h3>
+            <p class="content-card-description">
+              Summarize one idea without turning the card into a dense
+              application panel.
+            </p>
+            <a class="scroll-link" href="#details"
+              ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>Learn
+              more</a
+            >
           </article>
           <article class="content-card">
-            <div class="content-card-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
-            <h3 class="content-card-title">Another content card</h3>
-            <p class="content-card-desc">Use a second card to demonstrate consistent height, spacing, actions, and responsive wrapping.</p>
-            <ul class="capability-list">
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example one</li>
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example two</li>
-              <li><i class="fa-solid fa-check" aria-hidden="true"></i> Capability example three</li>
-            </ul>
-            <div class="content-card-actions">
-              <a class="scroll-link" href="#expanded-example"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> View details</a>
-              <button class="external-link demo-link" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link</button>
+            <div class="content-card-icon">
+              <i class="fa-solid fa-shapes" aria-hidden="true"></i>
             </div>
+            <h3 class="content-card-title">Second topic</h3>
+            <p class="content-card-description">
+              Keep the sample content generic while preserving real spacing and
+              responsive behavior.
+            </p>
+            <a class="scroll-link" href="#details"
+              ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>Learn
+              more</a
+            >
+          </article>
+          <article class="content-card">
+            <div class="content-card-icon">
+              <i class="fa-solid fa-route" aria-hidden="true"></i>
+            </div>
+            <h3 class="content-card-title">Third topic</h3>
+            <p class="content-card-description">
+              Use a recognizable action pattern and let the shared component
+              source control its appearance.
+            </p>
+            <a class="scroll-link" href="#resources"
+              ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>View
+              resources</a
+            >
           </article>
         </div>
       </section>
 
-      <section class="expanded-section section-spacing" id="expanded-example" aria-labelledby="expanded-title">
+      <section
+        class="expanded-section"
+        id="details"
+        aria-labelledby="details-title"
+      >
         <div class="container">
-          <div class="expanded-section-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div>
-          <h2 class="expanded-section-title" id="expanded-title">Expanded content section</h2>
-          <p class="expanded-section-desc">
-            Detailed sections use an editorial description, a capability
-            checklist, category badges, and an optional resource link.
-            This is sample content for demonstrating the pattern.
+          <div class="expanded-section-icon">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+          </div>
+          <h2 class="expanded-section-title" id="details-title">
+            An expanded narrative section
+          </h2>
+          <p class="expanded-section-description">
+            Use the website-specific expanded section when a topic needs more
+            context than a summary card. The shell supplies the editorial
+            rhythm; shared checklists, badges, links, and buttons remain
+            unchanged.
           </p>
-          <div class="capability-grid">
-            <ul class="capability-checklist">
-              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Checklist item example</li>
-              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Another checklist item</li>
+          <div class="expanded-section-grid">
+            <ul class="check-list">
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>First
+                supporting point
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                >Second supporting point
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>Third
+                supporting point
+              </li>
             </ul>
-            <ul class="capability-checklist">
-              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Responsive content example</li>
-              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Validation example</li>
+            <ul class="check-list">
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                >Responsive presentation
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                >Keyboard-accessible actions
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                >Progressive enhancement
+              </li>
             </ul>
           </div>
-          <div class="expanded-section-tech expanded-section-tech-with-resource">
-            <span class="tech-badge">Technology badge</span>
-            <span class="tech-badge">Category badge</span>
-            <span class="tech-badge">Platform badge</span>
-            <span class="tech-badge">Optional badge</span>
-            <button class="external-link expanded-section-resource-link demo-link" type="button">
-              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link
-            </button>
+          <div class="expanded-section-meta">
+            <span class="badge">Example</span
+            ><span class="badge">Reference</span
+            ><span class="badge">Responsive</span
+            ><a
+              class="external-link expanded-section-link"
+              href="../components/index.html"
+              ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Web
+              Components preview</a
+            >
           </div>
         </div>
       </section>
 
-      <section class="preview-section container" id="patterns" aria-labelledby="patterns-title">
-        <p class="preview-label">Content patterns</p>
-        <h2 id="patterns-title">Calls to action and resource cards</h2>
-        <p>
-          These examples demonstrate the visual treatment for primary actions
-          and linked resources. The labels and descriptions are intentionally
-          generic sample data.
-        </p>
-        <div class="cta-panel preview-cta">
-          <div class="cta-panel-inner">
-            <h3 class="cta-panel-headline">Primary action headline</h3>
-            <p>Use one clear action when the user has a defined next step.</p>
-            <div class="button-row">
-              <button class="link-button link-button-large demo-link" type="button">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                Large CTA button
-              </button>
+      <section
+        class="sample-site-section container"
+        id="resources"
+        aria-labelledby="resources-title"
+      >
+        <div class="sample-site-copy">
+          <p class="eyebrow">RESOURCES</p>
+          <h2 class="section-title" id="resources-title">
+            Clear destinations and one primary next step
+          </h2>
+          <p class="section-subtitle">
+            The sample page remains intentionally generic and uses only enough
+            content to prove scrolling, active navigation, and footer behavior.
+          </p>
+        </div>
+        <article class="panel sample-site-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">REFERENCE</p>
+              <h3>Implementation sources</h3>
             </div>
+            <span class="status-pill status-neutral">Shared</span>
           </div>
-        </div>
-        <div class="resource-grid preview-resource-grid">
-          <article class="resource-card">
-            <div class="resource-card-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></div>
-            <h3 class="resource-card-title">Resource card title</h3>
-            <p class="resource-card-desc">Short resource context and an accurate description belong here.</p>
-            <button class="external-link resource-card-link demo-link" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link</button>
-          </article>
-          <article class="resource-card">
-            <div class="resource-card-icon"><i class="fa-solid fa-book" aria-hidden="true"></i></div>
-            <h3 class="resource-card-title">Another resource card</h3>
-            <p class="resource-card-desc">Cards can use different icons while preserving the same structure.</p>
-            <button class="external-link resource-card-link demo-link" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link</button>
-          </article>
-          <article class="resource-card">
-            <div class="resource-card-icon"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></div>
-            <h3 class="resource-card-title">Third resource example</h3>
-            <p class="resource-card-desc">Use a third card to demonstrate the responsive grid behavior.</p>
-            <button class="external-link resource-card-link demo-link" type="button"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Resource link</button>
-          </article>
-        </div>
-        <div class="examples-section-more">
-          <button class="external-link demo-link" type="button">
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            More examples link
-          </button>
-        </div>
-      </section>
-
-      <section class="preview-section container" id="alerts" aria-labelledby="alerts-title">
-        <p class="preview-label">Alerts &amp; Callouts</p>
-        <h2 id="alerts-title">Status communication</h2>
-        <p>
-          Use restrained callouts to communicate Info, Warning, Success, or
-          Error states. The examples below demonstrate the available state
-          treatments in the standard order.
-        </p>
-        <div class="preview-alert-grid">
-          <article class="preview-alert info">
-            <h3><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Info</h3>
-            <p>Use the accent color for neutral guidance.</p>
-          </article>
-          <article class="preview-alert warning">
-            <h3><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Warning</h3>
-            <p>Use amber for attention-required state.</p>
-          </article>
-          <article class="preview-alert success">
-            <h3><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Success</h3>
-            <p>Use emerald sparingly for positive state.</p>
-          </article>
-          <article class="preview-alert error">
-            <h3><i class="fa-solid fa-circle-xmark" aria-hidden="true"></i> Error</h3>
-            <p>Use red for failure or danger state.</p>
-          </article>
-        </div>
+          <div class="content-grid content-grid-two">
+            <a class="resource-link-card" href="../../docs/web-components.md"
+              ><i class="fa-solid fa-code" aria-hidden="true"></i
+              ><span>Web Components source reference</span></a
+            >
+            <a class="resource-link-card" href="../components/index.html"
+              ><i class="fa-solid fa-cubes" aria-hidden="true"></i
+              ><span>Web Components live preview</span></a
+            >
+            <a class="resource-link-card" href="./style-guide.md"
+              ><i class="fa-solid fa-globe" aria-hidden="true"></i
+              ><span>Website shell source guide</span></a
+            >
+            <a
+              class="resource-link-card"
+              href="../../web-application/index.html"
+              ><i class="fa-solid fa-window-maximize" aria-hidden="true"></i
+              ><span>Sample web application</span></a
+            >
+          </div>
+        </article>
+        <section
+          class="cta-panel sample-site-cta"
+          aria-labelledby="sample-cta-title"
+        >
+          <div class="cta-panel-inner">
+            <h2 class="cta-panel-headline" id="sample-cta-title">
+              One direct call to action
+            </h2>
+            <p>Keep the destination obvious and the surrounding copy brief.</p>
+            <a class="button button-primary button-large" href="#top"
+              ><i class="fa-solid fa-arrow-up" aria-hidden="true"></i>Return to
+              top</a
+            >
+          </div>
+        </section>
       </section>
     </main>
 
-    <footer class="site-footer preview-footer">
+    <footer class="site-footer">
       <div class="container">
         <div class="site-footer-main">
           <div class="site-footer-brand">
-            <img class="site-footer-logo" src="../../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
-            <p class="site-footer-tagline">Footer brand area and supporting tagline example.</p>
+            <img
+              class="site-footer-logo"
+              src="../../logo/svg/grayhaven-logo-wordmark-dark.svg"
+              alt="Grayhaven Systems LLC"
+           >
+            <p class="site-footer-tagline">Generic sample website footer.</p>
           </div>
-          <div class="site-footer-resources">
-            <h4 class="site-footer-heading">Resource links</h4>
-            <div class="footer-resource-grid">
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-cube" aria-hidden="true"></i><span>Resource link example</span></button>
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-sliders" aria-hidden="true"></i><span>Another resource</span></button>
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span>Category example</span></button>
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-link" aria-hidden="true"></i><span>Link group example</span></button>
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Reference example</span></button>
-              <button class="footer-resource-card demo-link" type="button"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i><span>Collection example</span></button>
+          <div>
+            <h2 class="site-footer-heading">Reference links</h2>
+            <div class="site-footer-resource-grid">
+              <a class="resource-link-card" href="../../docs/web-components.md"
+                ><i class="fa-solid fa-code" aria-hidden="true"></i
+                ><span>Components guide</span></a
+              ><a class="resource-link-card" href="../components/index.html"
+                ><i class="fa-solid fa-cubes" aria-hidden="true"></i
+                ><span>Components preview</span></a
+              ><a class="resource-link-card" href="./style-guide.md"
+                ><i class="fa-solid fa-globe" aria-hidden="true"></i
+                ><span>Website guide</span></a
+              >
             </div>
           </div>
         </div>
         <div class="site-footer-bottom">
-          <p class="preview-footer-note">Footer layout and icon-only link examples</p>
+          <p class="site-footer-copyright">Copyright notice</p>
           <div class="site-footer-social">
-            <button class="site-footer-social-link demo-link" type="button" aria-label="GitHub link example">
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </button>
-            <button class="site-footer-social-link demo-link" type="button" aria-label="Discord link example">
-              <i class="fa-brands fa-discord" aria-hidden="true"></i>
-            </button>
-            <button class="site-footer-social-link demo-link" type="button" aria-label="Booking link example">
-              <i class="fa-solid fa-video" aria-hidden="true"></i>
-            </button>
+            <a
+              class="site-footer-social-link"
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub example"
+              ><i class="fa-brands fa-github" aria-hidden="true"></i></a
+            ><a
+              class="site-footer-social-link"
+              href="https://discord.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Discord example"
+              ><i class="fa-brands fa-discord" aria-hidden="true"></i></a
+            ><a
+              class="site-footer-social-link"
+              href="mailto:hello@example.com"
+              aria-label="Email example"
+              ><i class="fa-solid fa-envelope" aria-hidden="true"></i
+            ></a>
           </div>
         </div>
       </div>
     </footer>
-    <script src="preview.js?v=20260828"></script>
+
+    <script src="../section-navigation.js?v=20260830" defer></script>
   </body>
 </html>
