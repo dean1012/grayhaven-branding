@@ -1750,3 +1750,323 @@ enhancement distributes a pasted code, advances after a digit, and supports
 Backspace and Left/Right arrow movement. The individual fields remain usable
 without JavaScript.
 
+## Status and feedback
+
+### Status and feedback HTML
+
+```html
+<span class="status-pill status-success">Success</span>
+<span class="status-pill status-danger">Danger</span>
+<span class="status-pill status-warning">Warning</span>
+<span class="status-pill status-neutral">Neutral</span>
+<span class="status-pill status-running">
+  <i class="fa-solid fa-circle" aria-hidden="true"></i>
+  Running
+</span>
+
+<div class="alert-stack">
+  <div class="alert alert-info" role="status">Information message</div>
+  <div class="alert alert-success" role="status">Success message</div>
+  <div class="alert alert-warning alert-with-icon" role="status">
+    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+    Warning message
+  </div>
+  <div class="alert alert-error" role="alert">Error message</div>
+</div>
+
+<span class="live-status" data-state="live">
+  <span class="running-dot" aria-hidden="true"></span>
+  <span class="live-label">Live</span>
+</span>
+```
+
+Add `data-auto-dismiss` to an alert only when the canonical script should
+remove it after 4.5 seconds. Persistent errors omit it.
+
+### Status and feedback CSS
+
+```css
+.status-pill,
+.live-label {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  justify-self: start;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.status-pill {
+  padding: 0.2rem 0.55rem;
+  color: var(--soft-white);
+  border-radius: var(--pill-radius);
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.status-success {
+  background: color-mix(in srgb, var(--alert-success) 15%, transparent);
+}
+
+.status-danger {
+  background: color-mix(in srgb, var(--alert-error) 15%, transparent);
+}
+
+.status-neutral {
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--cool-grey) 12%, transparent);
+}
+
+.status-warning {
+  background: color-mix(in srgb, var(--alert-warning) 15%, transparent);
+}
+
+.status-running {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--alert-success) 15%, transparent);
+}
+
+.status-running i {
+  font-size: 0.42rem;
+}
+
+.alert-stack {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 0.8rem 1rem;
+  color: var(--soft-white);
+  border: 1px solid;
+  border-radius: var(--border-radius);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.alert-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.alert.is-dismissing {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+}
+
+.alert-info {
+  background: color-mix(in srgb, var(--alert-info) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-info) 50%, transparent);
+}
+
+.alert-success {
+  background: color-mix(in srgb, var(--alert-success) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-success) 50%, transparent);
+}
+
+.alert-warning {
+  background: color-mix(in srgb, var(--alert-warning) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-warning) 50%, transparent);
+}
+
+.alert-error {
+  background: color-mix(in srgb, var(--alert-error) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-error) 50%, transparent);
+}
+
+.running-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  background: var(--alert-success);
+  border-radius: var(--circle-radius);
+  box-shadow: 0 0 0 5px
+    color-mix(in srgb, var(--alert-success) 12%, transparent);
+  animation: running-pulse 2s ease-in-out infinite;
+}
+
+.live-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  color: var(--alert-success);
+}
+
+.live-status .running-dot {
+  width: 7px;
+  height: 7px;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--alert-success) 12%, transparent);
+}
+
+.live-status[data-state="reconnecting"] {
+  color: var(--alert-warning);
+}
+
+.live-status[data-state="reconnecting"] .running-dot {
+  background: var(--alert-warning);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--alert-warning) 12%, transparent);
+}
+
+.live-status[data-state="ended"] {
+  color: var(--alert-error);
+}
+
+.live-status[data-state="ended"] .running-dot {
+  background: var(--alert-error);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--alert-error) 12%, transparent);
+  animation: none;
+}
+```
+
+## Summaries, empty states, and copyable values
+
+### Summaries, empty states, and copyable values HTML
+
+```html
+<section class="summary-grid panel" aria-label="Summary">
+  <div class="summary-card"><span>First value</span><strong>128</strong></div>
+  <div class="summary-card"><span>Second value</span><strong>84%</strong></div>
+  <div class="summary-card"><span>Third value</span><strong>42</strong></div>
+</section>
+
+<section class="panel empty-state">
+  <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+  <h2>No items</h2>
+  <p class="muted">Explain what is missing and the next useful action.</p>
+  <button class="button button-primary" type="button">Create item</button>
+</section>
+
+<div
+  class="secret-value copy-value"
+  id="copyable-value"
+  data-copy-value="example-copy-value"
+>
+  <span class="copy-value-text">example-copy-value</span>
+  <button
+    class="icon-button"
+    type="button"
+    data-copy-target="#copyable-value"
+    aria-label="Copy example value"
+    title="Copy example value"
+  >
+    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+  </button>
+</div>
+```
+
+### Summaries, empty states, and copyable values CSS
+
+```css
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+}
+
+.summary-card {
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--deep-graphite) 48%, transparent);
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--cool-grey);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.summary-card strong {
+  color: var(--soft-white);
+  font-size: 1.7rem;
+}
+
+.empty-state {
+  padding: 4rem;
+  text-align: center;
+}
+
+.empty-state i {
+  margin-bottom: 1rem;
+  color: var(--light-surface-accent);
+  font-size: 2rem;
+}
+
+.empty-state h2,
+.empty-state h3 {
+  margin-bottom: 0.3rem;
+}
+
+.secret-value {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  color: var(--soft-white);
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  font-family: ui-monospace, monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+
+.copy-value {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.copy-value-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.clipboard-fallback {
+  position: fixed;
+  inset: 0 auto auto 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (width <=575px) {
+  .summary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (width <=400px) {
+  .summary-card strong {
+    font-size: 1.4rem;
+  }
+
+  .secret-value {
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+  }
+}
+```
+
+### Summaries, empty states, and copyable values JavaScript
+
+Copying requires the canonical
+[`shared-components.js`](../web/shared-components.js). The control uses the
+Clipboard API when available, retains a safe fallback, briefly changes to a
+check icon, and restores its original accessible name and title.
+

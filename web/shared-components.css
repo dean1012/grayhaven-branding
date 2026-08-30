@@ -1192,3 +1192,103 @@ input[type="range"] {
   caret-color: var(--primary-accent);
 }
 
+/* Status, feedback, summaries, and empty states */
+
+.status-pill,
+.live-label {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  justify-self: start;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.status-pill {
+  padding: 0.2rem 0.55rem;
+  color: var(--soft-white);
+  border-radius: var(--pill-radius);
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.status-success {
+  background: color-mix(in srgb, var(--alert-success) 15%, transparent);
+}
+
+.status-danger {
+  background: color-mix(in srgb, var(--alert-error) 15%, transparent);
+}
+
+.status-neutral {
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--cool-grey) 12%, transparent);
+}
+
+.status-warning {
+  background: color-mix(in srgb, var(--alert-warning) 15%, transparent);
+}
+
+.status-running {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: color-mix(in srgb, var(--alert-success) 15%, transparent);
+}
+
+.status-running i {
+  font-size: 0.42rem;
+}
+
+.alert-stack {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 0.8rem 1rem;
+  color: var(--soft-white);
+  border: 1px solid;
+  border-radius: var(--border-radius);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.alert-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.alert.is-dismissing {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+}
+
+.alert-info {
+  background: color-mix(in srgb, var(--alert-info) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-info) 50%, transparent);
+}
+
+.alert-success {
+  background: color-mix(in srgb, var(--alert-success) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-success) 50%, transparent);
+}
+
+.alert-warning {
+  background: color-mix(in srgb, var(--alert-warning) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-warning) 50%, transparent);
+}
+
+.alert-error {
+  background: color-mix(in srgb, var(--alert-error) 14%, transparent);
+  border-color: color-mix(in srgb, var(--alert-error) 50%, transparent);
+}
+
