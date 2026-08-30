@@ -11,6 +11,7 @@ website repository or deployment system.
 ## Table of Contents
 
 - [Source of truth](#source-of-truth)
+- [Component ownership](#component-ownership)
 - [Design tokens](#design-tokens)
 - [HTML standards](#html-standards)
 - [CSS standards](#css-standards)
@@ -24,13 +25,39 @@ website repository or deployment system.
 
 ## Source of truth
 
-This repository is the source of truth for the visual language and component
-behavior. The branding preview demonstrates those rules without copying
-application-specific content.
+This repository is the source of truth for the visual language, component
+source, and category shells. A website or web application assembles approved
+components; it does not create a local visual variant. If a needed piece or
+option is missing, update Branding and obtain approval before continuing the
+consuming project.
 
-Use the existing design tokens and component names before introducing a new
-value or pattern. If a new pattern is genuinely needed, update this document
-and the component reference at the same time.
+The four live previews have separate purposes:
+
+- Logo preview: approved logo assets and variants.
+- Web Components preview: every shared component and supported option.
+- Sample website: a generic scrollable website shell using a natural subset of
+  shared components.
+- Sample web application: a generic fixed-height application shell using a
+  natural subset of shared components.
+
+[Back to top](#web-standards)
+
+## Component ownership
+
+[`Web Components`](web-components.md) owns every component reusable by both
+websites and web applications, including exact HTML, CSS, and optional
+JavaScript. The website and application guides own only their category shells,
+navigation/footer behavior, scrolling model, layout rhythm, and breakpoints.
+
+Use generic component classes as the public styling API. A product-specific
+secondary class is permitted only for proven nonvisual JavaScript selection,
+state selection, or product composition. It must not override shared visual,
+responsive, accessibility, or interaction rules.
+
+When changing the public website or any Grayhaven Systems LLC web application,
+review every affected HTML, CSS, and relevant JavaScript behavior against
+Branding. A necessary deviation is an immediate human gate: update and approve
+Branding first, then continue the consuming change.
 
 [Back to top](#web-standards)
 
@@ -46,8 +73,7 @@ Use the following token families:
   `--alert-error`.
 - Typography: `--font-primary` and the 300–800 font-weight tokens.
 - Spacing: `--space-xs` through `--space-3xl`.
-- Components: border radii, transitions, navbar, link buttons, panels, and
-  container tokens.
+- Components: border radii, transitions, panels, and container tokens.
 
 Do not introduce pure black, neon colors, unbounded glow effects, or unrelated
 blue palettes. Gradients should provide quiet dark-aluminum depth rather than
@@ -84,6 +110,8 @@ serve as decoration.
 - Keep component styles grouped by component and use clear, predictable class
   names.
 - Prefer one shared stylesheet over duplicated inline style blocks.
+- Do not redefine or visually override a shared component in a website or
+  application stylesheet.
 - Keep all styling in linked stylesheets. Do not use `<style>` elements,
   `style` attributes, or SVG presentation attributes in HTML.
 - Avoid unnecessary specificity, IDs for styling, and `!important`.
@@ -141,33 +169,29 @@ when the layout needs it:
 
 | Breakpoint | Purpose |
 | --- | --- |
-| `400px` and below | Smallest tag and link adjustments |
-| `575px` and below | Compact mobile header and icon-only action control |
-| `640px` and above | Tablet container padding |
-| `768px` and above | Desktop grids and footer layout |
-| `900px` and above | Two-column footer link grid |
-| `1120px` and above | Wide desktop spacing and three-column footer grid |
+| `400px` and below | Smallest application padding and heading size |
+| `575px` and below | Compact labels, actions, lists, and shared grids |
+| `640px` and above | Website tablet container padding |
+| `768px` and above | Shared grids and website footer layout |
+| `900px` and above | Website two-column footer link grid |
+| `1120px` and above | Wide shell spacing and website footer grid |
+| Below `1440px` | Shared tables become labeled stacked records |
 | `1721px` and above | Wide-screen horizontal desktop navigation |
 
-Navigation breakpoints are layout policy, not part of the navigation component
-markup. General sites use the `1721px` threshold shown above. Applications may
-use a separate documented threshold chosen from their approved responsive
-layout based on navigation density; the Branding application preview uses
-`1120px`. Both contexts use the same horizontal desktop navigation and native
-`details` mobile implementation.
+Navigation breakpoints are category layout policy, not shared-component
+markup. The website and application references currently use the `1721px`
+threshold. Both use one horizontal desktop navigation and one native `details`
+mobile implementation with the same solid visual presentation.
 
 Use range media-query syntax at exclusive breakpoint boundaries. For example,
-the application preview switches to mobile navigation with
-`@media (width < 1120px)` and returns to desktop navigation at `1120px` and
-above. Do not express that boundary as `max-width: 1119px`; fractional CSS
-pixels and display scaling can otherwise leave a narrow boundary where the
-wrong navigation remains visible.
+the mobile navigation is the default and the desktop navigation becomes
+visible at `@media (width >=1721px)`. Do not express the inverse boundary as
+`max-width: 1720px`; fractional CSS pixels and display scaling can otherwise
+leave a narrow boundary where the wrong navigation remains visible.
 
 Breakpoint differences must not create additional navigation behaviors or
-visual variants. Site and application navigation retain the approved opaque
-public-site presentation on both sides of their respective breakpoints. Their
-destinations and optional product labels may differ, but the solid surface,
-interaction model, and visual treatment do not.
+visual variants. Destinations and optional product labels may differ, but the
+solid surface, interaction model, and visual treatment do not.
 
 Test narrow mobile, tablet, wide desktop, and the transition immediately below
 the full desktop navigation breakpoint. Do not assume that a layout that works
@@ -216,10 +240,11 @@ and AI-assisted work, not a CI requirement.
 
 ## AI implementation guidance
 
-When an AI tool edits a Grayhaven Systems LLC web project, it should first
-inspect the existing tokens, components, breakpoints, and project instructions.
-It should
-make the smallest coherent change, preserve no-JavaScript behavior, avoid
-inventing brand values, and report any intentional deviation from this guide.
+When an AI tool edits a Grayhaven Systems LLC web project, it must first compare
+every affected implementation detail with this repository. Use the exact
+shared component and category-shell source, preserve no-JavaScript behavior,
+and avoid inventing brand values or local variants. If the requested result
+cannot be built from approved pieces, stop immediately for human review so
+Branding can be updated first.
 
 [Back to top](#web-standards)

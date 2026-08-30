@@ -26,10 +26,17 @@ See [Contributing](CONTRIBUTING.md) for the repository workflow.
 
 Start with the guidance for the type of branded work you are doing, then use
 the approved assets and examples as the implementation reference. Brand
-foundations and logo usage apply across all outputs; the web style guide and
-its supporting documents apply to websites and web interfaces. Keep new work
-consistent with the existing tokens and patterns, and update the relevant
-guidance when an approved pattern changes.
+foundations and logo usage apply across all outputs. For web work, choose
+approved pieces from the shared Web Components reference, then assemble them
+inside the website or application shell. Update Branding first when a needed
+piece or variant does not yet exist.
+
+## Live previews
+
+- [Logo preview](logo/index.html)
+- [Web Components preview](web/components/index.html)
+- [Sample website preview](web/style-guide/index.html)
+- [Sample web application preview](web-application/index.html)
 
 ## Documentation
 
@@ -44,6 +51,7 @@ Style guides:
 - [LinkedIn](docs/linkedin.md)
 - [Letterhead](docs/letterhead.md)
 - [Operator Tmux](docs/operator-tmux.md)
-- [Web](web/style-guide/style-guide.md)
+- [Web Components](docs/web-components.md)
+- [Website](web/style-guide/style-guide.md)
 - [Web Application](docs/web-application.md)
 - [Asset Provenance](docs/asset-provenance.md)

@@ -3,8 +3,8 @@
 [Back to Web Style Guide](../web/style-guide/style-guide.md)
 
 This checklist provides recommended testing guidelines before deploying a
-website using Grayhaven Systems LLC branding. It is a manual review aid for
-human or AI-assisted work; it is not a CI requirement.
+website or web application using Grayhaven Systems LLC branding. It is a
+manual review aid for human or AI-assisted work; it is not a CI requirement.
 
 ## Table of Contents
 
@@ -43,7 +43,7 @@ human or AI-assisted work; it is not a CI requirement.
       forced into unintended horizontal scrolling.
 - [ ] Confirm responsive tables become labeled stacked rows/cards with every
       caption, value, structured detail, empty state, and row action preserved.
-- [ ] Confirm light and dark panel variants retain readable contrast.
+- [ ] Confirm every shared component uses the approved dark-surface treatment.
 
 [Back to top](#web-qa-checklist)
 
@@ -106,6 +106,10 @@ human or AI-assisted work; it is not a CI requirement.
 
 ## Final review
 
+- [ ] Compare every changed website or application component against the
+      canonical Branding source; stop for approval before any deviation.
+- [ ] Confirm category stylesheets do not redefine or visually override shared
+      components.
 - [ ] Review the page in a fresh browser session.
 - [ ] Inspect the browser console for errors and failed resource requests.
 - [ ] Validate the final HTML, CSS, and JavaScript using the consuming

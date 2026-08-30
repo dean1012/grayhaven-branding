@@ -112,10 +112,9 @@ The approved web distribution assets are stored under [`web/assets`](../web/asse
 - `favicon-16.png`, `favicon-32.png`, and `favicon-512.png` — PNG favicon sizes
 - `apple-touch-icon.png` — 180 × 180 Apple touch icon
 
-These files are local copies of the assets used by the current production-style
-web implementation. They are maintained here as web branding assets; consuming
-sites should copy or reference them locally according to their own layout and
-deployment structure.
+These files are the approved web distribution assets. Consuming sites should
+copy or reference them locally according to their own layout and deployment
+structure.
 
 The current PNG and ICO files were generated from the approved SVG assets with
 ImageMagick. Run these commands from the branding repository root:
