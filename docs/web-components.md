@@ -2070,3 +2070,443 @@ Copying requires the canonical
 Clipboard API when available, retains a safe fallback, briefly changes to a
 check icon, and restores its original accessible name and title.
 
+## Responsive table
+
+Tables remain tables on wide screens and become labeled stacked records below
+`1440px`; horizontal table scrolling is not an approved behavior. Every cell
+requires `data-label`. Mark the primary and status cells so their mobile order
+remains intentional.
+
+### Responsive table HTML
+
+```html
+<div class="table-container">
+  <table class="data-table responsive-table">
+    <caption class="visually-hidden">Example records</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cell-primary" data-label="Name">First record</td>
+        <td data-label="Category">General</td>
+        <td class="cell-status" data-label="Status">
+          <span class="status-pill status-success">Ready</span>
+        </td>
+        <td class="cell-actions" data-label="Actions">
+          <div class="row-actions">
+            <button
+              class="icon-button accent"
+              type="button"
+              aria-label="Edit first record"
+            >
+              <i class="fa-solid fa-pen" aria-hidden="true"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-summary"><span>1 record</span><span>Page 1 of 1</span></div>
+<nav class="pagination" aria-label="Record pages">
+  <span>Page 1 of 1</span>
+  <span>
+    <button class="button button-secondary button-compact" type="button" disabled>Previous</button>
+    <button class="button button-secondary button-compact" type="button" disabled>Next</button>
+  </span>
+</nav>
+
+<div class="table-container">
+  <table class="data-table responsive-table">
+    <caption class="visually-hidden">Empty records example</caption>
+    <thead><tr><th scope="col">Name</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+      <tr class="empty-table-row">
+        <td colspan="2">No records match the selected filters.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+### Responsive table CSS
+
+```css
+.table-container {
+  max-width: 100%;
+  overflow: visible;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.85rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--charcoal-border) 65%, transparent);
+}
+
+.data-table th {
+  color: var(--primary-accent);
+  font-size: 0.73rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.data-table td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.table-summary,
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--cool-grey);
+  font-size: 0.82rem;
+}
+
+.table-summary {
+  padding: 0.8rem 0;
+}
+
+.pagination {
+  margin-top: 1.25rem;
+}
+
+@media (width <1440px) {
+  .responsive-table {
+    display: block;
+  }
+
+  .responsive-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .responsive-table tbody {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .responsive-table tbody > tr {
+    display: grid;
+    min-width: 0;
+    padding: 0.3rem 0.9rem;
+    background: color-mix(in srgb, var(--deep-graphite) 38%, transparent);
+    border: 1px solid
+      color-mix(in srgb, var(--charcoal-border) 75%, transparent);
+    border-radius: var(--border-radius);
+  }
+
+  .responsive-table tbody > tr > td {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 30%) minmax(0, 1fr);
+    align-items: start;
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0.65rem 0;
+  }
+
+  .responsive-table tbody > tr > td::before {
+    color: var(--primary-accent);
+    font-size: 0.68rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    content: attr(data-label);
+  }
+
+  .responsive-table tbody > tr > .cell-primary {
+    order: -2;
+  }
+
+  .responsive-table tbody > tr > .cell-status {
+    order: -1;
+  }
+
+  .responsive-table .cell-actions .row-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .responsive-table .truncate-text {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .responsive-table .empty-table-row {
+    display: block;
+    padding: 0;
+  }
+
+  .responsive-table .empty-table-row > td {
+    display: block;
+    padding: 1rem;
+    border: 0;
+  }
+
+  .responsive-table .empty-table-row > td::before {
+    content: none;
+  }
+}
+```
+
+## Hierarchical records and inline edit
+
+Use the hierarchy only when a parent/child relationship must remain visible.
+The child name is vertically centered with its leading and action controls.
+
+### Hierarchical records and inline edit HTML
+
+```html
+<article class="panel hierarchy-panel">
+  <div class="panel-heading">
+    <div><p class="eyebrow">HIERARCHY</p><h2>Parent and child records</h2></div>
+    <button class="icon-button accent" type="button" aria-label="Add parent item">
+      <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="hierarchy-item">
+    <div class="hierarchy-item-header">
+      <div class="hierarchy-item-name">
+        <i
+          class="fa-solid fa-layer-group hierarchy-item-icon"
+          aria-hidden="true"
+        ></i>
+        <strong>Parent item</strong>
+      </div>
+      <div class="row-actions">
+        <details class="inline-edit-control">
+          <summary
+            class="icon-button"
+            aria-label="Edit parent item"
+            title="Edit parent item"
+          >
+            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+          </summary>
+          <div class="inline-edit-popover">
+            <label>Parent name<input type="text" value="Parent item"></label>
+            <button
+              class="icon-button accent"
+              type="button"
+              aria-label="Save parent item"
+            >
+              <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+            </button>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="hierarchy-children">
+      <div class="hierarchy-child">
+        <div class="hierarchy-child-leading">
+          <button
+            class="icon-button accent"
+            type="button"
+            aria-label="Open child item"
+          >
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="hierarchy-child-name"><span>Child item</span></div>
+        <div class="row-actions">
+          <button class="icon-button" type="button" aria-label="Edit child item">
+            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+### Hierarchical records and inline edit CSS
+
+```css
+.hierarchy-panel {
+  padding: 1.8rem;
+}
+
+.hierarchy-item {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: color-mix(in srgb, var(--deep-graphite) 42%, transparent);
+  border: 1px solid color-mix(in srgb, var(--charcoal-border) 78%, transparent);
+  border-radius: var(--border-radius);
+}
+
+.hierarchy-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hierarchy-item-header strong {
+  color: var(--soft-white);
+  font-size: 1rem;
+}
+
+.hierarchy-item-name {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hierarchy-item-name strong {
+  min-width: 0;
+}
+
+.hierarchy-item-icon {
+  margin-right: 0.65rem;
+  color: var(--primary-accent);
+}
+
+.hierarchy-children {
+  margin-left: 1.65rem;
+}
+
+.hierarchy-child {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.65rem;
+  min-height: 44px;
+  padding: 0.35rem 0;
+}
+
+.hierarchy-child-leading {
+  display: flex;
+  grid-column: 1;
+  align-items: center;
+  min-height: 32px;
+  padding-right: 0.65rem;
+  border-right: 1px solid var(--charcoal-border);
+}
+
+.hierarchy-child-name {
+  display: flex;
+  grid-column: 2;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+  color: var(--soft-white);
+  font-size: 0.9rem;
+}
+
+.hierarchy-child-name span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.hierarchy-child .row-actions {
+  grid-column: 3;
+}
+
+.inline-edit-control {
+  position: relative;
+}
+
+.inline-edit-control > summary {
+  list-style: none;
+}
+
+.inline-edit-control > summary::-webkit-details-marker {
+  display: none;
+}
+
+.inline-edit-control[open] > summary {
+  color: var(--primary-accent);
+  background: color-mix(in srgb, var(--primary-accent) 10%, transparent);
+  border-color: var(--charcoal-border);
+}
+
+.inline-edit-popover {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  align-items: end;
+  gap: 0.65rem;
+  width: 390px;
+  padding: 1rem;
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--popover-shadow);
+}
+
+.inline-edit-popover input {
+  min-height: 36px;
+  padding: 0.45rem 0.6rem;
+}
+
+@media (width <768px) {
+  .hierarchy-panel {
+    padding: 1.25rem;
+  }
+
+  .hierarchy-children {
+    margin-left: 0.35rem;
+  }
+
+  .hierarchy-child .row-actions {
+    justify-self: end;
+  }
+
+  .inline-edit-popover {
+    position: fixed;
+    top: 30%;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+}
+
+@media (width <=400px) {
+  .hierarchy-panel,
+  .form-panel {
+    padding: 1rem;
+  }
+}
+```
+
+### Hierarchical records and inline edit JavaScript
+
+Use the canonical [`shared-components.js`](../web/shared-components.js) when
+inline-edit controls should close on outside click or Escape. Native `details`
+still opens without JavaScript.
+
+## Shared responsive and motion rules
+
+The component stylesheet owns component breakpoints. Website and application
+stylesheets may choose shell breakpoints but must not override shared component
+behavior. Preserve the canonical `prefers-reduced-motion` rule.
+
