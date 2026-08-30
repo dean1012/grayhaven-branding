@@ -849,3 +849,904 @@ column count. Both stack at the shared mobile breakpoint.
 }
 ```
 
+## Text-like fields and messages
+
+This base covers text, email, password, number, date/time, search, URL, and
+telephone inputs, plus `select` and `textarea`. Use native input types and
+appropriate autocomplete values.
+
+### Text-like fields and messages HTML
+
+```html
+<section class="panel form-panel narrow-content">
+  <form class="form-stack">
+    <label>
+      <span>Display name <span class="optional">Optional</span></span>
+      <input type="text" name="display_name" autocomplete="name">
+    </label>
+    <div class="form-actions">
+      <button class="button button-secondary" type="reset">Cancel</button>
+      <button class="button button-primary" type="submit">Save</button>
+    </div>
+  </form>
+</section>
+
+<label>
+  Display name
+  <input type="text" name="display_name" autocomplete="name">
+</label>
+
+<label>
+  Notes
+  <textarea name="notes" rows="4" placeholder="Add an optional note"></textarea>
+  <small class="field-help">Help text explains format or purpose.</small>
+</label>
+
+<label>
+  Reference value
+  <input
+    type="text"
+    name="reference"
+    aria-invalid="true"
+    aria-describedby="reference-error"
+  >
+  <small class="field-error" id="reference-error">
+    Explain how to correct the value.
+  </small>
+</label>
+
+<label>
+  Read-only input
+  <input type="text" value="Read-only value" readonly>
+</label>
+
+<label>
+  Disabled input
+  <input type="text" value="Disabled value" disabled>
+</label>
+```
+
+### Text-like fields and messages CSS
+
+```css
+:where(input:not([type="checkbox"], [type="radio"]), select, textarea) {
+  width: 100%;
+  min-height: 42px;
+  padding: 0.65rem 0.75rem;
+  color: var(--soft-white);
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+}
+
+select {
+  padding-right: 2.25rem;
+}
+
+textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  ):focus-visible {
+  border-color: var(--primary-accent);
+  outline: none;
+}
+
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  )[aria-invalid="true"] {
+  border-color: var(--alert-error);
+}
+
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  ):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+input[readonly],
+textarea[readonly] {
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--deep-graphite) 55%, transparent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--slate-grey);
+}
+
+label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--soft-white);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.form-field {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+small {
+  color: var(--cool-grey);
+  font-weight: var(--font-weight-regular);
+}
+
+.field-help,
+.field-error {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-regular);
+}
+
+.field-help {
+  color: var(--cool-grey);
+}
+
+.field-error {
+  color: var(--alert-error);
+}
+
+.narrow-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-panel {
+  padding: 2.2rem;
+}
+
+.narrow-content > .form-panel + .form-panel {
+  margin-top: 1.5rem;
+}
+
+.form-stack {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.form-actions {
+  justify-content: flex-end;
+  margin-top: 0.4rem;
+}
+
+.optional {
+  color: var(--cool-grey);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-regular);
+}
+
+@media (width <=575px) {
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .form-actions .button {
+    width: 100%;
+  }
+}
+```
+
+Every focused field changes only its existing one-pixel border to Primary
+Accent. Compound wrappers use the same one-pixel treatment through
+`:focus-within`.
+
+## Compound fields
+
+### Compound fields HTML
+
+```html
+<label>
+  Named value
+  <span class="input-with-icon">
+    <i class="fa-solid fa-building" aria-hidden="true"></i>
+    <input type="text" name="record_name">
+  </span>
+</label>
+
+<label>
+  Category
+  <span class="select-control">
+    <select name="category">
+      <option>First option</option>
+      <option>Second option</option>
+    </select>
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </span>
+</label>
+
+<label>
+  Amount
+  <span class="money-input">
+    <span class="money-prefix" aria-hidden="true">$</span>
+    <input type="number" name="amount" min="0" step="0.01">
+    <span class="money-suffix">per unit</span>
+  </span>
+</label>
+
+<div class="form-field">
+  <label for="scheduled-at">Scheduled date and time</label>
+  <span class="datetime-control">
+    <input
+      id="scheduled-at"
+      type="datetime-local"
+      name="scheduled_at"
+      step="1"
+      data-timezone="UTC"
+    >
+    <button
+      class="icon-button"
+      type="button"
+      data-set-now-for="#scheduled-at"
+      aria-label="Set date and time to now"
+      title="Set date and time to now"
+    >
+      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+    </button>
+  </span>
+</div>
+
+<label>
+  Generated value
+  <output class="readonly-value">Example value</output>
+</label>
+
+<form class="inline-form">
+  <input
+    type="text"
+    name="new_item"
+    placeholder="New item"
+    aria-label="New item"
+    required
+  >
+  <button class="icon-button accent" type="submit" aria-label="Add item">
+    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+  </button>
+</form>
+```
+
+### Compound fields CSS
+
+```css
+.input-with-icon {
+  position: relative;
+  display: block;
+}
+
+.input-with-icon > i {
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  z-index: 1;
+  color: var(--slate-grey);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.input-with-icon > input {
+  padding-left: 2.65rem;
+}
+
+.input-with-icon:focus-within > i {
+  color: var(--primary-accent);
+}
+
+.select-control {
+  position: relative;
+  display: block;
+}
+
+.select-control select {
+  width: 100%;
+  padding-right: 3rem;
+  appearance: none;
+}
+
+.select-control i {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  color: var(--soft-white);
+  font-size: 0.78rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.money-input {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 42px;
+  color: var(--soft-white);
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.money-input:focus-within {
+  border-color: var(--primary-accent);
+  outline: none;
+}
+
+.money-prefix,
+.money-suffix {
+  color: var(--cool-grey);
+}
+
+.money-prefix {
+  padding-left: 0.75rem;
+}
+
+.money-suffix {
+  padding-right: 0.9rem;
+  white-space: nowrap;
+}
+
+.money-input input {
+  min-width: 0;
+  padding: 0.65rem 0.35rem;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+}
+
+.money-input input[type="number"] {
+  appearance: textfield;
+}
+
+.money-input input[type="number"]::-webkit-inner-spin-button,
+.money-input input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.datetime-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.datetime-control .icon-button {
+  width: 32px;
+  height: 32px;
+}
+
+.readonly-value {
+  display: block;
+  min-height: 42px;
+  padding: 0.65rem 0.75rem;
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--deep-graphite) 55%, transparent);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+}
+
+.inline-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-form input {
+  width: 250px;
+}
+
+@media (width <768px) {
+  .inline-form {
+    width: 100%;
+  }
+
+  .inline-form input {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+  }
+}
+```
+
+### Compound fields JavaScript
+
+The date/time convenience button requires the canonical
+[`shared-components.js`](../web/shared-components.js). It uses the input's
+`data-timezone`, includes seconds, and dispatches `change` after assignment.
+
+## Checkboxes, radios, and switches
+
+### Checkboxes, radios, and switches HTML
+
+```html
+<fieldset class="choice-group">
+  <legend>Checkbox options</legend>
+  <label class="choice-control">
+    <input type="checkbox" name="first_option" checked>
+    <span class="choice-control-copy">
+      Selected option
+      <small>Optional supporting text.</small>
+    </span>
+  </label>
+  <label class="choice-control">
+    <input type="checkbox" name="second_option">
+    <span class="choice-control-copy">Unselected option</span>
+  </label>
+</fieldset>
+
+<fieldset class="choice-group">
+  <legend>Radio options</legend>
+  <label class="choice-control">
+    <input type="radio" name="choice" value="first" checked>
+    <span class="choice-control-copy">First choice</span>
+  </label>
+  <label class="choice-control">
+    <input type="radio" name="choice" value="second">
+    <span class="choice-control-copy">Second choice</span>
+  </label>
+</fieldset>
+
+<label class="switch-control">
+  <input type="checkbox" name="updates" role="switch" checked>
+  <span class="switch-track" aria-hidden="true"></span>
+  <span>Enable updates</span>
+</label>
+```
+
+### Checkboxes, radios, and switches CSS
+
+```css
+.choice-group {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.choice-group legend {
+  padding: 0;
+  margin-bottom: 0.65rem;
+  color: var(--soft-white);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.choice-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--soft-white);
+  cursor: pointer;
+}
+
+.choice-control input[type="checkbox"],
+.choice-control input[type="radio"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  margin: 0.2rem 0 0;
+  accent-color: var(--primary-accent);
+}
+
+.choice-control-copy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.choice-control-copy small {
+  line-height: 1.45;
+}
+
+.switch-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--soft-white);
+  cursor: pointer;
+}
+
+.switch-control input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.switch-track {
+  position: relative;
+  width: 2.5rem;
+  height: 1.4rem;
+  flex: 0 0 auto;
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--pill-radius);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.switch-track::after {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.18rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--cool-grey);
+  border-radius: var(--circle-radius);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+  content: "";
+}
+
+.switch-control input:checked + .switch-track {
+  background: color-mix(in srgb, var(--primary-accent) 24%, transparent);
+  border-color: var(--primary-accent);
+}
+
+.switch-control input:checked + .switch-track::after {
+  background: var(--primary-accent);
+  transform: translateX(1.08rem);
+}
+
+.switch-control input:focus-visible + .switch-track {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 3px;
+}
+```
+
+## Native form and disclosure controls
+
+### Native form and disclosure controls HTML
+
+```html
+<label>
+  File input
+  <input type="file" name="attachment">
+</label>
+
+<div class="form-field">
+  <label for="level">Range input</label>
+  <input id="level" type="range" name="level" min="0" max="100" value="60">
+  <output for="level">60%</output>
+</div>
+
+<label>
+  Input with datalist
+  <input type="text" name="category" list="category-options">
+  <datalist id="category-options">
+    <option value="First option"></option>
+    <option value="Second option"></option>
+  </datalist>
+</label>
+
+<label>
+  Progress
+  <progress class="progress-control" max="100" value="64">64%</progress>
+</label>
+
+<label>
+  Meter
+  <meter
+    class="meter-control"
+    min="0"
+    max="100"
+    low="35"
+    high="75"
+    optimum="90"
+    value="82"
+  >82%</meter>
+</label>
+
+<details class="disclosure">
+  <summary>Disclosure label</summary>
+  <div class="disclosure-content">
+    <p>Disclosure content.</p>
+  </div>
+</details>
+
+<button
+  class="button button-primary"
+  type="button"
+  data-dialog-open="#example-dialog"
+>
+  Open dialog
+</button>
+<dialog
+  class="dialog"
+  id="example-dialog"
+  aria-labelledby="example-dialog-title"
+>
+  <form class="dialog-content" method="dialog">
+    <div>
+      <p class="eyebrow">DIALOG</p>
+      <h2 id="example-dialog-title">Confirm action</h2>
+      <p class="muted">Brief supporting copy.</p>
+    </div>
+    <div class="form-actions">
+      <button class="button button-secondary" type="submit" value="cancel">
+        Cancel
+      </button>
+      <button class="button button-primary" type="submit" value="confirm">
+        Confirm
+      </button>
+    </div>
+  </form>
+</dialog>
+```
+
+### Native form and disclosure controls CSS
+
+```css
+input[type="file"] {
+  padding: 0.35rem;
+}
+
+input[type="file"]::file-selector-button {
+  min-height: 32px;
+  margin-right: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  color: var(--soft-white);
+  background: color-mix(in srgb, var(--deep-graphite) 34%, transparent);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius-sm);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--light-surface-accent);
+  border-color: var(--primary-accent);
+}
+
+input[type="range"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 0;
+  accent-color: var(--primary-accent);
+  background: transparent;
+  border: 0;
+}
+
+.progress-control,
+.meter-control {
+  width: 100%;
+  height: 0.8rem;
+  accent-color: var(--primary-accent);
+}
+
+.progress-control {
+  color: var(--primary-accent);
+}
+
+.progress-control::-webkit-progress-bar,
+.meter-control::-webkit-meter-bar {
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--pill-radius);
+}
+
+.progress-control::-webkit-progress-value {
+  background: var(--primary-accent);
+  border-radius: var(--pill-radius);
+}
+
+.meter-control::-webkit-meter-optimum-value {
+  background: var(--alert-success);
+  border-radius: var(--pill-radius);
+}
+
+.meter-control::-webkit-meter-suboptimum-value {
+  background: var(--alert-warning);
+  border-radius: var(--pill-radius);
+}
+
+.meter-control::-webkit-meter-even-less-good-value {
+  background: var(--alert-error);
+  border-radius: var(--pill-radius);
+}
+
+.disclosure {
+  background: color-mix(in srgb, var(--deep-graphite) 42%, transparent);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+}
+
+.disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  color: var(--soft-white);
+  font-weight: var(--font-weight-semibold);
+  list-style: none;
+  cursor: pointer;
+}
+
+.disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure > summary::after {
+  color: var(--primary-accent);
+  content: "+";
+}
+
+.disclosure[open] > summary::after {
+  content: "−";
+}
+
+.disclosure-content {
+  padding: 0 var(--space-sm) var(--space-sm);
+  border-top: 1px solid
+    color-mix(in srgb, var(--charcoal-border) 65%, transparent);
+}
+
+.disclosure-content > :first-child {
+  margin-top: var(--space-sm);
+}
+
+.disclosure-content > :last-child {
+  margin-bottom: 0;
+}
+
+.dialog {
+  width: min(32rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  color: var(--cool-grey);
+  background: linear-gradient(
+    180deg,
+    var(--panel-bg-top),
+    var(--panel-bg-bottom)
+  );
+  border: 1px solid var(--panel-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--popover-shadow);
+  overflow: auto;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 68%);
+}
+
+.dialog-content {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.dialog-content > :last-child {
+  margin-bottom: 0;
+}
+```
+
+### Native form and disclosure controls JavaScript
+
+```javascript
+document.querySelectorAll('[data-dialog-open]').forEach(function (button) {
+  button.addEventListener('click', function () {
+    const dialog = document.querySelector(button.dataset.dialogOpen || '');
+    if (dialog instanceof HTMLDialogElement) dialog.showModal();
+  });
+});
+```
+
+`datalist`, `progress`, `meter`, and `details` are native and require no
+JavaScript. Range output updates are product logic; update the paired `output`
+only when the displayed value must track user input.
+
+## Verification code
+
+### Verification code HTML
+
+```html
+<fieldset class="verification-code">
+  <legend>
+    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+    One-time code
+  </legend>
+  <div class="verification-code-fields" data-verification-code>
+    <input
+      type="text"
+      name="code_digit_1"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      maxlength="6"
+      autocomplete="one-time-code"
+      aria-label="One-time code digit 1"
+    >
+    <input type="text" name="code_digit_2" inputmode="numeric"
+      pattern="[0-9]*" maxlength="1" autocomplete="off"
+      aria-label="One-time code digit 2">
+    <input type="text" name="code_digit_3" inputmode="numeric"
+      pattern="[0-9]*" maxlength="1" autocomplete="off"
+      aria-label="One-time code digit 3">
+    <input type="text" name="code_digit_4" inputmode="numeric"
+      pattern="[0-9]*" maxlength="1" autocomplete="off"
+      aria-label="One-time code digit 4">
+    <input type="text" name="code_digit_5" inputmode="numeric"
+      pattern="[0-9]*" maxlength="1" autocomplete="off"
+      aria-label="One-time code digit 5">
+    <input type="text" name="code_digit_6" inputmode="numeric"
+      pattern="[0-9]*" maxlength="1" autocomplete="off"
+      aria-label="One-time code digit 6">
+  </div>
+</fieldset>
+```
+
+### Verification code CSS
+
+```css
+.verification-code {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.verification-code legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin-bottom: 0.65rem;
+  color: var(--soft-white);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.verification-code legend i {
+  color: var(--primary-accent);
+}
+
+.verification-code-fields {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.5vw, 0.65rem);
+  width: 100%;
+}
+
+.verification-code-fields input {
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: var(--circle-radius);
+  font-size: 1.35rem;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  caret-color: var(--primary-accent);
+}
+```
+
+### Verification code JavaScript
+
+Use the canonical [`shared-components.js`](../web/shared-components.js). The
+enhancement distributes a pasted code, advances after a digit, and supports
+Backspace and Left/Right arrow movement. The individual fields remain usable
+without JavaScript.
+
