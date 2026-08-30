@@ -1,0 +1,68 @@
+/* Preview-only composition for the generic sample application. */
+
+.sample-app-section {
+  min-width: 0;
+  padding-block: var(--space-lg);
+  scroll-margin-top: 1rem;
+}
+
+.sample-app-section + .sample-app-section {
+  border-top: 1px solid color-mix(in srgb, var(--charcoal-border) 65%, transparent);
+}
+
+.sample-app-panel,
+.sample-app-table,
+.sample-app-form {
+  padding: 1.8rem;
+}
+
+.sample-app-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.sample-app-summary {
+  margin-bottom: var(--space-md);
+}
+
+.sample-app-resources {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xs);
+}
+
+html:not(.js-enabled) body:not(:has(.sample-app-section:target))
+  [data-section-nav] a[href="#overview"],
+html:not(.js-enabled) body:has(#overview:target)
+  [data-section-nav] a[href="#overview"],
+html:not(.js-enabled) body:has(#records:target)
+  [data-section-nav] a[href="#records"],
+html:not(.js-enabled) body:has(#preferences:target)
+  [data-section-nav] a[href="#preferences"],
+html:not(.js-enabled) body:has(#resources:target)
+  [data-section-nav] a[href="#resources"] {
+  color: var(--primary-accent);
+}
+
+@media (width <768px) {
+  .sample-app-panel,
+  .sample-app-table,
+  .sample-app-form {
+    padding: 1.25rem;
+  }
+}
+
+@media (width <=400px) {
+  .sample-app-panel,
+  .sample-app-table,
+  .sample-app-form {
+    padding: 1rem;
+  }
+}
+
+@media (width >=768px) {
+  .sample-app-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

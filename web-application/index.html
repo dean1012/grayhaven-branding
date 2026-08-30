@@ -3,98 +3,395 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grayhaven Systems LLC Application Components Preview</title>
-    <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260827">
-    <link rel="stylesheet" href="../web/style-guide/fontawesome.min.css?v=20260827">
-    <link rel="stylesheet" href="../web/style-guide/style-guide.css?v=20260827">
-    <link rel="stylesheet" href="web-application.css?v=20260828">
+    <title>Grayhaven Systems LLC Sample Web Application</title>
+    <link rel="stylesheet" href="../web/style-guide/fonts.css?v=20260830">
+    <link
+      rel="stylesheet"
+      href="../web/style-guide/fontawesome.min.css?v=20260830"
+   >
+    <link rel="stylesheet" href="../web/shared-components.css?v=20260830">
+    <link rel="stylesheet" href="web-application.css?v=20260830">
+    <link rel="stylesheet" href="sample-application.css?v=20260830">
   </head>
-  <body class="component-preview" data-preview-default-section="navigation">
-    <header class="component-header">
-      <div class="component-header-inner">
-        <a class="component-brand" href="#top" aria-label="Grayhaven Systems LLC component preview home">
-          <img src="../logo/svg/grayhaven-logo-wordmark-dark.svg" alt="Grayhaven Systems LLC">
-          <span>Application Components</span>
+  <body
+    class="app-body"
+    data-section-default="overview"
+    data-section-scroll-root=".app-viewport"
+  >
+    <header class="app-header">
+      <div class="app-header-inner">
+        <a
+          class="brand"
+          href="./index.html"
+          aria-label="Grayhaven Systems LLC sample application home"
+        >
+          <img
+            src="../logo/svg/grayhaven-logo-wordmark-dark.svg"
+            alt="Grayhaven Systems LLC"
+         >
+          <span class="brand-product">Sample Application</span>
         </a>
-        <nav class="component-nav component-nav-desktop" aria-label="Component preview navigation">
-          <a href="#navigation"><i class="fa-solid fa-compass" aria-hidden="true"></i>Navigation</a><a href="#controls"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Controls</a>
-          <a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i>Data</a><a href="#states"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>States</a><a href="../docs/web-application.md"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Reference</a>
+        <nav
+          class="app-nav desktop-nav"
+          data-section-nav
+          aria-label="Sample application desktop navigation"
+        >
+          <a href="#overview"
+            ><i class="fa-solid fa-house" aria-hidden="true"></i>Overview</a
+          >
+          <a href="#records"
+            ><i class="fa-solid fa-table" aria-hidden="true"></i>Records</a
+          >
+          <a href="#preferences"
+            ><i class="fa-solid fa-sliders" aria-hidden="true"></i
+            >Preferences</a
+          >
+          <a href="#resources"
+            ><i class="fa-solid fa-book" aria-hidden="true"></i>Resources</a
+          >
+          <a href="../web/components/index.html"
+            ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Components</a
+          >
+          <form action="./index.html" method="get">
+            <button class="nav-button" type="submit">
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Action
+            </button>
+          </form>
         </nav>
-        <details class="component-nav-mobile" id="previewMobileMenu">
-          <summary class="component-nav-toggle" aria-label="Component preview menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></summary>
-          <nav class="component-nav-menu" aria-label="Component preview mobile navigation">
-            <a href="#navigation"><i class="fa-solid fa-compass" aria-hidden="true"></i>Navigation</a><a href="#controls"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Controls</a><a href="#data"><i class="fa-solid fa-table" aria-hidden="true"></i>Data</a><a href="#states"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>States</a><a href="../docs/web-application.md"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Reference</a>
+        <details class="mobile-nav" data-mobile-nav>
+          <summary
+            class="mobile-nav-toggle"
+            aria-label="Sample application navigation menu"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </summary>
+          <nav
+            class="mobile-nav-links"
+            data-section-nav
+            aria-label="Sample application mobile navigation"
+          >
+            <a href="#overview"
+              ><i class="fa-solid fa-house" aria-hidden="true"></i>Overview</a
+            >
+            <a href="#records"
+              ><i class="fa-solid fa-table" aria-hidden="true"></i>Records</a
+            >
+            <a href="#preferences"
+              ><i class="fa-solid fa-sliders" aria-hidden="true"></i
+              >Preferences</a
+            >
+            <a href="#resources"
+              ><i class="fa-solid fa-book" aria-hidden="true"></i>Resources</a
+            >
+            <a href="../web/components/index.html"
+              ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Components</a
+            >
+            <form action="./index.html" method="get">
+              <button class="nav-button" type="submit">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+                >Action
+              </button>
+            </form>
           </nav>
         </details>
       </div>
-      <nav class="component-breadcrumbs" aria-label="Breadcrumb">
-        <ol><li><a class="component-breadcrumb-label" href="#top" title="Example">Example</a></li><li aria-current="page"><span class="component-breadcrumb-label" title="Component Reference">Component Reference</span></li></ol>
+      <nav class="breadcrumbs app-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li>
+            <a class="breadcrumb-label" href="./index.html" title="Example"
+              >Example</a
+            >
+          </li>
+          <li aria-current="page">
+            <span class="breadcrumb-label" title="Overview">Overview</span>
+          </li>
+        </ol>
       </nav>
     </header>
-    <main class="component-viewport">
-      <div class="component-shell" id="top">
-        <section class="component-intro" aria-labelledby="preview-title">
-          <p class="component-eyebrow">APPLICATION COMPONENTS</p>
-          <h1 id="preview-title">Reusable Interface Patterns</h1>
-          <p class="component-muted">Neutral examples of shells, controls, data presentation, status communication, and responsive states.</p>
-        </section>
-        <section class="component-section" id="navigation" aria-labelledby="navigation-title">
-          <div class="component-heading"><div><p class="component-eyebrow">NAVIGATION</p><h2 id="navigation-title">Shells, headings, and actions</h2></div><button class="component-button component-button-primary" type="button">Primary action</button></div>
-          <article class="component-panel">
-            <div class="component-panel-heading"><div><p class="component-eyebrow">PANEL</p><h3>Example workspace</h3></div><span class="component-status component-status-info">Draft</span></div>
-            <div class="component-panel-stack">
-              <p class="component-muted">Panels group related content while preserving a clear heading and action hierarchy.</p>
-              <div class="component-action-row"><button class="component-button component-button-secondary" type="button">Secondary action</button><button class="component-button component-button-secondary" type="button">More options</button></div>
+
+    <main class="app-viewport">
+      <div class="page-shell">
+        <section
+          class="sample-app-section"
+          id="overview"
+          aria-labelledby="overview-title"
+        >
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">OVERVIEW</p>
+              <h1 id="overview-title">A focused application workspace</h1>
+              <p class="muted">
+                The application shell keeps its header and footer fixed while
+                only this middle viewport scrolls.
+              </p>
             </div>
-          </article>
-        </section>
-        <section class="component-section" id="controls" aria-labelledby="controls-title">
-          <div class="component-heading"><div><p class="component-eyebrow">CONTROLS</p><h2 id="controls-title">Fields and credential visuals</h2><p class="component-muted">Neutral field examples show labels, compound controls, read-only values, and an optional one-time code treatment.</p></div></div>
-          <div class="component-grid">
-            <article class="component-panel">
-              <div class="component-panel-heading"><h3>Field set</h3><span class="component-status component-status-info">Example</span></div>
-              <form class="component-form" autocomplete="off">
-                <label>Display name<input id="example-name" type="text" placeholder="Example value" autocomplete="off"></label>
-                <label>Category<span class="component-select"><select id="example-kind"><option>General</option><option>Priority</option></select><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></label>
-                <label>Compound value<span class="component-compound"><span aria-hidden="true">#</span><input id="example-value" type="text" value="42"><span>units</span></span></label>
-                <label>Notes<textarea id="example-notes" rows="3">Example notes</textarea></label>
-                <div class="component-field"><span class="component-readonly-label">Read-only value</span><output class="component-readonly">example-value</output></div>
-                <div class="component-action-row"><button class="component-button component-button-secondary" type="button">Cancel</button><button class="component-button component-button-primary" type="submit">Save example</button></div>
-              </form>
-            </article>
-            <article class="component-panel">
-              <div class="component-panel-heading"><h3>Credential visual</h3><span class="component-status component-status-info">Optional</span></div>
-              <div class="component-stack">
-                <label>Email address<input id="example-email" type="email" autocomplete="username" value="user@example.com"></label>
-                <fieldset class="component-code-fieldset">
-                  <legend>One-time code</legend>
-                  <div class="component-code">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" aria-label="One-time code digit 1" value="1">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 2" value="2">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 3" value="3">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 4" value="4">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 5" value="5">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" aria-label="One-time code digit 6" value="6">
-                  </div>
-                </fieldset>
-                <p class="component-muted">This demonstrates visual states, not an authentication flow.</p>
+            <a class="button button-primary" href="#records"
+              ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>View
+              records</a
+            >
+          </div>
+          <section
+            class="summary-grid panel sample-app-summary"
+            aria-label="Example summary"
+          >
+            <div class="summary-card"><span>Open</span><strong>12</strong></div>
+            <div class="summary-card"><span>Ready</span><strong>8</strong></div>
+            <div class="summary-card">
+              <span>Review</span><strong>4</strong>
+            </div>
+          </section>
+          <div class="sample-app-grid">
+            <article class="panel sample-app-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">WORKSPACE</p>
+                  <h2>Current activity</h2>
+                </div>
+                <span class="status-pill status-success">Ready</span>
               </div>
+              <p class="muted">
+                This generic sample combines approved headings, panels, status
+                pills, links, and buttons without defining another version of
+                those components.
+              </p>
+              <a class="external-link" href="../web/components/index.html"
+                ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Browse
+                every shared component</a
+              >
+            </article>
+            <article class="panel sample-app-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">NEXT STEP</p>
+                  <h2>Choose a destination</h2>
+                </div>
+                <i class="fa-solid fa-route" aria-hidden="true"></i>
+              </div>
+              <ul class="check-list">
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                  >Review the record list
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                  >Adjust a preference
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+                  >Open the source references
+                </li>
+              </ul>
             </article>
           </div>
         </section>
-        <section class="component-section" id="data" aria-labelledby="data-title">
-          <div class="component-heading"><div><p class="component-eyebrow">DATA</p><h2 id="data-title">Tables and summaries</h2><p class="component-muted">Responsive records, filtering, pagination, summaries, and chart styling use neutral sample data.</p></div></div>
-          <form class="component-filters" autocomplete="off"><label>Category <span class="component-select"><select><option>All categories</option><option>General</option><option>Priority</option></select><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span></label><label>Search <input type="search" placeholder="Filter records"></label><button class="component-button component-button-secondary" type="submit">Apply</button></form>
-          <div class="component-table-wrap"><table class="component-table"><caption class="component-visually-hidden">Example records</caption><thead><tr><th scope="col">Date</th><th scope="col">Category</th><th scope="col">Label</th><th scope="col">Status</th></tr></thead><tbody><tr><td data-label="Date">2026-08-27</td><td data-label="Category">General</td><td data-label="Label">Example record</td><td data-label="Status"><span class="component-status component-status-success">Ready</span></td></tr><tr><td data-label="Date">2026-08-26</td><td data-label="Category">Priority</td><td data-label="Label">Another record</td><td data-label="Status"><span class="component-status component-status-warning">Review</span></td></tr><tr><td data-label="Date">2026-08-25</td><td data-label="Category">General</td><td data-label="Label">Third record</td><td data-label="Status"><span class="component-status component-status-neutral">Archived</span></td></tr></tbody></table></div>
-          <div class="component-pagination"><span>3 records · Page 1 of 1</span><div><button class="component-button component-button-secondary" type="button" disabled>Previous</button><button class="component-button component-button-secondary" type="button" disabled>Next</button></div></div><div class="component-summary-grid"><article><span>Total items</span><strong>128</strong></article><article><span>Completion</span><strong>84%</strong></article></div>
+
+        <section
+          class="sample-app-section"
+          id="records"
+          aria-labelledby="records-title"
+        >
+          <div class="page-heading compact">
+            <div>
+              <p class="eyebrow">RECORDS</p>
+              <h2 id="records-title">Responsive data presentation</h2>
+              <p class="muted">
+                The same shared table becomes stacked records at the approved
+                application breakpoint.
+              </p>
+            </div>
+            <button class="button button-primary" type="button">
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>Add record
+            </button>
+          </div>
+          <article class="panel sample-app-table">
+            <div class="table-container">
+              <table class="data-table responsive-table">
+                <caption class="visually-hidden">
+                  Example application records
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-primary" data-label="Name">First record</td>
+                    <td data-label="Category">General</td>
+                    <td class="cell-status" data-label="Status">
+                      <span class="status-pill status-success">Ready</span>
+                    </td>
+                    <td class="cell-actions" data-label="Actions">
+                      <div class="row-actions">
+                        <button
+                          class="icon-button accent"
+                          type="button"
+                          aria-label="Edit first record"
+                        >
+                          <i
+                            class="fa-solid fa-pen"
+                            aria-hidden="true"
+                          ></i></button
+                        ><button
+                          class="icon-button danger"
+                          type="button"
+                          aria-label="Delete first record"
+                        >
+                          <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-primary" data-label="Name">
+                      Second record
+                    </td>
+                    <td data-label="Category">Priority</td>
+                    <td class="cell-status" data-label="Status">
+                      <span class="status-pill status-warning">Review</span>
+                    </td>
+                    <td class="cell-actions" data-label="Actions">
+                      <div class="row-actions">
+                        <button
+                          class="icon-button accent"
+                          type="button"
+                          aria-label="Edit second record"
+                        >
+                          <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-primary" data-label="Name">Third record</td>
+                    <td data-label="Category">General</td>
+                    <td class="cell-status" data-label="Status">
+                      <span class="status-pill status-neutral">Draft</span>
+                    </td>
+                    <td class="cell-actions" data-label="Actions">
+                      <div class="row-actions">
+                        <button
+                          class="icon-button accent"
+                          type="button"
+                          aria-label="Edit third record"
+                        >
+                          <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-summary">
+              <span>3 records</span><span>Page 1 of 1</span>
+            </div>
+          </article>
         </section>
-        <section class="component-section" id="states" aria-labelledby="states-title">
-          <div class="component-heading"><div><p class="component-eyebrow">STATES</p><h2 id="states-title">Notifications, charts, and empty states</h2></div></div><div class="component-notice-grid"><div class="component-notice component-notice-info" role="status">Information message</div><div class="component-notice component-notice-success" role="status">Success message</div><div class="component-notice component-notice-warning" role="status">Warning message</div><div class="component-notice component-notice-error" role="status">Error message</div></div>
-          <div class="component-grid"><article class="component-panel"><h3>Distribution</h3><div class="component-chart" role="img" aria-label="Example distribution chart"><span class="component-chart-bar-a"></span><span class="component-chart-bar-b"></span><span class="component-chart-bar-c"></span></div><ul class="component-legend"><li><span>Category A</span><strong>55%</strong></li><li><span>Category B</span><strong>30%</strong></li><li><span>Category C</span><strong>15%</strong></li></ul></article><article class="component-panel"><div class="component-empty"><i class="fa-solid fa-inbox" aria-hidden="true"></i><h3>No additional items</h3><p class="component-muted">Empty states explain what is missing and identify the next useful action.</p></div><div class="component-copyable" role="note" aria-label="Example copyable value"><span>example-copy-value</span><button class="component-icon-button" type="button" aria-label="Copy example value"><i class="fa-solid fa-copy" aria-hidden="true"></i></button></div></article></div>
+
+        <section
+          class="sample-app-section"
+          id="preferences"
+          aria-labelledby="preferences-title"
+        >
+          <div class="page-heading compact">
+            <div>
+              <p class="eyebrow">PREFERENCES</p>
+              <h2 id="preferences-title">A compact settings form</h2>
+              <p class="muted">
+                This section composes a small subset of the shared form
+                controls.
+              </p>
+            </div>
+          </div>
+          <article class="panel form-panel sample-app-form">
+            <form class="form-stack" autocomplete="off">
+              <div class="form-field">
+                <label for="sample-display-name">Display name</label
+                ><input
+                  id="sample-display-name"
+                  name="display_name"
+                  type="text"
+                  value="Example user"
+               >
+              </div>
+              <div class="form-field">
+                <label for="sample-view">Default view</label
+                ><span class="select-control"
+                  ><select id="sample-view" name="default_view">
+                    <option>Overview</option>
+                    <option>Records</option></select
+                  ><i class="fa-solid fa-chevron-down" aria-hidden="true"></i
+                ></span>
+              </div>
+              <label class="switch-control"
+                ><input
+                  type="checkbox"
+                  name="updates"
+                  role="switch"
+                  checked
+               ><span class="switch-track" aria-hidden="true"></span
+                ><span>Enable status updates</span></label
+              >
+              <div class="form-actions">
+                <button class="button button-secondary" type="reset">
+                  Cancel</button
+                ><button class="button button-success" type="submit">
+                  <i class="fa-solid fa-check" aria-hidden="true"></i>Save
+                  preferences
+                </button>
+              </div>
+            </form>
+          </article>
+        </section>
+
+        <section
+          class="sample-app-section"
+          id="resources"
+          aria-labelledby="resources-title"
+        >
+          <div class="page-heading compact">
+            <div>
+              <p class="eyebrow">RESOURCES</p>
+              <h2 id="resources-title">Canonical implementation sources</h2>
+              <p class="muted">
+                Use the shared component guide for individual pieces and the
+                application guide only for the category shell.
+              </p>
+            </div>
+          </div>
+          <article class="panel sample-app-panel">
+            <div class="sample-app-resources">
+              <a class="resource-link-card" href="../docs/web-components.md"
+                ><i class="fa-solid fa-code" aria-hidden="true"></i
+                ><span>Web Components source reference</span></a
+              >
+              <a class="resource-link-card" href="../web/components/index.html"
+                ><i class="fa-solid fa-cubes" aria-hidden="true"></i
+                ><span>Web Components live preview</span></a
+              >
+              <a class="resource-link-card" href="../docs/web-application.md"
+                ><i class="fa-solid fa-window-maximize" aria-hidden="true"></i
+                ><span>Web application shell guide</span></a
+              >
+              <a class="resource-link-card" href="../web/style-guide/index.html"
+                ><i class="fa-solid fa-globe" aria-hidden="true"></i
+                ><span>Sample website preview</span></a
+              >
+            </div>
+          </article>
         </section>
       </div>
     </main>
-    <footer class="component-footer"><strong>COMPONENT REFERENCE</strong><span>Reusable application pattern preview</span></footer>
-    <script src="../web/style-guide/preview.js?v=20260828" defer></script>
+
+    <footer class="app-footer">
+      <strong class="app-footer-label">EXAMPLE</strong
+      ><span>Sample application footer</span>
+    </footer>
+    <script src="../web/shared-components.js?v=20260830" defer></script>
+    <script src="../web/section-navigation.js?v=20260830" defer></script>
   </body>
 </html>
