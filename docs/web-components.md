@@ -30,72 +30,30 @@ shared component here first.
 
 - [Buttons](#buttons)
 - [Links](#links)
-- [Layout, headings, and utilities](#layout-headings-and-utilities)
+- [Layout and accessibility utilities](#layout-and-accessibility-utilities)
 - [Panels and content cards](#panels-and-content-cards)
 - [Lists, badges, and resource links](#lists-badges-and-resource-links)
 - [Breadcrumbs](#breadcrumbs)
 - [Text-like fields and messages](#text-like-fields-and-messages)
+- [Field with copy control](#field-with-copy-control)
+- [Form validation](#form-validation)
 - [Compound fields](#compound-fields)
 - [Checkboxes, radios, and switches](#checkboxes-radios-and-switches)
 - [Native form and disclosure controls](#native-form-and-disclosure-controls)
 - [Verification code](#verification-code)
 - [Status and feedback](#status-and-feedback)
-- [Summaries, empty states, and copyable values](#summaries-empty-states-and-copyable-values)
+- [Summaries](#summaries)
 - [Responsive table](#responsive-table)
-- [Hierarchical records and inline edit](#hierarchical-records-and-inline-edit)
+- [Hierarchical records](#hierarchical-records)
 
 ## Buttons
 
-Use `.button` for standard actions and links. Add one intent, optional size, and
-optional `.button-icon`. Icon-only controls require an `aria-label`.
+Buttons start with `.button`. Add only the color, size, or icon option the
+action needs.
 
-### Buttons HTML
+### Shared button CSS
 
-```html
-<button class="button button-primary" type="button">Primary</button>
-<button class="button button-primary" type="button">
-  <i class="fa-solid fa-check" aria-hidden="true"></i>
-  Primary
-</button>
-<button
-  class="button button-primary button-icon"
-  type="button"
-  aria-label="Primary action"
->
-  <i class="fa-solid fa-check" aria-hidden="true"></i>
-</button>
-
-<button class="button button-secondary" type="button">Cancel</button>
-<button class="button button-success" type="button">Confirm</button>
-<button class="button button-danger" type="button">Delete</button>
-<button class="button button-stop" type="button">Stop</button>
-
-<button class="button button-primary button-compact" type="button">
-  Compact
-</button>
-<button class="button button-primary button-large" type="button">
-  Large
-</button>
-<button class="button button-primary" type="button" disabled>
-  Disabled
-</button>
-<a class="button button-primary" href="/destination">Link action</a>
-
-<button class="icon-button" type="button" aria-label="View">
-  <i class="fa-solid fa-eye" aria-hidden="true"></i>
-</button>
-<button class="icon-button accent" type="button" aria-label="Edit">
-  <i class="fa-solid fa-pen" aria-hidden="true"></i>
-</button>
-<button class="icon-button stop" type="button" aria-label="Stop">
-  <i class="fa-solid fa-stop" aria-hidden="true"></i>
-</button>
-<button class="icon-button danger" type="button" aria-label="Delete">
-  <i class="fa-solid fa-trash" aria-hidden="true"></i>
-</button>
-```
-
-### Buttons CSS
+Copy the base rule once. Every standard button option below builds on it.
 
 ```css
 .button {
@@ -115,21 +73,43 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
     border-color var(--transition-fast);
 }
 
-.button:disabled,
-.button[aria-disabled="true"],
-.icon-button:disabled,
-.icon-button[aria-disabled="true"] {
-  opacity: 0.42;
-  cursor: not-allowed;
-}
-
 .button:focus-visible,
 .icon-button:focus-visible,
 .text-link:focus-visible {
   outline: 2px solid var(--primary-accent);
   outline-offset: 3px;
 }
+```
 
+### Text-only button
+
+Use the base class plus one color class.
+
+```html
+<button class="button button-primary" type="button">Primary</button>
+```
+
+No additional CSS is required beyond the base and selected color rule.
+
+### Button colors
+
+Add exactly one supported color class:
+
+- `.button-primary` for the main action.
+- `.button-secondary` for cancel or a quiet secondary action.
+- `.button-success` for confirm or success.
+- `.button-danger` for a destructive action.
+- `.button-stop` for a quieter stop action.
+
+This example uses the success option:
+
+```html
+<button class="button button-success" type="button">Confirm</button>
+```
+
+The following CSS defines every supported color and its hover state:
+
+```css
 .button-primary {
   color: var(--deep-graphite);
   background: var(--primary-accent);
@@ -187,7 +167,65 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   background: color-mix(in srgb, var(--alert-error) 25%, transparent);
   border-color: var(--alert-error);
 }
+```
 
+### Button with an icon
+
+Place the decorative icon before the text. The base button gap supplies the
+spacing.
+
+```html
+<button class="button button-primary" type="button">
+  <i class="fa-solid fa-check" aria-hidden="true"></i>
+  Primary
+</button>
+```
+
+No additional CSS is required.
+
+### Icon-only button
+
+Use `.button-icon` when a standard button contains only an icon. Always give
+the button an accessible name.
+
+```html
+<button
+  class="button button-primary button-icon"
+  type="button"
+  aria-label="Primary action"
+>
+  <i class="fa-solid fa-check" aria-hidden="true"></i>
+</button>
+```
+
+```css
+.button-icon {
+  width: 42px;
+  min-width: 42px;
+  padding: 0;
+}
+
+.button-icon.button-compact {
+  width: 34px;
+  min-width: 34px;
+}
+```
+
+### Button sizes
+
+Standard size needs no extra class. Add `.button-compact` or `.button-large`
+only when the layout requires it.
+
+```html
+<button class="button button-primary button-compact" type="button">
+  Compact
+</button>
+<button class="button button-primary button-large" type="button">
+  Large
+</button>
+```
+
+```css
 .button-compact {
   min-height: 34px;
   padding: 0.35rem 0.65rem;
@@ -199,18 +237,59 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   padding: 0.85rem 1.5rem;
   font-size: 1.05rem;
 }
+```
 
-.button-icon {
-  width: 42px;
-  min-width: 42px;
-  padding: 0;
+### Disabled button
+
+Use the native `disabled` attribute whenever the action is unavailable. A
+disabled button does not show a hand cursor or hover feedback.
+
+```html
+<button class="button button-primary" type="button" disabled>
+  Disabled
+</button>
+```
+
+```css
+.button:disabled,
+.button[aria-disabled="true"],
+.icon-button:disabled,
+.icon-button[aria-disabled="true"] {
+  opacity: 0.42;
+  cursor: not-allowed;
 }
+```
 
-.button-icon.button-compact {
-  width: 34px;
-  min-width: 34px;
-}
+The color hover selectors use `:not(:disabled)` and
+`:not([aria-disabled="true"])`, so disabled buttons do not react to hover.
 
+### Link styled as a button
+
+Use an anchor only when the action has a real destination.
+
+```html
+<a class="button button-primary" href="/destination">Link action</a>
+```
+
+No additional CSS is required.
+
+### Compact icon controls
+
+Use `.icon-button` for a compact row or utility control. Change the accessible
+name and Font Awesome icon to match the action. Choose one visual option:
+
+- No additional class for a neutral control.
+- `.accent` for a positive or edit control.
+- `.stop` for a stop control.
+- `.danger` for a destructive control.
+
+```html
+<button class="icon-button" type="button" aria-label="View">
+  <i class="fa-solid fa-eye" aria-hidden="true"></i>
+</button>
+```
+
+```css
 .icon-button {
   display: inline-flex;
   align-items: center;
@@ -246,36 +325,14 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
 }
 ```
 
-Intent mapping is fixed: primary uses Primary Accent, cancel/secondary uses the
-quiet outlined surface, success/confirm uses Muted Emerald, destructive/danger
-uses Alert Error, and stop uses the quieter Alert Error treatment.
-
 ## Links
 
-### Links HTML
+Links use one of four shared treatments. Choose the one that describes the
+destination or action.
 
-```html
-<a
-  class="external-link"
-  href="https://example.com/"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-  External link
-</a>
-<a class="scroll-link" href="#section">
-  <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
-  Scroll link
-</a>
-<a class="back-link" href="/previous">
-  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-  Back link
-</a>
-<button class="text-link" type="button">Text action</button>
-```
+### Shared link CSS
 
-### Links CSS
+Copy these shared link rules once.
 
 ```css
 .external-link,
@@ -302,27 +359,27 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
 }
 
 .text-link {
-  padding: 0;
+  margin: -0.15rem -0.25rem;
+  padding: 0.15rem 0.25rem;
   color: var(--primary-accent);
   background: none;
   border: 0;
   font-size: 0.86rem;
-}
-
-.text-link:hover {
-  color: var(--standard-hover);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
 }
 
 :where(
     .external-link,
     .back-link,
-    .text-link[href],
+    .text-link,
     .breadcrumbs a
   ):hover,
 :where(
     .external-link,
     .back-link,
-    .text-link[href],
+    .text-link,
     .breadcrumbs a
   ):focus-visible {
   color: var(--standard-hover);
@@ -331,32 +388,63 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
 }
 ```
 
-## Layout, headings, and utilities
+### External link
 
-### Layout, headings, and utilities HTML
+Use an external link for a destination outside the current website or
+application. Keep the external-link icon after the text.
 
 ```html
-<section class="container section-spacing">
-  <h2 class="section-title">Section title</h2>
-  <p class="section-subtitle">A concise supporting statement.</p>
-
-  <div class="page-heading compact">
-    <div>
-      <p class="eyebrow">EXAMPLE</p>
-      <h3 class="truncate-text" title="Page heading">Page heading</h3>
-      <p class="muted">Supporting context.</p>
-    </div>
-    <div class="heading-actions">
-      <button class="button button-primary" type="button">Action</button>
-    </div>
-  </div>
-
-  <div class="narrow-content">Narrow reading-width content.</div>
-  <span class="visually-hidden">Screen-reader-only context.</span>
-</section>
+<a
+  class="external-link"
+  href="https://example.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  External link
+  <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+</a>
 ```
 
-### Layout, headings, and utilities CSS
+### Scroll link
+
+Use a scroll link for another section on the same page.
+
+```html
+<a class="scroll-link" href="#section">
+  Scroll link
+  <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+</a>
+```
+
+### Back link
+
+Keep the back arrow before the text.
+
+```html
+<a class="back-link" href="/previous">
+  <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+  Back link
+</a>
+```
+
+### Text action
+
+Use a button when text triggers an action instead of navigating.
+
+```html
+<button class="text-link" type="button">Text action</button>
+```
+
+## Layout and accessibility utilities
+
+These low-level helpers support component composition and are demonstrated
+naturally throughout the website and application previews. They do not form a
+separate composed component in the live catalog.
+
+### Shared layout CSS
+
+These rules establish the standard page width, section spacing, and narrow
+reading width.
 
 ```css
 .container {
@@ -370,6 +458,28 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
   padding-block: var(--space-2xl);
 }
 
+.narrow-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+```
+
+```html
+<section class="container section-spacing">
+  <div class="narrow-content">Narrow reading-width content.</div>
+</section>
+```
+
+### Section heading
+
+Use a centered section title with one concise supporting statement.
+
+```html
+<h2 class="section-title">Section title</h2>
+<p class="section-subtitle">A concise supporting statement.</p>
+```
+
+```css
 .section-title {
   margin-bottom: var(--space-sm);
   color: var(--soft-white);
@@ -384,7 +494,27 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   text-align: center;
 }
+```
 
+### Page heading
+
+Use `.page-heading` for a title and optional action row. Add `.compact` when
+the heading should align to the top instead of the text baseline.
+
+```html
+<div class="page-heading compact">
+  <div>
+    <p class="eyebrow">EXAMPLE</p>
+    <h2>Page heading</h2>
+    <p class="muted">Supporting context.</p>
+  </div>
+  <div class="heading-actions">
+    <button class="button button-primary" type="button">Action</button>
+  </div>
+</div>
+```
+
+```css
 .page-heading {
   display: flex;
   align-items: end;
@@ -411,44 +541,6 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
   gap: 1rem;
 }
 
-.eyebrow {
-  margin-bottom: 0.65rem;
-  color: var(--primary-accent);
-  font-size: 0.72rem;
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.16em;
-}
-
-.muted {
-  color: var(--cool-grey);
-}
-
-.truncate-text,
-.breadcrumb-label {
-  display: block;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-.narrow-content {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
 @media (width <768px) {
   .page-heading,
   .panel-heading {
@@ -467,48 +559,80 @@ uses Alert Error, and stop uses the quieter Alert Error treatment.
 }
 ```
 
-## Panels and content cards
+### Eyebrow and muted text
 
-### Panels and content cards HTML
+Use `.eyebrow` for a short category label and `.muted` for supporting copy.
 
 ```html
-<article class="panel">
-  <div class="panel-heading">
-    <div>
-      <p class="eyebrow">PANEL</p>
-      <h2>Panel heading</h2>
-    </div>
-    <span class="status-pill status-neutral">Example</span>
-  </div>
-  <p class="muted">Related content.</p>
-</article>
-
-<div class="content-grid content-grid-two">
-  <article class="content-card">
-    <div class="content-card-icon">
-      <i class="fa-solid fa-cube" aria-hidden="true"></i>
-    </div>
-    <h2 class="content-card-title">Content card</h2>
-    <p class="content-card-description">A concise description.</p>
-    <div class="content-card-actions">
-      <a class="scroll-link" href="#details">Details</a>
-    </div>
-  </article>
-
-  <article class="content-card content-card-compact">
-    <div class="content-card-icon">
-      <i class="fa-solid fa-cube" aria-hidden="true"></i>
-    </div>
-    <h2 class="content-card-title">Compact content card</h2>
-    <p class="content-card-description">The same structure with quieter type.</p>
-  </article>
-</div>
+<p class="eyebrow">EXAMPLE</p>
+<p class="muted">Supporting context.</p>
 ```
 
-Use `.content-grid-two` or `.content-grid-three` to select the wide-screen
-column count. Both stack at the shared mobile breakpoint.
+```css
+.eyebrow {
+  margin-bottom: 0.65rem;
+  color: var(--primary-accent);
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+}
 
-### Panels and content cards CSS
+.muted {
+  color: var(--cool-grey);
+}
+```
+
+### Truncated text
+
+Use `.truncate-text` when one line must remain inside a constrained layout.
+Keep the full value in `title` when truncation can hide meaningful text.
+
+```html
+<span class="truncate-text" title="Complete value">Complete value</span>
+```
+
+```css
+.truncate-text,
+.breadcrumb-label {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+```
+
+### Visually hidden text
+
+Use `.visually-hidden` for context needed by assistive technology but not the
+visual layout.
+
+```html
+<span class="visually-hidden">Screen-reader-only context.</span>
+```
+
+```css
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+```
+
+## Panels and content cards
+
+Panels group application content. Content cards add a reusable title,
+description, optional icon, and optional action area.
+
+### Shared panel and card-grid CSS
+
+Copy the panel surface and one-column card-grid foundation once.
 
 ```css
 .panel {
@@ -531,7 +655,49 @@ column count. Both stack at the shared mobile breakpoint.
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-md);
 }
+```
 
+### Panel
+
+Use a panel for a bounded group of related content.
+
+```html
+<article class="panel">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">PANEL</p>
+      <h2>Panel heading</h2>
+    </div>
+    <span class="status-pill status-neutral">Example</span>
+  </div>
+  <p class="muted">Related content.</p>
+</article>
+```
+
+No additional panel CSS is required.
+
+### Content card
+
+Keep the icon optional. Omit the action area when the card has no destination
+or action.
+
+```html
+<article class="content-card">
+  <div class="content-card-icon">
+    <i class="fa-solid fa-cube" aria-hidden="true"></i>
+  </div>
+  <h2 class="content-card-title">Content card</h2>
+  <p class="content-card-description">A concise description.</p>
+  <div class="content-card-actions">
+    <a class="scroll-link" href="#details">
+      Details
+      <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+    </a>
+  </div>
+</article>
+```
+
+```css
 .content-card {
   display: flex;
   flex-direction: column;
@@ -582,7 +748,24 @@ column count. Both stack at the shared mobile breakpoint.
   padding-top: var(--space-sm);
   border-top: 1px solid var(--charcoal-border);
 }
+```
 
+### Compact content card
+
+Add `.content-card-compact` when the same card needs quieter icon and text
+sizes. Its structure does not otherwise change.
+
+```html
+<article class="content-card content-card-compact">
+  <div class="content-card-icon">
+    <i class="fa-solid fa-cube" aria-hidden="true"></i>
+  </div>
+  <h2 class="content-card-title">Compact content card</h2>
+  <p class="content-card-description">A concise description.</p>
+</article>
+```
+
+```css
 .content-card-compact .content-card-icon {
   font-size: 1.75rem;
 }
@@ -594,7 +777,22 @@ column count. Both stack at the shared mobile breakpoint.
 .content-card-compact .content-card-description {
   font-size: 0.85rem;
 }
+```
 
+### Card-grid columns
+
+Wrap cards in `.content-grid`. Add `.content-grid-two` or
+`.content-grid-three` for the wide-screen column count. Both options stack to
+one column on small screens.
+
+```html
+<div class="content-grid content-grid-two">
+  <article class="content-card">First card</article>
+  <article class="content-card">Second card</article>
+</div>
+```
+
+```css
 @media (width <768px) {
   .content-grid-two,
   .content-grid-three {
@@ -622,31 +820,14 @@ column count. Both stack at the shared mobile breakpoint.
 
 ## Lists, badges, and resource links
 
-### Lists, badges, and resource links HTML
+Use a checklist for short facts, an action list for records with one action, a
+badge for a compact category, and a resource link card for a bounded
+destination.
 
-```html
-<ul class="check-list">
-  <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>First item</li>
-  <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Second item</li>
-</ul>
+### Shared checklist CSS
 
-<ul class="action-list">
-  <li>
-    <strong>Action-list item</strong>
-    <span class="muted">Supporting information.</span>
-    <button class="button button-secondary" type="button">Action</button>
-  </li>
-</ul>
-
-<span class="badge">Category</span>
-
-<a class="resource-link-card" href="/reference">
-  <i class="fa-solid fa-book" aria-hidden="true"></i>
-  <span>Reference link with truncation support</span>
-</a>
-```
-
-### Lists, badges, and resource links CSS
+Both checklist options share one structure. `.capability-list` is the quieter
+option; `.check-list` uses larger, brighter items.
 
 ```css
 .capability-list,
@@ -688,7 +869,35 @@ column count. Both stack at the shared mobile breakpoint.
 .check-list li i {
   font-size: 1rem;
 }
+```
 
+### Checklist
+
+Use `.capability-list` with a check icon for the quiet option. Substitute
+`.check-list` and `fa-circle-check` for the more prominent sibling option.
+
+```html
+<ul class="capability-list">
+  <li><i class="fa-solid fa-check" aria-hidden="true"></i>First item</li>
+  <li><i class="fa-solid fa-check" aria-hidden="true"></i>Second item</li>
+</ul>
+```
+
+### Action list
+
+Each item contains a primary label, optional supporting text, and one action.
+
+```html
+<ul class="action-list">
+  <li>
+    <strong>Action-list item</strong>
+    <span class="muted">Supporting information.</span>
+    <button class="button button-secondary" type="button">Action</button>
+  </li>
+</ul>
+```
+
+```css
 .action-list {
   display: grid;
   gap: 0.75rem;
@@ -726,6 +935,29 @@ column count. Both stack at the shared mobile breakpoint.
   grid-column: 2;
 }
 
+@media (width <=575px) {
+  .action-list li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .action-list .button {
+    grid-row: auto;
+    grid-column: 1;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+```
+
+### Badge
+
+Use a badge for a short category or technology label, not a sentence.
+
+```html
+<span class="badge">Category</span>
+```
+
+```css
 .badge {
   display: inline-block;
   padding: 0.3rem 0.75rem;
@@ -744,7 +976,21 @@ column count. Both stack at the shared mobile breakpoint.
   background: color-mix(in srgb, var(--primary-accent) 15%, transparent);
   border-color: var(--primary-accent);
 }
+```
 
+### Resource link card
+
+Keep the icon first and wrap the label in a `span` so long text truncates
+cleanly.
+
+```html
+<a class="resource-link-card" href="/reference">
+  <i class="fa-solid fa-book" aria-hidden="true"></i>
+  <span>Reference link with truncation support</span>
+</a>
+```
+
+```css
 .resource-link-card {
   display: flex;
   align-items: center;
@@ -776,38 +1022,14 @@ column count. Both stack at the shared mobile breakpoint.
   color: var(--soft-white);
   border-color: var(--primary-accent);
 }
-
-@media (width <=575px) {
-  .action-list li {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .action-list .button {
-    grid-row: auto;
-    grid-column: 1;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-}
 ```
 
 ## Breadcrumbs
 
-### Breadcrumbs HTML
+Breadcrumbs show the current location from broadest to most specific. The last
+item is text, not a link.
 
-```html
-<nav class="breadcrumbs" aria-label="Breadcrumb">
-  <ol>
-    <li><a class="breadcrumb-label" href="/">Example</a></li>
-    <li><a class="breadcrumb-label" href="/records">Records</a></li>
-    <li aria-current="page">
-      <span class="breadcrumb-label">Current item</span>
-    </li>
-  </ol>
-</nav>
-```
-
-### Breadcrumbs CSS
+### Shared breadcrumb CSS
 
 ```css
 .breadcrumbs {
@@ -849,64 +1071,32 @@ column count. Both stack at the shared mobile breakpoint.
 }
 ```
 
+### Breadcrumb trail
+
+Keep `aria-current="page"` on the final list item. Use `.breadcrumb-label` on
+every label so long values truncate consistently.
+
+```html
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a class="breadcrumb-label" href="/">Example</a></li>
+    <li><a class="breadcrumb-label" href="/records">Records</a></li>
+    <li aria-current="page">
+      <span class="breadcrumb-label">Current item</span>
+    </li>
+  </ol>
+</nav>
+```
+
 ## Text-like fields and messages
 
 This base covers text, email, password, number, date/time, search, URL, and
 telephone inputs, plus `select` and `textarea`. Use native input types and
 appropriate autocomplete values.
 
-### Text-like fields and messages HTML
+### Shared field CSS
 
-```html
-<section class="panel form-panel narrow-content">
-  <form class="form-stack">
-    <label>
-      <span>Display name <span class="optional">Optional</span></span>
-      <input type="text" name="display_name" autocomplete="name">
-    </label>
-    <div class="form-actions">
-      <button class="button button-secondary" type="reset">Cancel</button>
-      <button class="button button-primary" type="submit">Save</button>
-    </div>
-  </form>
-</section>
-
-<label>
-  Display name
-  <input type="text" name="display_name" autocomplete="name">
-</label>
-
-<label>
-  Notes
-  <textarea name="notes" rows="4" placeholder="Add an optional note"></textarea>
-  <small class="field-help">Help text explains format or purpose.</small>
-</label>
-
-<label>
-  Reference value
-  <input
-    type="text"
-    name="reference"
-    aria-invalid="true"
-    aria-describedby="reference-error"
-  >
-  <small class="field-error" id="reference-error">
-    Explain how to correct the value.
-  </small>
-</label>
-
-<label>
-  Read-only input
-  <input type="text" value="Read-only value" readonly>
-</label>
-
-<label>
-  Disabled input
-  <input type="text" value="Disabled value" disabled>
-</label>
-```
-
-### Text-like fields and messages CSS
+Copy the base field, focus, label, and wrapper rules once.
 
 ```css
 :where(input:not([type="checkbox"], [type="radio"]), select, textarea) {
@@ -923,46 +1113,13 @@ select {
   padding-right: 2.25rem;
 }
 
-textarea {
-  min-height: 7rem;
-  resize: vertical;
-}
-
 :where(
-    input:not([type="checkbox"], [type="radio"]),
+    input:not([type="checkbox"], [type="radio"], [readonly]),
     select,
-    textarea
+    textarea:not([readonly])
   ):focus-visible {
   border-color: var(--primary-accent);
   outline: none;
-}
-
-:where(
-    input:not([type="checkbox"], [type="radio"]),
-    select,
-    textarea
-  )[aria-invalid="true"] {
-  border-color: var(--alert-error);
-}
-
-:where(
-    input:not([type="checkbox"], [type="radio"]),
-    select,
-    textarea
-  ):disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-input[readonly],
-textarea[readonly] {
-  color: var(--cool-grey);
-  background: color-mix(in srgb, var(--deep-graphite) 55%, transparent);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--slate-grey);
 }
 
 label {
@@ -978,7 +1135,151 @@ label {
   gap: 0.45rem;
   min-width: 0;
 }
+```
 
+Every focused editable field changes only its existing one-pixel border to
+Primary Accent. Compound wrappers use the same one-pixel treatment through
+`:focus-within`.
+
+### Text input
+
+Choose the native input type and autocomplete value that match the data.
+
+```html
+<label>
+  Text input
+  <input type="text" name="example_text" autocomplete="off">
+</label>
+```
+
+No additional CSS is required.
+
+### Textarea
+
+Use a textarea for multi-line text. It grows vertically but not horizontally.
+
+```html
+<label>
+  Notes
+  <textarea name="notes" rows="4"></textarea>
+</label>
+```
+
+```css
+textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+```
+
+### Invalid field
+
+Native validation uses `:user-invalid`. Use `aria-invalid="true"` when
+application validation determines the state.
+
+```html
+<label>
+  Email address
+  <input type="email" name="email" aria-invalid="true">
+</label>
+```
+
+```css
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  ):user-invalid,
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  )[aria-invalid="true"] {
+  border-color: var(--alert-error);
+}
+```
+
+### Disabled field
+
+Use the native `disabled` attribute. Disabled fields do not show a hand cursor.
+
+```html
+<label>
+  Disabled input
+  <input type="text" value="Disabled value" disabled>
+</label>
+```
+
+```css
+:where(
+    input:not([type="checkbox"], [type="radio"]),
+    select,
+    textarea
+  ):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+```
+
+### Read-only field
+
+Use `readonly` when the value must remain focusable and selectable but cannot
+be edited. Its resting border does not change on focus.
+
+```html
+<label>
+  Read-only input
+  <input type="text" value="Read-only value" readonly>
+</label>
+```
+
+```css
+input[readonly],
+textarea[readonly] {
+  color: var(--cool-grey);
+  background: color-mix(in srgb, var(--deep-graphite) 55%, transparent);
+  cursor: default;
+}
+
+:where(input[readonly], textarea[readonly]):focus-visible {
+  border-color: var(--charcoal-border);
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+```
+
+### Placeholder
+
+Use a placeholder only as an example or hint, never as the field label.
+
+```html
+<label>
+  Search
+  <input type="search" name="search" placeholder="Search records">
+</label>
+```
+
+```css
+input::placeholder,
+textarea::placeholder {
+  color: var(--slate-grey);
+}
+```
+
+### Help and error messages
+
+Place one concise message immediately after its field. Choose `.field-help` or
+`.field-error` according to the message state.
+
+```html
+<label>
+  Account name
+  <input type="text" name="account_name">
+  <small class="field-help">Use the name shown on the account.</small>
+</label>
+```
+
+```css
 small {
   color: var(--cool-grey);
   font-weight: var(--font-weight-regular);
@@ -998,12 +1299,30 @@ small {
 .field-error {
   color: var(--alert-error);
 }
+```
 
-.narrow-content {
-  max-width: 720px;
-  margin: 0 auto;
-}
+### Form panel and action layout
 
+Use `.form-panel` inside the `.narrow-content` layout documented above,
+`.form-stack` for vertical field rhythm, and `.form-actions` for the final
+action row.
+
+```html
+<div class="narrow-content">
+  <form class="panel form-panel form-stack">
+    <label>
+      Display name
+      <input type="text" name="display_name">
+    </label>
+    <div class="form-actions">
+      <button class="button button-secondary" type="button">Cancel</button>
+      <button class="button button-primary" type="submit">Save</button>
+    </div>
+  </form>
+</div>
+```
+
+```css
 .form-panel {
   padding: 2.2rem;
 }
@@ -1023,12 +1342,6 @@ small {
   margin-top: 0.4rem;
 }
 
-.optional {
-  color: var(--cool-grey);
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-regular);
-}
-
 @media (width <=575px) {
   .form-actions {
     align-items: stretch;
@@ -1041,13 +1354,164 @@ small {
 }
 ```
 
-Every focused field changes only its existing one-pixel border to Primary
-Accent. Compound wrappers use the same one-pixel treatment through
-`:focus-within`.
+## Field with copy control
+
+Use a copy control when a field value should remain visible while providing a
+single explicit copy action. Set `data-copy-value` to the exact value that the
+button should copy.
+
+### Shared copy-field CSS
+
+Copy these rules once.
+
+```css
+.copy-value {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 42px;
+  padding: 0.3rem 0.4rem 0.3rem 0.75rem;
+  color: var(--soft-white);
+  background: var(--deep-graphite);
+  border: 1px solid var(--charcoal-border);
+  border-radius: var(--border-radius);
+  font-family: ui-monospace, monospace;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+}
+
+.copy-value:focus-within {
+  border-color: var(--primary-accent);
+}
+
+.copy-value-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.clipboard-fallback {
+  position: fixed;
+  inset: 0 auto auto 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (width <=400px) {
+  .copy-value {
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+  }
+}
+```
+
+### Copyable field
+
+The output and copy button share one bordered field wrapper.
+
+```html
+<div class="form-field">
+  <label for="copy-value-output">Field with copy control</label>
+  <div
+    class="copy-value"
+    id="copy-value"
+    data-copy-value="example-copy-value"
+  >
+    <output id="copy-value-output" class="copy-value-text">
+      example-copy-value
+    </output>
+    <button
+      class="icon-button"
+      type="button"
+      data-copy-target="#copy-value"
+      aria-label="Copy example value"
+      title="Copy example value"
+    >
+      <i class="fa-solid fa-copy" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+```
+
+### Copy behavior
+
+Copying requires the canonical
+[`shared-components.js`](../web/shared-components.js). The control uses the
+Clipboard API when available, retains a safe fallback, briefly changes to a
+check icon, and restores its original accessible name and title.
+
+## Form validation
+
+Use a real form with native input constraints. This validation-only example
+calls `reportValidity()` without submitting data; ordinary submission forms do
+not need `data-validate-form`.
+
+### Shared validation styling
+
+No new CSS is required. Use the shared field, select, form-action, and button
+rules shown above.
+
+### Validation-only form
+
+```html
+<form class="form-stack">
+  <label>
+    Required text input
+    <input type="text" name="required_text" required>
+  </label>
+  <label>
+    Optional email input
+    <input type="email" name="optional_email">
+  </label>
+  <label>
+    Required selection
+    <span class="select-control">
+      <select name="required_selection" required>
+        <option value="">Choose an option</option>
+        <option value="first">First option</option>
+        <option value="second">Second option</option>
+      </select>
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </span>
+  </label>
+  <div class="form-actions">
+    <button
+      class="button button-primary"
+      type="submit"
+      data-validate-form
+    >
+      Validate Form
+    </button>
+  </div>
+</form>
+```
+
+### Validation behavior
+
+```javascript
+document.querySelectorAll('[data-validate-form]').forEach(function (button) {
+  button.addEventListener('click', function (event) {
+    event.preventDefault();
+    const form = button.closest('form');
+    if (form instanceof HTMLFormElement) form.reportValidity();
+  });
+});
+```
 
 ## Compound fields
 
-### Compound fields HTML
+Compound fields combine a native field with one meaningful prefix, suffix,
+icon, or action.
+
+### Shared compound-field CSS
+
+Compound fields inherit the shared field height, colors, border, radius, and
+one-pixel focus treatment. There is no extra rule common to every compound
+option; copy only the option-specific CSS below.
+
+### Input with an icon
+
+The icon is decorative and stays inside the field's left edge.
 
 ```html
 <label>
@@ -1057,69 +1521,7 @@ Accent. Compound wrappers use the same one-pixel treatment through
     <input type="text" name="record_name">
   </span>
 </label>
-
-<label>
-  Category
-  <span class="select-control">
-    <select name="category">
-      <option>First option</option>
-      <option>Second option</option>
-    </select>
-    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-  </span>
-</label>
-
-<label>
-  Amount
-  <span class="money-input">
-    <span class="money-prefix" aria-hidden="true">$</span>
-    <input type="number" name="amount" min="0" step="0.01">
-    <span class="money-suffix">per unit</span>
-  </span>
-</label>
-
-<div class="form-field">
-  <label for="scheduled-at">Scheduled date and time</label>
-  <span class="datetime-control">
-    <input
-      id="scheduled-at"
-      type="datetime-local"
-      name="scheduled_at"
-      step="1"
-      data-timezone="UTC"
-    >
-    <button
-      class="icon-button"
-      type="button"
-      data-set-now-for="#scheduled-at"
-      aria-label="Set date and time to now"
-      title="Set date and time to now"
-    >
-      <i class="fa-solid fa-clock" aria-hidden="true"></i>
-    </button>
-  </span>
-</div>
-
-<label>
-  Generated value
-  <output class="readonly-value">Example value</output>
-</label>
-
-<form class="inline-form">
-  <input
-    type="text"
-    name="new_item"
-    placeholder="New item"
-    aria-label="New item"
-    required
-  >
-  <button class="icon-button accent" type="submit" aria-label="Add item">
-    <i class="fa-solid fa-plus" aria-hidden="true"></i>
-  </button>
-</form>
 ```
-
-### Compound fields CSS
 
 ```css
 .input-with-icon {
@@ -1145,7 +1547,26 @@ Accent. Compound wrappers use the same one-pixel treatment through
 .input-with-icon:focus-within > i {
   color: var(--primary-accent);
 }
+```
 
+### Select with a custom arrow
+
+Keep the native select element and hide only its platform arrow.
+
+```html
+<label>
+  Category
+  <span class="select-control">
+    <select name="category">
+      <option>First option</option>
+      <option>Second option</option>
+    </select>
+    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+  </span>
+</label>
+```
+
+```css
 .select-control {
   position: relative;
   display: block;
@@ -1166,7 +1587,24 @@ Accent. Compound wrappers use the same one-pixel treatment through
   transform: translateY(-50%);
   pointer-events: none;
 }
+```
 
+### Money input
+
+The prefix and suffix stay inside one focused field boundary.
+
+```html
+<label>
+  Amount
+  <span class="money-input">
+    <span class="money-prefix" aria-hidden="true">$</span>
+    <input type="number" name="amount" min="0" step="0.01">
+    <span class="money-suffix">per unit</span>
+  </span>
+</label>
+```
+
+```css
 .money-input {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -1215,7 +1653,37 @@ Accent. Compound wrappers use the same one-pixel treatment through
   margin: 0;
   appearance: none;
 }
+```
 
+### Date and time with a Set now control
+
+Use the input's `data-timezone` to choose the assignment timezone.
+
+```html
+<div class="form-field">
+  <label for="scheduled-at">Scheduled date and time</label>
+  <span class="datetime-control">
+    <input
+      id="scheduled-at"
+      type="datetime-local"
+      name="scheduled_at"
+      step="1"
+      data-timezone="UTC"
+    >
+    <button
+      class="icon-button"
+      type="button"
+      data-set-now-for="#scheduled-at"
+      aria-label="Set date and time to now"
+      title="Set date and time to now"
+    >
+      <i class="fa-solid fa-clock" aria-hidden="true"></i>
+    </button>
+  </span>
+</div>
+```
+
+```css
 .datetime-control {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 32px;
@@ -1227,7 +1695,24 @@ Accent. Compound wrappers use the same one-pixel treatment through
   width: 32px;
   height: 32px;
 }
+```
 
+The convenience button requires the canonical
+[`shared-components.js`](../web/shared-components.js). It includes seconds and
+dispatches `change` after assignment.
+
+### Read-only output
+
+Use an output when the application generates a value that is not editable.
+
+```html
+<label>
+  Generated value
+  <output class="readonly-value">Example value</output>
+</label>
+```
+
+```css
 .readonly-value {
   display: block;
   min-height: 42px;
@@ -1237,7 +1722,28 @@ Accent. Compound wrappers use the same one-pixel treatment through
   border: 1px solid var(--charcoal-border);
   border-radius: var(--border-radius);
 }
+```
 
+### Inline form
+
+Use an inline form for one short value and one compact submit action.
+
+```html
+<form class="inline-form">
+  <input
+    type="text"
+    name="new_item"
+    placeholder="New item"
+    aria-label="New item"
+    required
+  >
+  <button class="icon-button accent" type="submit" aria-label="Add item">
+    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+  </button>
+</form>
+```
+
+```css
 .inline-form {
   display: flex;
   align-items: center;
@@ -1261,52 +1767,15 @@ Accent. Compound wrappers use the same one-pixel treatment through
 }
 ```
 
-### Compound fields JavaScript
-
-The date/time convenience button requires the canonical
-[`shared-components.js`](../web/shared-components.js). It uses the input's
-`data-timezone`, includes seconds, and dispatches `change` after assignment.
-
 ## Checkboxes, radios, and switches
 
-### Checkboxes, radios, and switches HTML
+Checkboxes allow multiple selections, radio buttons allow one selection in a
+named group, and switches represent an immediate on/off setting.
 
-```html
-<fieldset class="choice-group">
-  <legend>Checkbox options</legend>
-  <label class="choice-control">
-    <input type="checkbox" name="first_option" checked>
-    <span class="choice-control-copy">
-      Selected option
-      <small>Optional supporting text.</small>
-    </span>
-  </label>
-  <label class="choice-control">
-    <input type="checkbox" name="second_option">
-    <span class="choice-control-copy">Unselected option</span>
-  </label>
-</fieldset>
+### Shared choice-control CSS
 
-<fieldset class="choice-group">
-  <legend>Radio options</legend>
-  <label class="choice-control">
-    <input type="radio" name="choice" value="first" checked>
-    <span class="choice-control-copy">First choice</span>
-  </label>
-  <label class="choice-control">
-    <input type="radio" name="choice" value="second">
-    <span class="choice-control-copy">Second choice</span>
-  </label>
-</fieldset>
-
-<label class="switch-control">
-  <input type="checkbox" name="updates" role="switch" checked>
-  <span class="switch-track" aria-hidden="true"></span>
-  <span>Enable updates</span>
-</label>
-```
-
-### Checkboxes, radios, and switches CSS
+Checkbox and radio options share these group, label, state, and supporting-text
+rules.
 
 ```css
 .choice-group {
@@ -1334,6 +1803,11 @@ The date/time convenience button requires the canonical
   cursor: pointer;
 }
 
+.choice-control:has(input:disabled),
+.choice-control input:disabled {
+  cursor: not-allowed;
+}
+
 .choice-control input[type="checkbox"],
 .choice-control input[type="radio"] {
   width: 1.1rem;
@@ -1352,7 +1826,58 @@ The date/time convenience button requires the canonical
 .choice-control-copy small {
   line-height: 1.45;
 }
+```
 
+### Checkbox
+
+Use one label per option. Add `checked` for the initial selected state or
+`disabled` when the option is unavailable. Supporting text is optional.
+
+```html
+<fieldset class="choice-group">
+  <legend>Checkbox options</legend>
+  <label class="choice-control">
+    <input type="checkbox" name="first_option" checked>
+    <span class="choice-control-copy">
+      Selected option
+      <small>Optional supporting text.</small>
+    </span>
+  </label>
+</fieldset>
+```
+
+### Radio buttons
+
+Radio buttons in one set share the same `name`. Show enough options for a real
+choice; add `disabled` only to an unavailable option.
+
+```html
+<fieldset class="choice-group">
+  <legend>Radio options</legend>
+  <label class="choice-control">
+    <input type="radio" name="choice" value="first" checked>
+    <span class="choice-control-copy">First choice</span>
+  </label>
+  <label class="choice-control">
+    <input type="radio" name="choice" value="second">
+    <span class="choice-control-copy">Second choice</span>
+  </label>
+</fieldset>
+```
+
+### Switch
+
+Use a checkbox with `role="switch"`; the adjacent track is decorative.
+
+```html
+<label class="switch-control">
+  <input type="checkbox" name="updates" role="switch" checked>
+  <span class="switch-track" aria-hidden="true"></span>
+  <span>Enable updates</span>
+</label>
+```
+
+```css
 .switch-control {
   position: relative;
   display: inline-flex;
@@ -1410,117 +1935,164 @@ The date/time convenience button requires the canonical
   outline: 2px solid var(--primary-accent);
   outline-offset: 3px;
 }
+
+.switch-control:has(input:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+```
+
+### Disabled switch
+
+Add the native `disabled` attribute when the setting is unavailable. The
+entire label becomes visibly disabled and does not show a hand cursor.
+
+```html
+<label class="switch-control">
+  <input type="checkbox" name="updates" role="switch" disabled>
+  <span class="switch-track" aria-hidden="true"></span>
+  <span>Enable updates</span>
+</label>
 ```
 
 ## Native form and disclosure controls
 
-### Native form and disclosure controls HTML
+This section covers the native controls that need a small shared presentation
+or behavior layer.
 
-```html
-<label>
-  File input
-  <input type="file" name="attachment">
-</label>
+### Shared output-row CSS
 
-<div class="form-field">
-  <label for="level">Range input</label>
-  <input id="level" type="range" name="level" min="0" max="100" value="60">
-  <output for="level">60%</output>
-</div>
-
-<label>
-  Input with datalist
-  <input type="text" name="category" list="category-options">
-  <datalist id="category-options">
-    <option value="First option"></option>
-    <option value="Second option"></option>
-  </datalist>
-</label>
-
-<label>
-  Progress
-  <progress class="progress-control" max="100" value="64">64%</progress>
-</label>
-
-<label>
-  Meter
-  <meter
-    class="meter-control"
-    min="0"
-    max="100"
-    low="35"
-    high="75"
-    optimum="90"
-    value="82"
-  >82%</meter>
-</label>
-
-<details class="disclosure">
-  <summary>Disclosure label</summary>
-  <div class="disclosure-content">
-    <p>Disclosure content.</p>
-  </div>
-</details>
-
-<button
-  class="button button-primary"
-  type="button"
-  data-dialog-open="#example-dialog"
->
-  Open dialog
-</button>
-<dialog
-  class="dialog"
-  id="example-dialog"
-  aria-labelledby="example-dialog-title"
->
-  <form class="dialog-content" method="dialog">
-    <div>
-      <p class="eyebrow">DIALOG</p>
-      <h2 id="example-dialog-title">Confirm action</h2>
-      <p class="muted">Brief supporting copy.</p>
-    </div>
-    <div class="form-actions">
-      <button class="button button-secondary" type="submit" value="cancel">
-        Cancel
-      </button>
-      <button class="button button-primary" type="submit" value="confirm">
-        Confirm
-      </button>
-    </div>
-  </form>
-</dialog>
-```
-
-### Native form and disclosure controls CSS
+Range and progress controls share a value column to their right.
 
 ```css
-input[type="file"] {
+.control-with-output {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.control-with-output > output {
+  color: var(--cool-grey);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+```
+
+### File input
+
+The attachment button opens the native file chooser. The text beside it shows
+the selected file names.
+
+```html
+<div class="form-field">
+  <label for="attachment">File input</label>
+  <div class="file-control">
+    <input
+      class="file-control-input"
+      id="attachment"
+      type="file"
+      name="attachment"
+      data-file-input
+    >
+    <label
+      class="icon-button accent file-control-button"
+      for="attachment"
+      title="Choose file"
+      aria-label="Choose file"
+    >
+      <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+    </label>
+    <span class="file-control-name" data-file-name>No file selected</span>
+  </div>
+</div>
+```
+
+```css
+.file-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 42px;
   padding: 0.35rem;
-}
-
-input[type="file"]::file-selector-button {
-  min-height: 32px;
-  margin-right: 0.75rem;
-  padding: 0.35rem 0.65rem;
   color: var(--soft-white);
-  background: color-mix(in srgb, var(--deep-graphite) 34%, transparent);
+  background: var(--deep-graphite);
   border: 1px solid var(--charcoal-border);
-  border-radius: var(--border-radius-sm);
-  font: inherit;
-  font-size: 0.78rem;
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast);
+  border-radius: var(--border-radius);
 }
 
-input[type="file"]::file-selector-button:hover {
-  background: var(--light-surface-accent);
-  border-color: var(--primary-accent);
+.file-control-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
+.file-control-input:focus-visible + .file-control-button {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+.file-control-name {
+  min-width: 0;
+  color: var(--cool-grey);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-regular);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+```
+
+```javascript
+document.querySelectorAll('[data-file-input]').forEach(function (input) {
+  const control = input.closest('.file-control');
+  const name = control && control.querySelector('[data-file-name]');
+  if (!(input instanceof HTMLInputElement) || !(name instanceof HTMLElement)) {
+    return;
+  }
+
+  input.addEventListener('change', function () {
+    const files = input.files ? Array.from(input.files) : [];
+    name.textContent = files.length
+      ? files.map(function (file) { return file.name; }).join(', ')
+      : 'No file selected';
+  });
+});
+```
+
+### Range input
+
+Keep the live percentage in the output to the right of the slider.
+
+```html
+<div class="form-field">
+  <label for="level">Range input</label>
+  <div class="control-with-output" data-range-percentage>
+    <input
+      id="level"
+      type="range"
+      name="level"
+      min="0"
+      max="100"
+      value="60"
+    >
+    <output for="level">60%</output>
+  </div>
+</div>
+```
+
+```css
 input[type="range"] {
   width: 100%;
   min-height: 42px;
@@ -1530,44 +2102,123 @@ input[type="range"] {
   border: 0;
 }
 
-.progress-control,
-.meter-control {
+input[type="range"]:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 3px;
+}
+```
+
+```javascript
+document.querySelectorAll('[data-range-percentage]').forEach(
+  function (control) {
+    const input = control.querySelector('input[type="range"]');
+    const output = control.querySelector('output');
+    if (!(input instanceof HTMLInputElement) ||
+        !(output instanceof HTMLOutputElement)) return;
+
+    function updatePercentage() {
+      const minimum = Number(input.min || 0);
+      const maximum = Number(input.max || 100);
+      const value = Number(input.value);
+      const percentage = maximum > minimum
+        ? Math.round(((value - minimum) / (maximum - minimum)) * 100)
+        : 0;
+      output.value = percentage + '%';
+    }
+
+    input.addEventListener('input', updatePercentage);
+    updatePercentage();
+  }
+);
+```
+
+### Progress bar
+
+Use a progress bar for completion toward a known maximum. Keep the visible
+percentage synchronized with its value. Choose one color option:
+
+- No additional class for Primary Accent.
+- `.progress-success` for success.
+- `.progress-warning` for warning.
+- `.progress-danger` for danger.
+
+```html
+<div class="form-field">
+  <label for="progress-accent">Accent progress</label>
+  <div class="control-with-output">
+    <progress
+      class="progress-control"
+      id="progress-accent"
+      max="100"
+      value="25"
+    >25%</progress>
+    <output for="progress-accent">25%</output>
+  </div>
+</div>
+```
+
+```css
+.progress-control {
+  --progress-color: var(--primary-accent);
+
   width: 100%;
   height: 0.8rem;
-  accent-color: var(--primary-accent);
-}
-
-.progress-control {
-  color: var(--primary-accent);
-}
-
-.progress-control::-webkit-progress-bar,
-.meter-control::-webkit-meter-bar {
+  color: var(--progress-color);
+  accent-color: var(--progress-color);
+  appearance: none;
   background: var(--deep-graphite);
   border: 1px solid var(--charcoal-border);
   border-radius: var(--pill-radius);
+  cursor: default;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.progress-success {
+  --progress-color: var(--alert-success);
+}
+
+.progress-warning {
+  --progress-color: var(--alert-warning);
+}
+
+.progress-danger {
+  --progress-color: var(--alert-error);
+}
+
+.progress-control::-webkit-progress-bar {
+  background: transparent;
 }
 
 .progress-control::-webkit-progress-value {
-  background: var(--primary-accent);
+  background: var(--progress-color);
   border-radius: var(--pill-radius);
 }
 
-.meter-control::-webkit-meter-optimum-value {
-  background: var(--alert-success);
+.progress-control::-moz-progress-bar {
+  background: var(--progress-color);
   border-radius: var(--pill-radius);
 }
+```
 
-.meter-control::-webkit-meter-suboptimum-value {
-  background: var(--alert-warning);
-  border-radius: var(--pill-radius);
-}
+Progress is native and requires no JavaScript.
 
-.meter-control::-webkit-meter-even-less-good-value {
-  background: var(--alert-error);
-  border-radius: var(--pill-radius);
-}
+### Disclosure
 
+A disclosure starts collapsed. Add `open` when its initial state should be
+expanded. An icon is optional; when used, keep it inside `.disclosure-label`
+and retain a text label.
+
+```html
+<details class="disclosure">
+  <summary>Collapsed disclosure</summary>
+  <div class="disclosure-content">
+    <p>Disclosure content.</p>
+  </div>
+</details>
+```
+
+```css
 .disclosure {
   background: color-mix(in srgb, var(--deep-graphite) 42%, transparent);
   border: 1px solid var(--charcoal-border);
@@ -1595,6 +2246,17 @@ input[type="range"] {
   content: "+";
 }
 
+.disclosure-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.disclosure-label i {
+  color: var(--primary-accent);
+}
+
 .disclosure[open] > summary::after {
   content: "−";
 }
@@ -1612,17 +2274,94 @@ input[type="range"] {
 .disclosure-content > :last-child {
   margin-bottom: 0;
 }
+```
 
+Disclosures are native and require no JavaScript.
+
+### Dialog
+
+Both options use the same opaque dialog panel and `closedby="none"`. A modal
+makes the page inert until a defined dialog control closes it.
+
+```html
+<button
+  class="button button-primary"
+  type="button"
+  data-dialog-open="#modal-dialog"
+  data-dialog-mode="modal"
+>
+  Open modal dialog
+</button>
+<dialog
+  class="dialog"
+  id="modal-dialog"
+  aria-labelledby="modal-dialog-title"
+  closedby="none"
+>
+  <form class="dialog-content" method="dialog">
+    <div>
+      <p class="eyebrow">DIALOG</p>
+      <h2 id="modal-dialog-title">Confirm action</h2>
+      <p class="muted">Brief supporting copy.</p>
+    </div>
+    <div class="form-actions">
+      <button class="button button-secondary" type="submit" value="cancel">
+        Cancel
+      </button>
+      <button class="button button-primary" type="submit" value="confirm">
+        Confirm
+      </button>
+    </div>
+  </form>
+</dialog>
+```
+
+### Non-modal dialog
+
+The non-modal option adds `.dialog-nonmodal` and uses
+`data-dialog-mode="nonmodal"`. The page remains interactive, the lighter scrim
+does not block it, and a pointer press outside the panel closes the dialog.
+
+```html
+<button
+  class="button button-secondary"
+  type="button"
+  data-dialog-open="#nonmodal-dialog"
+  data-dialog-mode="nonmodal"
+>
+  Open non-modal dialog
+</button>
+<dialog
+  class="dialog dialog-nonmodal"
+  id="nonmodal-dialog"
+  aria-labelledby="nonmodal-dialog-title"
+  closedby="none"
+>
+  <form class="dialog-content" method="dialog">
+    <div>
+      <p class="eyebrow">DIALOG</p>
+      <h2 id="nonmodal-dialog-title">Review details</h2>
+      <p class="muted">Brief supporting copy.</p>
+    </div>
+    <div class="form-actions">
+      <button class="button button-secondary" type="submit" value="cancel">
+        Cancel
+      </button>
+      <button class="button button-primary" type="submit" value="confirm">
+        Confirm
+      </button>
+    </div>
+  </form>
+</dialog>
+```
+
+```css
 .dialog {
   width: min(32rem, calc(100% - 2rem));
   max-height: calc(100dvh - 2rem);
   padding: 0;
   color: var(--cool-grey);
-  background: linear-gradient(
-    180deg,
-    var(--panel-bg-top),
-    var(--panel-bg-bottom)
-  );
+  background: linear-gradient(180deg, var(--gunmetal), var(--background-mid));
   border: 1px solid var(--panel-border);
   border-radius: var(--border-radius);
   box-shadow: var(--popover-shadow);
@@ -1631,6 +2370,23 @@ input[type="range"] {
 
 .dialog::backdrop {
   background: rgb(0 0 0 / 68%);
+}
+
+body:has(.dialog-nonmodal[open])::after {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgb(0 0 0 / 38%);
+  pointer-events: none;
+  content: "";
+}
+
+.dialog-nonmodal[open] {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  z-index: 1000;
+  margin: 0;
+  transform: translate(-50%, -50%);
 }
 
 .dialog-content {
@@ -1644,61 +2400,33 @@ input[type="range"] {
 }
 ```
 
-### Native form and disclosure controls JavaScript
-
 ```javascript
 document.querySelectorAll('[data-dialog-open]').forEach(function (button) {
   button.addEventListener('click', function () {
     const dialog = document.querySelector(button.dataset.dialogOpen || '');
-    if (dialog instanceof HTMLDialogElement) dialog.showModal();
+    if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+    if (button.dataset.dialogMode === 'nonmodal') dialog.show();
+    else dialog.showModal();
   });
+});
+
+document.addEventListener('pointerdown', function (event) {
+  document.querySelectorAll('dialog.dialog-nonmodal[open]').forEach(
+    function (dialog) {
+      if (!dialog.contains(event.target)) dialog.close('dismiss');
+    }
+  );
 });
 ```
 
-`datalist`, `progress`, `meter`, and `details` are native and require no
-JavaScript. Range output updates are product logic; update the paired `output`
-only when the displayed value must track user input.
-
 ## Verification code
 
-### Verification code HTML
+Verification fields use six compact, left-aligned inputs in two groups. The
+first input accepts a complete pasted code.
 
-```html
-<fieldset class="verification-code">
-  <legend>
-    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-    One-time code
-  </legend>
-  <div class="verification-code-fields" data-verification-code>
-    <input
-      type="text"
-      name="code_digit_1"
-      inputmode="numeric"
-      pattern="[0-9]*"
-      maxlength="6"
-      autocomplete="one-time-code"
-      aria-label="One-time code digit 1"
-    >
-    <input type="text" name="code_digit_2" inputmode="numeric"
-      pattern="[0-9]*" maxlength="1" autocomplete="off"
-      aria-label="One-time code digit 2">
-    <input type="text" name="code_digit_3" inputmode="numeric"
-      pattern="[0-9]*" maxlength="1" autocomplete="off"
-      aria-label="One-time code digit 3">
-    <input type="text" name="code_digit_4" inputmode="numeric"
-      pattern="[0-9]*" maxlength="1" autocomplete="off"
-      aria-label="One-time code digit 4">
-    <input type="text" name="code_digit_5" inputmode="numeric"
-      pattern="[0-9]*" maxlength="1" autocomplete="off"
-      aria-label="One-time code digit 5">
-    <input type="text" name="code_digit_6" inputmode="numeric"
-      pattern="[0-9]*" maxlength="1" autocomplete="off"
-      aria-label="One-time code digit 6">
-  </div>
-</fieldset>
-```
+### Shared verification-code CSS
 
-### Verification code CSS
+Copy these layout and field-size rules once.
 
 ```css
 .verification-code {
@@ -1724,18 +2452,25 @@ only when the displayed value must track user input.
 }
 
 .verification-code-fields {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(0.35rem, 1.5vw, 0.65rem);
-  width: 100%;
+  display: flex;
+  gap: 1.25rem;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.verification-code-group {
+  display: flex;
+  gap: 0.625rem;
+  min-width: 0;
 }
 
 .verification-code-fields input {
+  flex: 0 1 2.5rem;
+  width: 2.5rem;
   min-width: 0;
-  min-height: 0;
-  aspect-ratio: 1;
+  height: 2.75rem;
+  min-height: 42px;
   padding: 0;
-  border-radius: var(--circle-radius);
   font-size: 1.35rem;
   font-weight: var(--font-weight-semibold);
   text-align: center;
@@ -1743,7 +2478,48 @@ only when the displayed value must track user input.
 }
 ```
 
-### Verification code JavaScript
+### Six-digit verification code
+
+```html
+<fieldset class="verification-code">
+  <legend>
+    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+    One-time code
+  </legend>
+  <div class="verification-code-fields" data-verification-code>
+    <div class="verification-code-group">
+      <input
+        type="text"
+        name="code_digit_1"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        maxlength="6"
+        autocomplete="one-time-code"
+        aria-label="One-time code digit 1"
+      >
+      <input type="text" name="code_digit_2" inputmode="numeric"
+        pattern="[0-9]*" maxlength="1" autocomplete="off"
+        aria-label="One-time code digit 2">
+      <input type="text" name="code_digit_3" inputmode="numeric"
+        pattern="[0-9]*" maxlength="1" autocomplete="off"
+        aria-label="One-time code digit 3">
+    </div>
+    <div class="verification-code-group">
+      <input type="text" name="code_digit_4" inputmode="numeric"
+        pattern="[0-9]*" maxlength="1" autocomplete="off"
+        aria-label="One-time code digit 4">
+      <input type="text" name="code_digit_5" inputmode="numeric"
+        pattern="[0-9]*" maxlength="1" autocomplete="off"
+        aria-label="One-time code digit 5">
+      <input type="text" name="code_digit_6" inputmode="numeric"
+        pattern="[0-9]*" maxlength="1" autocomplete="off"
+        aria-label="One-time code digit 6">
+    </div>
+  </div>
+</fieldset>
+```
+
+### Verification-code behavior
 
 Use the canonical [`shared-components.js`](../web/shared-components.js). The
 enhancement distributes a pasted code, advances after a digit, and supports
@@ -1752,38 +2528,13 @@ without JavaScript.
 
 ## Status and feedback
 
-### Status and feedback HTML
+Use status pills for compact state labels, alerts for messages that remain in
+the content flow, notifications for temporary full-width feedback, and live
+status for a changing connection or process state.
 
-```html
-<span class="status-pill status-success">Success</span>
-<span class="status-pill status-danger">Danger</span>
-<span class="status-pill status-warning">Warning</span>
-<span class="status-pill status-neutral">Neutral</span>
-<span class="status-pill status-running">
-  <i class="fa-solid fa-circle" aria-hidden="true"></i>
-  Running
-</span>
+### Shared status and feedback CSS
 
-<div class="alert-stack">
-  <div class="alert alert-info" role="status">Information message</div>
-  <div class="alert alert-success" role="status">Success message</div>
-  <div class="alert alert-warning alert-with-icon" role="status">
-    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-    Warning message
-  </div>
-  <div class="alert alert-error" role="alert">Error message</div>
-</div>
-
-<span class="live-status" data-state="live">
-  <span class="running-dot" aria-hidden="true"></span>
-  <span class="live-label">Live</span>
-</span>
-```
-
-Add `data-auto-dismiss` to an alert only when the canonical script should
-remove it after 4.5 seconds. Persistent errors omit it.
-
-### Status and feedback CSS
+Copy these shared rules once before selecting the examples below.
 
 ```css
 .status-pill,
@@ -1841,6 +2592,28 @@ remove it after 4.5 seconds. Persistent errors omit it.
   margin-bottom: 1.5rem;
 }
 
+.notification-launcher {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.65rem;
+  max-width: 36rem;
+}
+
+.notification-region {
+  display: grid;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.notification-region:empty {
+  display: none;
+}
+
+.notification-region .alert {
+  width: 100%;
+}
+
 .alert {
   padding: 0.8rem 1rem;
   color: var(--soft-white);
@@ -1857,6 +2630,40 @@ remove it after 4.5 seconds. Persistent errors omit it.
   display: flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+.alert-message {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.alert-dismiss {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin: -0.35rem -0.5rem -0.35rem 0;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.alert-dismiss:hover {
+  background: rgb(255 255 255 / 10%);
+  border-color: rgb(255 255 255 / 18%);
+}
+
+.alert-dismiss:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
 }
 
 .alert.is-dismissing {
@@ -1930,45 +2737,153 @@ remove it after 4.5 seconds. Persistent errors omit it.
     color-mix(in srgb, var(--alert-error) 12%, transparent);
   animation: none;
 }
+
+@keyframes running-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition-duration: 1ms;
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}
+
+@media (width <=575px) {
+  .notification-launcher {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .notification-launcher .button {
+    width: 100%;
+  }
+}
 ```
 
-## Summaries, empty states, and copyable values
+### Status pill
 
-### Summaries, empty states, and copyable values HTML
+Use one tone class with `.status-pill`:
+
+- `.status-success` for success or ready.
+- `.status-danger` for an error or failed state.
+- `.status-warning` for an attention state.
+- `.status-neutral` for an inactive or informational state.
+- `.status-running` with a circle icon for active work.
 
 ```html
-<section class="summary-grid panel" aria-label="Summary">
-  <div class="summary-card"><span>First value</span><strong>128</strong></div>
-  <div class="summary-card"><span>Second value</span><strong>84%</strong></div>
-  <div class="summary-card"><span>Third value</span><strong>42</strong></div>
-</section>
+<span class="status-pill status-success">Ready</span>
+```
 
-<section class="panel empty-state">
-  <i class="fa-solid fa-inbox" aria-hidden="true"></i>
-  <h2>No items</h2>
-  <p class="muted">Explain what is missing and the next useful action.</p>
-  <button class="button button-primary" type="button">Create item</button>
-</section>
+### Inline alert
 
-<div
-  class="secret-value copy-value"
-  id="copyable-value"
-  data-copy-value="example-copy-value"
->
-  <span class="copy-value-text">example-copy-value</span>
-  <button
-    class="icon-button"
-    type="button"
-    data-copy-target="#copyable-value"
-    aria-label="Copy example value"
-    title="Copy example value"
-  >
-    <i class="fa-solid fa-copy" aria-hidden="true"></i>
-  </button>
+Choose the tone, icon, and role together:
+
+- `.alert-info`, `fa-circle-info`, and `role="status"`.
+- `.alert-success`, `fa-circle-check`, and `role="status"`.
+- `.alert-warning`, `fa-triangle-exclamation`, and `role="status"`.
+- `.alert-error`, `fa-circle-xmark`, and `role="alert"`.
+
+```html
+<div class="alert alert-info alert-with-icon" role="status">
+  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+  <span class="alert-message">Information message</span>
 </div>
 ```
 
-### Summaries, empty states, and copyable values CSS
+Persistent alerts require no JavaScript. Add `data-auto-dismiss` to dismiss an
+alert after 4.5 seconds. Add a `.alert-dismiss` button with
+`data-alert-dismiss` when the user may close it early. Both behaviors require
+the canonical [`shared-components.js`](../web/shared-components.js).
+
+### Full-width notification
+
+The launcher combines one select with one trigger. It supports `info`,
+`success`, `warning`, and `error`; the selected option supplies the message.
+
+```html
+<div class="notification-launcher" data-notification-launcher>
+  <label>
+    Notification type
+    <span class="select-control">
+      <select data-notification-tone>
+        <option
+          value="info"
+          data-notification-message="Information notification"
+        >
+          Information
+        </option>
+        <option
+          value="success"
+          data-notification-message="Success notification"
+        >
+          Success
+        </option>
+        <option
+          value="warning"
+          data-notification-message="Warning notification"
+        >
+          Warning
+        </option>
+        <option
+          value="error"
+          data-notification-message="Error notification"
+        >
+          Error
+        </option>
+      </select>
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </span>
+  </label>
+  <button
+    class="button button-primary"
+    type="button"
+    data-notification-trigger
+    data-notification-target="#notification-region"
+  >
+    Show notification
+  </button>
+</div>
+<div
+  class="notification-region"
+  id="notification-region"
+  aria-live="polite"
+></div>
+```
+
+The canonical [`shared-components.js`](../web/shared-components.js) generates
+the selected full-width alert, includes its accessible close button, and
+removes it automatically after 4.5 seconds.
+
+### Live status
+
+Use `data-state="live"` for the normal green state. The same structure supports
+`reconnecting` and `ended`; update the visible label when changing state.
+
+```html
+<span class="live-status" data-state="live">
+  <span class="running-dot" aria-hidden="true"></span>
+  <span class="live-label">Live</span>
+</span>
+```
+
+## Summaries
+
+Use a summary grid for a small set of comparable headline values.
+
+### Shared summary CSS
 
 ```css
 .summary-grid {
@@ -1997,54 +2912,6 @@ remove it after 4.5 seconds. Persistent errors omit it.
   font-size: 1.7rem;
 }
 
-.empty-state {
-  padding: 4rem;
-  text-align: center;
-}
-
-.empty-state i {
-  margin-bottom: 1rem;
-  color: var(--light-surface-accent);
-  font-size: 2rem;
-}
-
-.empty-state h2,
-.empty-state h3 {
-  margin-bottom: 0.3rem;
-}
-
-.secret-value {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  color: var(--soft-white);
-  background: var(--deep-graphite);
-  border: 1px solid var(--charcoal-border);
-  border-radius: var(--border-radius);
-  font-family: ui-monospace, monospace;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  overflow-wrap: anywhere;
-}
-
-.copy-value {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.copy-value-text {
-  flex: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.clipboard-fallback {
-  position: fixed;
-  inset: 0 auto auto 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
 @media (width <=575px) {
   .summary-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -2055,20 +2922,23 @@ remove it after 4.5 seconds. Persistent errors omit it.
   .summary-card strong {
     font-size: 1.4rem;
   }
-
-  .secret-value {
-    font-size: 0.88rem;
-    letter-spacing: 0.04em;
-  }
 }
 ```
 
-### Summaries, empty states, and copyable values JavaScript
+### Summary grid
 
-Copying requires the canonical
-[`shared-components.js`](../web/shared-components.js). The control uses the
-Clipboard API when available, retains a safe fallback, briefly changes to a
-check icon, and restores its original accessible name and title.
+Each `.summary-card` contains one short label and one prominent value. Add or
+remove cards as needed; keep the set concise enough to scan as one group. The
+default is three columns. Add the existing `.content-grid-two` layout option to
+`.summary-grid` when the group contains two cards.
+
+```html
+<section class="summary-grid panel" aria-label="Summary">
+  <div class="summary-card"><span>First value</span><strong>128</strong></div>
+  <div class="summary-card"><span>Second value</span><strong>84%</strong></div>
+  <div class="summary-card"><span>Third value</span><strong>42</strong></div>
+</section>
+```
 
 ## Responsive table
 
@@ -2077,65 +2947,7 @@ Tables remain tables on wide screens and become labeled stacked records below
 requires `data-label`. Mark the primary and status cells so their mobile order
 remains intentional.
 
-### Responsive table HTML
-
-```html
-<div class="table-container">
-  <table class="data-table responsive-table">
-    <caption class="visually-hidden">Example records</caption>
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Category</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="cell-primary" data-label="Name">First record</td>
-        <td data-label="Category">General</td>
-        <td class="cell-status" data-label="Status">
-          <span class="status-pill status-success">Ready</span>
-        </td>
-        <td class="cell-actions" data-label="Actions">
-          <div class="row-actions">
-            <button
-              class="icon-button accent"
-              type="button"
-              aria-label="Edit first record"
-            >
-              <i class="fa-solid fa-pen" aria-hidden="true"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div class="table-summary"><span>1 record</span><span>Page 1 of 1</span></div>
-<nav class="pagination" aria-label="Record pages">
-  <span>Page 1 of 1</span>
-  <span>
-    <button class="button button-secondary button-compact" type="button" disabled>Previous</button>
-    <button class="button button-secondary button-compact" type="button" disabled>Next</button>
-  </span>
-</nav>
-
-<div class="table-container">
-  <table class="data-table responsive-table">
-    <caption class="visually-hidden">Empty records example</caption>
-    <thead><tr><th scope="col">Name</th><th scope="col">Status</th></tr></thead>
-    <tbody>
-      <tr class="empty-table-row">
-        <td colspan="2">No records match the selected filters.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
-### Responsive table CSS
+### Shared responsive-table CSS
 
 ```css
 .table-container {
@@ -2275,76 +3087,100 @@ remains intentional.
 }
 ```
 
-## Hierarchical records and inline edit
-
-Use the hierarchy only when a parent/child relationship must remain visible.
-The child name is vertically centered with its leading and action controls.
-
-### Hierarchical records and inline edit HTML
+### Table with data
 
 ```html
-<article class="panel hierarchy-panel">
-  <div class="panel-heading">
-    <div><p class="eyebrow">HIERARCHY</p><h2>Parent and child records</h2></div>
-    <button class="icon-button accent" type="button" aria-label="Add parent item">
-      <i class="fa-solid fa-plus" aria-hidden="true"></i>
-    </button>
-  </div>
-  <div class="hierarchy-item">
-    <div class="hierarchy-item-header">
-      <div class="hierarchy-item-name">
-        <i
-          class="fa-solid fa-layer-group hierarchy-item-icon"
-          aria-hidden="true"
-        ></i>
-        <strong>Parent item</strong>
-      </div>
-      <div class="row-actions">
-        <details class="inline-edit-control">
-          <summary
-            class="icon-button"
-            aria-label="Edit parent item"
-            title="Edit parent item"
-          >
-            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-          </summary>
-          <div class="inline-edit-popover">
-            <label>Parent name<input type="text" value="Parent item"></label>
+<div class="table-container">
+  <table class="data-table responsive-table">
+    <caption class="visually-hidden">Example records</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="cell-primary" data-label="Name">First record</td>
+        <td data-label="Category">General</td>
+        <td class="cell-status" data-label="Status">
+          <span class="status-pill status-success">Ready</span>
+        </td>
+        <td class="cell-actions" data-label="Actions">
+          <div class="row-actions">
             <button
               class="icon-button accent"
               type="button"
-              aria-label="Save parent item"
+              aria-label="Edit first record"
             >
-              <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+              <i class="fa-solid fa-pen" aria-hidden="true"></i>
             </button>
           </div>
-        </details>
-      </div>
-    </div>
-    <div class="hierarchy-children">
-      <div class="hierarchy-child">
-        <div class="hierarchy-child-leading">
-          <button
-            class="icon-button accent"
-            type="button"
-            aria-label="Open child item"
-          >
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="hierarchy-child-name"><span>Child item</span></div>
-        <div class="row-actions">
-          <button class="icon-button" type="button" aria-label="Edit child item">
-            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table-summary"><span>1 record</span><span>Page 1 of 1</span></div>
+<nav class="pagination" aria-label="Record pages">
+  <span>Page 1 of 1</span>
+  <span>
+    <button
+      class="button button-secondary button-compact"
+      type="button"
+      disabled
+    >
+      Previous
+    </button>
+    <button
+      class="button button-secondary button-compact"
+      type="button"
+      disabled
+    >
+      Next
+    </button>
+  </span>
+</nav>
 ```
 
-### Hierarchical records and inline edit CSS
+The summary and pagination are optional. Omit either when the complete result
+set already fits on the page.
+
+### Empty table
+
+Keep the same table headers and replace the body with one spanning empty-state
+cell. Set `colspan` to the table's column count.
+
+```html
+<div class="table-container">
+  <table class="data-table responsive-table">
+    <caption class="visually-hidden">Empty records example</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="empty-table-row">
+        <td colspan="2">No records match the selected filters.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+## Hierarchical records
+
+Use the hierarchy only when a parent/child relationship must remain visible.
+The child name is vertically centered with its leading and action controls.
+When a child has no leading icon, retain an empty `.hierarchy-child-leading`
+element so its spacing and divider remain consistent. Preview action buttons
+are inert; their application behavior is outside this structural component.
+
+### Shared hierarchy CSS
 
 ```css
 .hierarchy-panel {
@@ -2428,46 +3264,6 @@ The child name is vertically centered with its leading and action controls.
   grid-column: 3;
 }
 
-.inline-edit-control {
-  position: relative;
-}
-
-.inline-edit-control > summary {
-  list-style: none;
-}
-
-.inline-edit-control > summary::-webkit-details-marker {
-  display: none;
-}
-
-.inline-edit-control[open] > summary {
-  color: var(--primary-accent);
-  background: color-mix(in srgb, var(--primary-accent) 10%, transparent);
-  border-color: var(--charcoal-border);
-}
-
-.inline-edit-popover {
-  position: absolute;
-  top: calc(100% + 0.6rem);
-  right: 0;
-  z-index: 10;
-  display: grid;
-  grid-template-columns: minmax(240px, 1fr) auto;
-  align-items: end;
-  gap: 0.65rem;
-  width: 390px;
-  padding: 1rem;
-  background: var(--deep-graphite);
-  border: 1px solid var(--charcoal-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--popover-shadow);
-}
-
-.inline-edit-popover input {
-  min-height: 36px;
-  padding: 0.45rem 0.6rem;
-}
-
 @media (width <768px) {
   .hierarchy-panel {
     padding: 1.25rem;
@@ -2480,14 +3276,6 @@ The child name is vertically centered with its leading and action controls.
   .hierarchy-child .row-actions {
     justify-self: end;
   }
-
-  .inline-edit-popover {
-    position: fixed;
-    top: 30%;
-    right: 1rem;
-    left: 1rem;
-    width: auto;
-  }
 }
 
 @media (width <=400px) {
@@ -2498,11 +3286,67 @@ The child name is vertically centered with its leading and action controls.
 }
 ```
 
-### Hierarchical records and inline edit JavaScript
+### Parent and child records
 
-Use the canonical [`shared-components.js`](../web/shared-components.js) when
-inline-edit controls should close on outside click or Escape. Native `details`
-still opens without JavaScript.
+```html
+<article class="panel hierarchy-panel">
+  <div class="panel-heading">
+    <div><p class="eyebrow">HIERARCHY</p><h2>Parent and child records</h2></div>
+    <button class="icon-button accent" type="button" aria-label="Add parent item">
+      <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="hierarchy-item">
+    <div class="hierarchy-item-header">
+      <div class="hierarchy-item-name">
+        <i
+          class="fa-solid fa-layer-group hierarchy-item-icon"
+          aria-hidden="true"
+        ></i>
+        <strong>Parent item</strong>
+      </div>
+      <div class="row-actions">
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Edit parent item"
+          title="Edit parent item"
+        >
+          <i class="fa-solid fa-pen" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="hierarchy-children">
+      <div class="hierarchy-child">
+        <div class="hierarchy-child-leading">
+          <button
+            class="icon-button accent"
+            type="button"
+            aria-label="Open child item"
+          >
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="hierarchy-child-name"><span>Child item</span></div>
+        <div class="row-actions">
+          <button class="icon-button" type="button" aria-label="Edit child item">
+            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+### Child without a leading icon
+
+Keep the leading column and divider when the child has no icon or control.
+Replace only the leading element from the example above:
+
+```html
+<div class="hierarchy-child-leading" aria-hidden="true"></div>
+```
 
 ## Shared responsive and motion rules
 
@@ -2512,191 +3356,12 @@ behavior. Preserve the canonical `prefers-reduced-motion` rule.
 
 ## Optional component JavaScript
 
-Copy this file when using copy controls, date/time convenience buttons,
-verification-code distribution, inline-edit dismissal, auto-dismiss alerts, or
-dialog launch buttons. Components without those behaviors do not require it.
+Use the canonical [`shared-components.js`](../web/shared-components.js) when
+the selected components need progressive enhancement. The relevant component
+sections above document their required `data-*` hooks and include focused
+JavaScript excerpts when the behavior is not self-explanatory.
 
-```javascript
-/**
- * Optional progressive enhancements for shared Grayhaven Systems LLC web
- * components. Native controls remain usable without JavaScript.
- */
-(function () {
-  'use strict';
-
-  async function copyText(value) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(value);
-      return;
-    }
-
-    const fallback = document.createElement('textarea');
-    fallback.value = value;
-    fallback.setAttribute('readonly', 'true');
-    fallback.className = 'clipboard-fallback';
-    document.body.appendChild(fallback);
-    fallback.select();
-    const copied = document.execCommand('copy');
-    fallback.remove();
-    if (!copied) throw new Error('Clipboard copy was rejected');
-  }
-
-  document.addEventListener('click', function (event) {
-    if (!(event.target instanceof Element)) return;
-
-    const button = event.target.closest('[data-copy-target]');
-    if (!(button instanceof HTMLButtonElement)) return;
-
-    let target;
-    try {
-      target = document.querySelector(button.dataset.copyTarget || '');
-    } catch {
-      return;
-    }
-    const value = target && (target.dataset.copyValue || target.textContent.trim());
-    if (!value) return;
-
-    copyText(value).then(function () {
-      const original = button.innerHTML;
-      const originalLabel = button.getAttribute('aria-label');
-      const originalTitle = button.getAttribute('title');
-      button.innerHTML =
-        '<i class="fa-solid fa-check" aria-hidden="true"></i>' +
-        '<span class="visually-hidden">Copied</span>';
-      button.setAttribute('aria-label', 'Copied');
-      button.setAttribute('title', 'Copied');
-      window.setTimeout(function () {
-        button.innerHTML = original;
-        if (originalLabel === null) button.removeAttribute('aria-label');
-        else button.setAttribute('aria-label', originalLabel);
-        if (originalTitle === null) button.removeAttribute('title');
-        else button.setAttribute('title', originalTitle);
-      }, 1800);
-    }).catch(function () {
-      window.prompt('Copy this value', value);
-    });
-  });
-
-  function datetimeLocalNow(timeZone) {
-    const values = new Intl.DateTimeFormat('en-CA', {
-      timeZone: timeZone,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hourCycle: 'h23'
-    }).formatToParts(new Date()).reduce(function (result, part) {
-      result[part.type] = part.value;
-      return result;
-    }, {});
-
-    return values.year + '-' + values.month + '-' + values.day + 'T' +
-      values.hour + ':' + values.minute + ':' + values.second;
-  }
-
-  document.querySelectorAll('[data-set-now-for]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      const input = document.querySelector(button.dataset.setNowFor || '');
-      if (!(input instanceof HTMLInputElement)) return;
-
-      input.value = datetimeLocalNow(
-        input.dataset.timezone ||
-          Intl.DateTimeFormat().resolvedOptions().timeZone
-      );
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-    });
-  });
-
-  document.querySelectorAll('[data-verification-code]').forEach(
-    function (group) {
-      const inputs = Array.from(group.querySelectorAll('input'));
-
-      function distributeDigits(value) {
-        const digits = value.replace(/\D/g, '').slice(0, inputs.length);
-        inputs.forEach(function (input, index) {
-          input.value = digits[index] || '';
-        });
-        const focusIndex = Math.min(digits.length, inputs.length - 1);
-        inputs[focusIndex].focus();
-        inputs[focusIndex].select();
-      }
-
-      group.addEventListener('paste', function (event) {
-        const clipboard = event.clipboardData;
-        const digits = clipboard
-          ? clipboard.getData('text').replace(/\D/g, '')
-          : '';
-        if (digits.length === inputs.length) {
-          event.preventDefault();
-          distributeDigits(digits);
-        }
-      });
-
-      inputs.forEach(function (input, index) {
-        input.addEventListener('input', function () {
-          const digits = input.value.replace(/\D/g, '');
-          if (digits.length > 1) {
-            distributeDigits(digits);
-            return;
-          }
-          input.value = digits;
-          if (digits && index < inputs.length - 1) {
-            inputs[index + 1].focus();
-            inputs[index + 1].select();
-          }
-        });
-
-        input.addEventListener('focus', function () { input.select(); });
-        input.addEventListener('keydown', function (event) {
-          if (event.key === 'Backspace' && !input.value && index > 0) {
-            event.preventDefault();
-            inputs[index - 1].value = '';
-            inputs[index - 1].focus();
-          } else if (event.key === 'ArrowLeft' && index > 0) {
-            event.preventDefault();
-            inputs[index - 1].focus();
-          } else if (event.key === 'ArrowRight' && index < inputs.length - 1) {
-            event.preventDefault();
-            inputs[index + 1].focus();
-          }
-        });
-      });
-    }
-  );
-
-  document.addEventListener('click', function (event) {
-    document.querySelectorAll('details.inline-edit-control[open]').forEach(
-      function (details) {
-        if (!details.contains(event.target)) details.removeAttribute('open');
-      }
-    );
-  });
-
-  document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape') return;
-    document.querySelectorAll('details.inline-edit-control[open]').forEach(
-      function (details) {
-        details.removeAttribute('open');
-      }
-    );
-  });
-
-  document.querySelectorAll('.alert[data-auto-dismiss]').forEach(
-    function (alert) {
-      window.setTimeout(function () {
-        alert.classList.add('is-dismissing');
-        window.setTimeout(function () { alert.remove(); }, 300);
-      }, 4500);
-    }
-  );
-
-  document.querySelectorAll('[data-dialog-open]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      const dialog = document.querySelector(button.dataset.dialogOpen || '');
-      if (dialog instanceof HTMLDialogElement) dialog.showModal();
-    });
-  });
-})();
-```
+The shared file provides copy controls, date/time convenience, verification-code
+distribution, transient alert dismissal, notification launchers, range
+percentages, file labels, validation helpers, and modal/non-modal dialog
+behavior. Components without those behaviors do not require it.
