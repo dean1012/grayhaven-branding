@@ -151,7 +151,6 @@ body {
 }
 
 .component-preview-intro {
-  max-width: 760px;
   margin-bottom: var(--space-xl);
 }
 
@@ -170,7 +169,6 @@ body {
 }
 
 .component-section-heading {
-  max-width: 760px;
   margin-bottom: var(--space-lg);
 }
 
@@ -224,6 +222,11 @@ body {
   gap: var(--space-sm);
 }
 
+.component-link-row {
+  column-gap: var(--space-lg);
+  row-gap: var(--space-sm);
+}
+
 .component-form-grid,
 .component-state-grid {
   display: grid;
@@ -242,7 +245,7 @@ body {
 }
 
 .component-empty-table {
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 html:not(.js-enabled) body:not(:has(.component-section:target))
@@ -251,9 +254,6 @@ html:not(.js-enabled) body:not(:has(.component-section:target))
 html:not(.js-enabled) body:has(#buttons:target)
   :is(.component-preview-nav, .component-preview-mobile-nav)
   a[href="#buttons"],
-html:not(.js-enabled) body:has(#layout:target)
-  :is(.component-preview-nav, .component-preview-mobile-nav)
-  a[href="#layout"],
 html:not(.js-enabled) body:has(#surfaces:target)
   :is(.component-preview-nav, .component-preview-mobile-nav)
   a[href="#surfaces"],

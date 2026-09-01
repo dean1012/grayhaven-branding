@@ -147,36 +147,155 @@
     }
   );
 
-  document.addEventListener('click', function (event) {
-    document.querySelectorAll('details.inline-edit-control[open]').forEach(
-      function (details) {
-        if (!details.contains(event.target)) details.removeAttribute('open');
-      }
-    );
-  });
+  function dismissAlert(alert) {
+    if (!(alert instanceof HTMLElement) ||
+        alert.classList.contains('is-dismissing')) return;
 
-  document.addEventListener('keydown', function (event) {
-    if (event.key !== 'Escape') return;
-    document.querySelectorAll('details.inline-edit-control[open]').forEach(
-      function (details) {
-        details.removeAttribute('open');
-      }
-    );
-  });
+    alert.classList.add('is-dismissing');
+    window.setTimeout(function () { alert.remove(); }, 300);
+  }
+
+  function scheduleAlertDismissal(alert) {
+    if (!(alert instanceof HTMLElement) ||
+        alert.dataset.dismissScheduled === 'true') return;
+
+    alert.dataset.dismissScheduled = 'true';
+    window.setTimeout(function () { dismissAlert(alert); }, 4500);
+  }
 
   document.querySelectorAll('.alert[data-auto-dismiss]').forEach(
-    function (alert) {
-      window.setTimeout(function () {
-        alert.classList.add('is-dismissing');
-        window.setTimeout(function () { alert.remove(); }, 300);
-      }, 4500);
+    scheduleAlertDismissal
+  );
+
+  document.addEventListener('click', function (event) {
+    const dismiss = event.target instanceof Element
+      ? event.target.closest('[data-alert-dismiss]')
+      : null;
+    if (!(dismiss instanceof HTMLButtonElement)) return;
+    dismissAlert(dismiss.closest('.alert'));
+  });
+
+  const notificationOptions = {
+    info: { icon: 'fa-circle-info', role: 'status' },
+    success: { icon: 'fa-circle-check', role: 'status' },
+    warning: { icon: 'fa-triangle-exclamation', role: 'status' },
+    error: { icon: 'fa-circle-xmark', role: 'alert' }
+  };
+
+  document.querySelectorAll('[data-notification-trigger]').forEach(
+    function (button) {
+      button.addEventListener('click', function () {
+        const launcher = button.closest('[data-notification-launcher]');
+        const select = launcher &&
+          launcher.querySelector('[data-notification-tone]');
+        let target;
+        try {
+          target = document.querySelector(
+            button.dataset.notificationTarget || ''
+          );
+        } catch {
+          return;
+        }
+        if (!(select instanceof HTMLSelectElement) ||
+            !(target instanceof HTMLElement)) return;
+
+        const tone = Object.hasOwn(notificationOptions, select.value)
+          ? select.value
+          : 'info';
+        const option = notificationOptions[tone];
+        const selectedOption = select.selectedOptions[0];
+        const notification = document.createElement('div');
+        notification.className =
+          'alert alert-' + tone + ' alert-with-icon';
+        notification.setAttribute('role', option.role);
+        notification.dataset.autoDismiss = '';
+
+        const icon = document.createElement('i');
+        icon.className = 'fa-solid ' + option.icon;
+        icon.setAttribute('aria-hidden', 'true');
+        const message = document.createElement('span');
+        message.className = 'alert-message';
+        message.textContent = selectedOption &&
+          selectedOption.dataset.notificationMessage
+          ? selectedOption.dataset.notificationMessage
+          : 'Example notification';
+        const dismiss = document.createElement('button');
+        dismiss.className = 'alert-dismiss';
+        dismiss.type = 'button';
+        dismiss.setAttribute('aria-label', 'Dismiss notification');
+        dismiss.dataset.alertDismiss = '';
+        const dismissIcon = document.createElement('i');
+        dismissIcon.className = 'fa-solid fa-xmark';
+        dismissIcon.setAttribute('aria-hidden', 'true');
+        dismiss.append(dismissIcon);
+
+        notification.append(icon, message, dismiss);
+        target.replaceChildren(notification);
+        scheduleAlertDismissal(notification);
+      });
     }
   );
+
+  document.querySelectorAll('[data-file-input]').forEach(function (input) {
+    const control = input.closest('.file-control');
+    const name = control && control.querySelector('[data-file-name]');
+    if (!(input instanceof HTMLInputElement) || !(name instanceof HTMLElement)) {
+      return;
+    }
+
+    input.addEventListener('change', function () {
+      const files = input.files ? Array.from(input.files) : [];
+      name.textContent = files.length
+        ? files.map(function (file) { return file.name; }).join(', ')
+        : 'No file selected';
+    });
+  });
+
+  document.querySelectorAll('[data-range-percentage]').forEach(
+    function (control) {
+      const input = control.querySelector('input[type="range"]');
+      const output = control.querySelector('output');
+      if (!(input instanceof HTMLInputElement) ||
+          !(output instanceof HTMLOutputElement)) return;
+
+      function updatePercentage() {
+        const minimum = Number(input.min || 0);
+        const maximum = Number(input.max || 100);
+        const value = Number(input.value);
+        const percentage = maximum > minimum
+          ? Math.round(((value - minimum) / (maximum - minimum)) * 100)
+          : 0;
+        output.value = percentage + '%';
+      }
+
+      input.addEventListener('input', updatePercentage);
+      updatePercentage();
+    }
+  );
+
+  document.querySelectorAll('[data-validate-form]').forEach(function (button) {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      const form = button.closest('form');
+      if (form instanceof HTMLFormElement) form.reportValidity();
+    });
+  });
 
   document.querySelectorAll('[data-dialog-open]').forEach(function (button) {
     button.addEventListener('click', function () {
       const dialog = document.querySelector(button.dataset.dialogOpen || '');
-      if (dialog instanceof HTMLDialogElement) dialog.showModal();
+      if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+      if (button.dataset.dialogMode === 'nonmodal') dialog.show();
+      else dialog.showModal();
     });
   });
+
+  document.addEventListener('pointerdown', function (event) {
+    document.querySelectorAll('dialog.dialog-nonmodal[open]').forEach(
+      function (dialog) {
+        if (!dialog.contains(event.target)) dialog.close('dismiss');
+      }
+    );
+  });
+
 })();

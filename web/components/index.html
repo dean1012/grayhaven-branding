@@ -9,8 +9,8 @@
       rel="stylesheet"
       href="../style-guide/fontawesome.min.css?v=20260830"
    >
-    <link rel="stylesheet" href="../shared-components.css?v=20260831">
-    <link rel="stylesheet" href="preview.css?v=20260830">
+    <link rel="stylesheet" href="../shared-components.css?v=20260831o">
+    <link rel="stylesheet" href="preview.css?v=20260831b">
   </head>
   <body data-section-default="buttons">
     <header class="component-preview-header">
@@ -32,14 +32,12 @@
           aria-label="Component sections"
         >
           <a href="#buttons">Buttons</a>
-          <a href="#layout">Layout</a>
           <a href="#surfaces">Surfaces</a>
           <a href="#forms">Forms</a>
+          <a href="#form-validation">Validation</a>
           <a href="#status">Status</a>
           <a href="#data">Data</a>
           <a href="../../docs/web-components.md">Source</a>
-          <a href="../style-guide/index.html">Website</a>
-          <a href="../../web-application/index.html">Application</a>
         </nav>
         <details class="component-preview-mobile" data-mobile-nav>
           <summary
@@ -54,14 +52,12 @@
             aria-label="Component sections mobile navigation"
           >
             <a href="#buttons">Buttons</a>
-            <a href="#layout">Layout</a>
             <a href="#surfaces">Surfaces</a>
             <a href="#forms">Forms</a>
+            <a href="#form-validation">Validation</a>
             <a href="#status">Status</a>
             <a href="#data">Data</a>
             <a href="../../docs/web-components.md">Source</a>
-            <a href="../style-guide/index.html">Website</a>
-            <a href="../../web-application/index.html">Application</a>
           </nav>
         </details>
       </div>
@@ -183,13 +179,6 @@
                 >
                   Large
                 </button>
-                <button
-                  class="button button-secondary button-icon button-compact"
-                  type="button"
-                  aria-label="Compact settings"
-                >
-                  <i class="fa-solid fa-gear" aria-hidden="true"></i>
-                </button>
               </div>
             </article>
             <article class="panel component-example">
@@ -243,11 +232,20 @@
                 </button>
               </div>
             </article>
-            <article class="panel component-example">
+            <article
+              class="panel component-example"
+              id="link-button-examples"
+            >
               <h3>Links styled as buttons</h3>
               <div class="component-inline-row">
-                <a class="button button-primary" href="#surfaces">Continue</a>
-                <a class="button button-secondary" href="#surfaces"
+                <a
+                  class="button button-primary"
+                  data-preview-noop
+                  >Continue</a
+                >
+                <a
+                  class="button button-secondary"
+                  data-preview-noop
                   ><i class="fa-solid fa-arrow-right" aria-hidden="true"></i
                   >Continue</a
                 >
@@ -255,42 +253,6 @@
             </article>
           </div>
         </div>
-      </section>
-
-      <section
-        class="component-section"
-        id="layout"
-        aria-labelledby="layout-title"
-      >
-        <div class="component-section-heading">
-          <p class="eyebrow">LAYOUT &amp; HEADINGS</p>
-          <h2 id="layout-title">
-            Page rhythm, headings, actions, and utilities
-          </h2>
-        </div>
-        <article class="panel component-example">
-          <div class="container section-spacing">
-            <h3 class="section-title">Section title</h3>
-            <p class="section-subtitle">A concise supporting statement.</p>
-            <div class="page-heading compact">
-              <div>
-                <p class="eyebrow">EXAMPLE</p>
-                <h3 class="truncate-text" title="Page heading">Page heading</h3>
-                <p class="muted">Supporting context for the current page.</p>
-              </div>
-              <div class="heading-actions">
-                <button class="button button-primary" type="button">
-                  Action
-                </button>
-              </div>
-            </div>
-            <p class="narrow-content">
-              Narrow reading-width content remains centered without defining a
-              product-specific wrapper.
-            </p>
-            <span class="visually-hidden">Screen-reader-only context.</span>
-          </div>
-        </article>
       </section>
 
       <section
@@ -307,23 +269,22 @@
         <div class="component-example-stack">
           <article class="panel component-example">
             <h3>Link options</h3>
-            <div class="component-inline-row">
+            <div class="component-inline-row component-link-row">
               <a
                 class="external-link"
-                href="https://example.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i
+                data-preview-noop
+                >External link<i
                   class="fa-solid fa-arrow-up-right-from-square"
                   aria-hidden="true"
-                ></i
-                >External link</a
+                ></i></a
               >
-              <a class="scroll-link" href="#forms"
-                ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>Scroll
-                link</a
+              <a class="scroll-link" data-preview-noop
+                >Scroll link<i
+                  class="fa-solid fa-arrow-down"
+                  aria-hidden="true"
+                ></i></a
               >
-              <a class="back-link" href="#buttons"
+              <a class="back-link" data-preview-noop
                 ><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>Back
                 link</a
               >
@@ -363,13 +324,18 @@
                 </li>
               </ul>
               <div class="content-card-actions">
-                <a class="scroll-link" href="#forms">Details</a
+                <a class="scroll-link" data-preview-noop
+                  >Details<i
+                    class="fa-solid fa-arrow-down"
+                    aria-hidden="true"
+                  ></i></a
                 ><a
                   class="external-link"
-                  href="https://example.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Resource</a
+                  data-preview-noop
+                  >Resource<i
+                    class="fa-solid fa-arrow-up-right-from-square"
+                    aria-hidden="true"
+                  ></i></a
                 >
               </div>
             </article>
@@ -384,14 +350,11 @@
               </p>
               <a
                 class="external-link"
-                href="https://example.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><i
+                data-preview-noop
+                >Open resource<i
                   class="fa-solid fa-arrow-up-right-from-square"
                   aria-hidden="true"
-                ></i
-                >Open resource</a
+                ></i></a
               >
             </article>
           </div>
@@ -425,14 +388,24 @@
           <div class="component-option-grid">
             <article class="panel component-example">
               <h3>Checklist and badges</h3>
+              <ul class="capability-list">
+                <li>
+                  <i class="fa-solid fa-check" aria-hidden="true"></i
+                  >Standard checklist item
+                </li>
+                <li>
+                  <i class="fa-solid fa-check" aria-hidden="true"></i
+                  >Another standard item
+                </li>
+              </ul>
               <ul class="check-list">
                 <li>
                   <i class="fa-solid fa-circle-check" aria-hidden="true"></i
-                  >Checklist item
+                  >Circled checklist item
                 </li>
                 <li>
                   <i class="fa-solid fa-circle-check" aria-hidden="true"></i
-                  >Another item
+                  >Another circled item
                 </li>
               </ul>
               <div class="component-badge-row">
@@ -455,39 +428,42 @@
             </article>
             <article class="panel component-example">
               <h3>Resource link card</h3>
-              <a class="resource-link-card" href="#forms"
+              <a class="resource-link-card" data-preview-noop
                 ><i class="fa-solid fa-book" aria-hidden="true"></i
                 ><span>Reference link with truncation support</span></a
               >
             </article>
+            <article class="panel component-example">
+              <h3>Breadcrumbs</h3>
+              <nav class="breadcrumbs" aria-label="Breadcrumb example">
+                <ol>
+                  <li>
+                    <a
+                      class="breadcrumb-label"
+                      title="Example"
+                      data-preview-noop
+                      >Example</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="breadcrumb-label"
+                      title="Components"
+                      data-preview-noop
+                      >Components</a
+                    >
+                  </li>
+                  <li aria-current="page">
+                    <span
+                      class="breadcrumb-label"
+                      title="Current item with a long label"
+                      >Current item with a long label</span
+                    >
+                  </li>
+                </ol>
+              </nav>
+            </article>
           </div>
-          <article class="panel component-example">
-            <h3>Breadcrumbs</h3>
-            <nav class="breadcrumbs" aria-label="Breadcrumb example">
-              <ol>
-                <li>
-                  <a class="breadcrumb-label" href="#buttons" title="Example"
-                    >Example</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="breadcrumb-label"
-                    href="#surfaces"
-                    title="Components"
-                    >Components</a
-                  >
-                </li>
-                <li aria-current="page">
-                  <span
-                    class="breadcrumb-label"
-                    title="Current item with a long label"
-                    >Current item with a long label</span
-                  >
-                </li>
-              </ol>
-            </nav>
-          </article>
         </div>
       </section>
 
@@ -505,10 +481,9 @@
         <div class="component-form-grid">
           <article class="panel form-panel">
             <h3>Field options</h3>
-            <form class="form-stack" autocomplete="off">
+            <div class="form-stack">
               <label
-                ><span>Text input <span class="optional">Optional</span></span
-                ><input
+                >Text input<input
                   type="text"
                   name="example_text"
                   placeholder="Example value"
@@ -520,7 +495,6 @@
                   ><input
                     type="text"
                     name="example_icon_text"
-                    value="Example record"
                     autocomplete="off"></span
               ></label>
               <label
@@ -541,7 +515,6 @@
                     name="example_amount"
                     min="0"
                     step="0.01"
-                    value="42.00"
                     autocomplete="off"
                  ><span class="money-suffix">per unit</span></span
                 ></label
@@ -570,29 +543,31 @@
                   >Generated value</output
                 ></label
               >
-              <div class="form-actions">
-                <button class="button button-secondary" type="button">
-                  Cancel</button
-                ><button class="button button-primary" type="submit">
-                  Save
-                </button>
+              <div class="form-field">
+                <label for="component-copy-value-output"
+                  >Field with copy control</label
+                >
+                <div
+                  id="component-copy-value"
+                  class="copy-value"
+                  data-copy-value="example-copy-value"
+                >
+                  <output
+                    id="component-copy-value-output"
+                    class="copy-value-text"
+                    >example-copy-value</output
+                  ><button
+                    class="icon-button"
+                    type="button"
+                    data-copy-target="#component-copy-value"
+                    title="Copy example value"
+                    aria-label="Copy example value"
+                  >
+                    <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                  </button>
+                </div>
               </div>
-            </form>
-            <form class="inline-form" autocomplete="off">
-              <input
-                type="text"
-                name="example_new_item"
-                placeholder="New item"
-                aria-label="New item"
-                required
-             ><button
-                class="icon-button accent"
-                type="submit"
-                aria-label="Add item"
-              >
-                <i class="fa-solid fa-plus" aria-hidden="true"></i>
-              </button>
-            </form>
+            </div>
           </article>
           <article class="panel form-panel">
             <h3>Verification code</h3>
@@ -603,66 +578,64 @@
                   >One-time code
                 </legend>
                 <div class="verification-code-fields" data-verification-code>
-                  <input
-                    type="text"
-                    name="code_digit_1"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="6"
-                    autocomplete="one-time-code"
-                    aria-label="One-time code digit 1"
-                    value="1"
-                 >
-                  <input
-                    type="text"
-                    name="code_digit_2"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="One-time code digit 2"
-                    value="2"
-                 >
-                  <input
-                    type="text"
-                    name="code_digit_3"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="One-time code digit 3"
-                    value="3"
-                 >
-                  <input
-                    type="text"
-                    name="code_digit_4"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="One-time code digit 4"
-                    value="4"
-                 >
-                  <input
-                    type="text"
-                    name="code_digit_5"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="One-time code digit 5"
-                    value="5"
-                 >
-                  <input
-                    type="text"
-                    name="code_digit_6"
-                    inputmode="numeric"
-                    pattern="[0-9]*"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="One-time code digit 6"
-                    value="6"
-                 >
+                  <div class="verification-code-group">
+                    <input
+                      type="text"
+                      name="code_digit_1"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="6"
+                      autocomplete="one-time-code"
+                      aria-label="One-time code digit 1"
+                   >
+                    <input
+                      type="text"
+                      name="code_digit_2"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      autocomplete="off"
+                      aria-label="One-time code digit 2"
+                   >
+                    <input
+                      type="text"
+                      name="code_digit_3"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      autocomplete="off"
+                      aria-label="One-time code digit 3"
+                   >
+                  </div>
+                  <div class="verification-code-group">
+                    <input
+                      type="text"
+                      name="code_digit_4"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      autocomplete="off"
+                      aria-label="One-time code digit 4"
+                   >
+                    <input
+                      type="text"
+                      name="code_digit_5"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      autocomplete="off"
+                      aria-label="One-time code digit 5"
+                   >
+                    <input
+                      type="text"
+                      name="code_digit_6"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      autocomplete="off"
+                      aria-label="One-time code digit 6"
+                   >
+                  </div>
                 </div>
               </fieldset>
               <p class="muted">
@@ -682,17 +655,6 @@
                 ></textarea
                 ><small class="field-help"
                   >Help text explains format or purpose.</small
-                ></label
-              >
-              <label
-                >Reference value<input
-                  type="text"
-                  name="example_invalid"
-                  value="Invalid example"
-                  aria-invalid="true"
-                  aria-describedby="example-field-error"
-               ><small class="field-error" id="example-field-error"
-                  >Error text explains how to correct the value.</small
                 ></label
               >
               <label
@@ -801,82 +763,187 @@
                   </p>
                 </div>
               </details>
+              <details class="disclosure">
+                <summary>
+                  <span class="disclosure-label"
+                    ><i
+                      class="fa-solid fa-circle-info"
+                      aria-hidden="true"
+                    ></i
+                    >Disclosure with icon</span
+                  >
+                </summary>
+                <div class="disclosure-content">
+                  <p class="muted">
+                    Icons may reinforce the disclosure label without replacing
+                    its text.
+                  </p>
+                </div>
+              </details>
             </div>
           </article>
           <article class="panel form-panel">
-            <h3>File, range, and datalist</h3>
+            <h3>File and range</h3>
             <div class="form-stack">
-              <label>File input<input type="file" name="example_file"></label>
+              <div class="form-field">
+                <label for="example-file">File input</label>
+                <div class="file-control">
+                  <input
+                    class="file-control-input"
+                    id="example-file"
+                    type="file"
+                    name="example_file"
+                    data-file-input
+                 ><label
+                    class="icon-button accent file-control-button"
+                    for="example-file"
+                    title="Choose file"
+                    aria-label="Choose file"
+                    ><i class="fa-solid fa-paperclip" aria-hidden="true"></i
+                  ></label>
+                  <span class="file-control-name" data-file-name
+                    >No file selected</span
+                  >
+                </div>
+              </div>
               <div class="form-field">
                 <label for="example-range">Range input</label
-                ><input
-                  id="example-range"
-                  type="range"
-                  name="example_range"
-                  min="0"
-                  max="100"
-                  value="60"
-               ><output for="example-range">60%</output>
+                ><div class="control-with-output" data-range-percentage>
+                  <input
+                    id="example-range"
+                    type="range"
+                    name="example_range"
+                    min="0"
+                    max="100"
+                    value="60"
+                 ><output for="example-range">60%</output>
+                </div>
               </div>
-              <label
-                >Input with datalist<input
-                  type="text"
-                  name="example_datalist"
-                  list="example-options"
-                  placeholder="Choose or type a value"><datalist
-                  id="example-options"
-                >
-                  <option value="First option"></option>
-                  <option value="Second option"></option>
-                  <option value="Third option"></option></datalist
-              ></label>
             </div>
           </article>
           <article class="panel form-panel">
-            <h3>Progress, meter, and dialog</h3>
+            <h3>Progress bars</h3>
             <div class="form-stack">
-              <label
-                >Progress<progress
-                  class="progress-control"
-                  max="100"
-                  value="64"
+              <div class="form-field">
+                <label for="example-progress-accent">Accent progress</label>
+                <div class="control-with-output">
+                  <progress
+                    class="progress-control"
+                    id="example-progress-accent"
+                    max="100"
+                    value="25"
+                  >
+                    25%
+                  </progress>
+                  <output for="example-progress-accent">25%</output>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="example-progress-success">Success progress</label>
+                <div class="control-with-output">
+                  <progress
+                    class="progress-control progress-success"
+                    id="example-progress-success"
+                    max="100"
+                    value="50"
+                  >
+                    50%
+                  </progress>
+                  <output for="example-progress-success">50%</output>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="example-progress-warning">Warning progress</label>
+                <div class="control-with-output">
+                  <progress
+                    class="progress-control progress-warning"
+                    id="example-progress-warning"
+                    max="100"
+                    value="75"
+                  >
+                    75%
+                  </progress>
+                  <output for="example-progress-warning">75%</output>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="example-progress-danger">Danger progress</label>
+                <div class="control-with-output">
+                  <progress
+                    class="progress-control progress-danger"
+                    id="example-progress-danger"
+                    max="100"
+                    value="90"
+                  >
+                    90%
+                  </progress>
+                  <output for="example-progress-danger">90%</output>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="panel form-panel">
+            <h3>Dialogs</h3>
+            <div class="form-stack">
+              <div class="component-inline-row">
+                <button
+                  class="button button-primary"
+                  type="button"
+                  data-dialog-open="#component-modal-dialog"
+                  data-dialog-mode="modal"
                 >
-                  64%
-                </progress></label
-              >
-              <label
-                >Meter<meter
-                  class="meter-control"
-                  min="0"
-                  max="100"
-                  low="35"
-                  high="75"
-                  optimum="90"
-                  value="82"
+                  Open modal dialog
+                </button>
+                <button
+                  class="button button-secondary"
+                  type="button"
+                  data-dialog-open="#component-nonmodal-dialog"
+                  data-dialog-mode="nonmodal"
                 >
-                  82%
-                </meter></label
-              >
-              <button
-                class="button button-primary"
-                type="button"
-                data-dialog-open="#component-dialog"
-              >
-                Open dialog
-              </button>
+                  Open non-modal dialog
+                </button>
+              </div>
             </div>
             <dialog
               class="dialog"
-              id="component-dialog"
-              aria-labelledby="component-dialog-title"
+              id="component-modal-dialog"
+              aria-labelledby="component-modal-dialog-title"
+              closedby="none"
             >
               <form class="dialog-content" method="dialog">
                 <div>
                   <p class="eyebrow">DIALOG</p>
-                  <h3 id="component-dialog-title">Confirm action</h3>
-                  <p class="muted">
-                    A native modal dialog traps focus and closes with Escape.
-                  </p>
+                  <h3 id="component-modal-dialog-title">Confirm action</h3>
+                  <p class="muted">Review the details before confirming.</p>
+                </div>
+                <div class="form-actions">
+                  <button
+                    class="button button-secondary"
+                    type="submit"
+                    value="cancel"
+                  >
+                    Cancel</button
+                  ><button
+                    class="button button-primary"
+                    type="submit"
+                    value="confirm"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </form>
+            </dialog>
+            <dialog
+              class="dialog dialog-nonmodal"
+              id="component-nonmodal-dialog"
+              aria-labelledby="component-nonmodal-dialog-title"
+              closedby="none"
+            >
+              <form class="dialog-content" method="dialog">
+                <div>
+                  <p class="eyebrow">DIALOG</p>
+                  <h3 id="component-nonmodal-dialog-title">Confirm action</h3>
+                  <p class="muted">Review the details before confirming.</p>
                 </div>
                 <div class="form-actions">
                   <button
@@ -901,13 +968,66 @@
 
       <section
         class="component-section"
+        id="form-validation"
+        aria-labelledby="form-validation-title"
+      >
+        <div class="component-section-heading">
+          <p class="eyebrow">FORM VALIDATION</p>
+          <h2 id="form-validation-title">Native constraint validation</h2>
+        </div>
+        <article class="panel form-panel">
+          <form class="form-stack">
+            <label
+              >Required text input<input
+                type="text"
+                name="validation_required_text"
+                autocomplete="off"
+                required
+           ></label>
+            <label
+              >Optional email input<input
+                type="email"
+                name="validation_optional_email"
+                autocomplete="off"
+           ></label>
+            <label
+              >Required selection<span class="select-control"
+                ><select
+                  name="validation_required_select"
+                  autocomplete="off"
+                  required
+                >
+                  <option value="">Choose an option</option>
+                  <option value="first">First option</option>
+                  <option value="second">Second option</option></select
+                ><i
+                  class="fa-solid fa-chevron-down"
+                  aria-hidden="true"
+                ></i></span
+              ></label
+            >
+            <div class="form-actions">
+              <button
+                class="button button-primary"
+                type="submit"
+                data-validate-form
+              >
+                Validate Form
+              </button>
+            </div>
+          </form>
+        </article>
+      </section>
+
+      <section
+        class="component-section"
         id="status"
         aria-labelledby="status-title"
       >
         <div class="component-section-heading">
           <p class="eyebrow">STATUS &amp; FEEDBACK</p>
           <h2 id="status-title">
-            Pills, alerts, live state, summaries, and empty state
+            Pills, alerts, notifications, live state, and summaries
           </h2>
         </div>
         <div class="component-example-stack">
@@ -925,10 +1045,14 @@
             </div>
           </article>
           <div class="alert-stack component-state-grid">
-            <div class="alert alert-info" role="status">
-              Information message
+            <div class="alert alert-info alert-with-icon" role="status">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i
+              >Information message
             </div>
-            <div class="alert alert-success" role="status">Success message</div>
+            <div class="alert alert-success alert-with-icon" role="status">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i
+              >Success message
+            </div>
             <div class="alert alert-warning alert-with-icon" role="status">
               <i
                 class="fa-solid fa-triangle-exclamation"
@@ -936,8 +1060,64 @@
               ></i
               >Warning message
             </div>
-            <div class="alert alert-error" role="alert">Error message</div>
+            <div class="alert alert-error alert-with-icon" role="alert">
+              <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>Error
+              message
+            </div>
           </div>
+          <article class="panel component-example">
+            <h3>Full-width notification</h3>
+            <div
+              class="notification-launcher"
+              data-notification-launcher
+            >
+              <label
+                >Notification type<span class="select-control"
+                  ><select data-notification-tone>
+                    <option
+                      value="info"
+                      data-notification-message="Information notification"
+                    >
+                      Information
+                    </option>
+                    <option
+                      value="success"
+                      data-notification-message="Success notification"
+                    >
+                      Success
+                    </option>
+                    <option
+                      value="warning"
+                      data-notification-message="Warning notification"
+                    >
+                      Warning
+                    </option>
+                    <option
+                      value="error"
+                      data-notification-message="Error notification"
+                    >
+                      Error
+                    </option></select
+                  ><i
+                    class="fa-solid fa-chevron-down"
+                    aria-hidden="true"
+                  ></i></span
+              ></label>
+              <button
+                class="button button-primary"
+                type="button"
+                data-notification-trigger
+                data-notification-target="#component-notification-region"
+              >
+                Show notification
+              </button>
+            </div>
+          </article>
+          <div
+            class="notification-region"
+            id="component-notification-region"
+            aria-live="polite"
+          ></div>
           <article class="panel component-example">
             <h3>Live state options</h3>
             <div class="component-inline-row">
@@ -967,37 +1147,6 @@
               <span>Third value</span><strong>42</strong>
             </div>
           </section>
-          <div class="component-option-grid">
-            <article class="panel empty-state">
-              <i class="fa-solid fa-inbox" aria-hidden="true"></i>
-              <h3>No items</h3>
-              <p class="muted">
-                Explain what is missing and identify the next useful action.
-              </p>
-              <button class="button button-primary" type="button">
-                Create item
-              </button>
-            </article>
-            <article class="panel component-example">
-              <h3>Copyable sensitive value</h3>
-              <div
-                id="component-copy-value"
-                class="secret-value copy-value"
-                data-copy-value="example-copy-value"
-              >
-                <span class="copy-value-text">example-copy-value</span
-                ><button
-                  class="icon-button"
-                  type="button"
-                  data-copy-target="#component-copy-value"
-                  title="Copy example value"
-                  aria-label="Copy example value"
-                >
-                  <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                </button>
-              </div>
-            </article>
-          </div>
         </div>
       </section>
 
@@ -1011,14 +1160,14 @@
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">TABLE</p>
-                <h3>Example records</h3>
+                <h3>Table with data</h3>
               </div>
               <span class="status-pill status-neutral">3 items</span>
             </div>
             <div class="table-container">
               <table class="data-table responsive-table">
                 <caption class="visually-hidden">
-                  Example records
+                  Table with data
                 </caption>
                 <thead>
                   <tr>
@@ -1119,6 +1268,12 @@
               >
             </nav>
             <div class="component-empty-table">
+              <div class="panel-heading">
+                <div>
+                  <h3>Empty table preview</h3>
+                </div>
+                <span class="status-pill status-neutral">0 items</span>
+              </div>
               <div class="table-container">
                 <table class="data-table responsive-table">
                   <caption class="visually-hidden">
@@ -1165,32 +1320,14 @@
                   ><strong>Parent item</strong>
                 </div>
                 <div class="row-actions">
-                  <details class="inline-edit-control">
-                    <summary
-                      class="icon-button"
-                      title="Edit parent item"
-                      aria-label="Edit parent item"
-                    >
-                      <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                    </summary>
-                    <div class="inline-edit-popover">
-                      <label
-                        >Parent name<input
-                          type="text"
-                          value="Parent item"
-                          autocomplete="off"></label
-                      ><button
-                        class="icon-button accent"
-                        type="button"
-                        aria-label="Save parent item"
-                      >
-                        <i
-                          class="fa-solid fa-floppy-disk"
-                          aria-hidden="true"
-                        ></i>
-                      </button>
-                    </div>
-                  </details>
+                  <button
+                    class="icon-button"
+                    type="button"
+                    title="Edit parent item"
+                    aria-label="Edit parent item"
+                  >
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
                 </div>
               </div>
               <div class="hierarchy-children">
@@ -1208,32 +1345,56 @@
                     <span>Child item</span>
                   </div>
                   <div class="row-actions">
-                    <details class="inline-edit-control">
-                      <summary
-                        class="icon-button"
-                        title="Edit child item"
-                        aria-label="Edit child item"
-                      >
-                        <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                      </summary>
-                      <div class="inline-edit-popover">
-                        <label
-                          >Child name<input
-                            type="text"
-                            value="Child item"
-                            autocomplete="off"></label
-                        ><button
-                          class="icon-button accent"
-                          type="button"
-                          aria-label="Save child item"
-                        >
-                          <i
-                            class="fa-solid fa-floppy-disk"
-                            aria-hidden="true"
-                          ></i>
-                        </button>
-                      </div>
-                    </details>
+                    <button
+                      class="icon-button"
+                      type="button"
+                      title="Edit child item"
+                      aria-label="Edit child item"
+                    >
+                      <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hierarchy-item">
+              <div class="hierarchy-item-header">
+                <div class="hierarchy-item-name">
+                  <i
+                    class="fa-solid fa-layer-group hierarchy-item-icon"
+                    aria-hidden="true"
+                  ></i
+                  ><strong>Parent without child icons</strong>
+                </div>
+                <div class="row-actions">
+                  <button
+                    class="icon-button"
+                    type="button"
+                    title="Edit parent item"
+                    aria-label="Edit parent item without child icons"
+                  >
+                    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="hierarchy-children">
+                <div class="hierarchy-child">
+                  <div
+                    class="hierarchy-child-leading"
+                    aria-hidden="true"
+                  ></div>
+                  <div class="hierarchy-child-name">
+                    <span>Child item</span>
+                  </div>
+                  <div class="row-actions">
+                    <button
+                      class="icon-button"
+                      type="button"
+                      title="Edit child item"
+                      aria-label="Edit child item without leading icon"
+                    >
+                      <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1243,7 +1404,7 @@
       </section>
     </main>
 
-    <script src="../shared-components.js?v=20260830" defer></script>
+    <script src="../shared-components.js?v=20260831q" defer></script>
     <script src="../section-navigation.js?v=20260830" defer></script>
   </body>
 </html>
