@@ -9,8 +9,8 @@
       rel="stylesheet"
       href="../web/style-guide/fontawesome.min.css?v=20260830"
    >
-    <link rel="stylesheet" href="../web/shared-components.css?v=20260831">
-    <link rel="stylesheet" href="web-application.css?v=20260830">
+    <link rel="stylesheet" href="../web/shared-components.css?v=20260831o">
+    <link rel="stylesheet" href="web-application.css?v=20260901">
     <link rel="stylesheet" href="sample-application.css?v=20260830">
   </head>
   <body
@@ -20,17 +20,16 @@
   >
     <header class="app-header">
       <div class="app-header-inner">
-        <a
+        <span
           class="brand"
-          href="./index.html"
-          aria-label="Grayhaven Systems LLC sample application home"
+          data-preview-noop
         >
           <img
             src="../logo/svg/grayhaven-logo-wordmark-dark.svg"
             alt="Grayhaven Systems LLC"
          >
           <span class="brand-product">Sample Application</span>
-        </a>
+        </span>
         <nav
           class="app-nav desktop-nav"
           data-section-nav
@@ -49,14 +48,9 @@
           <a href="#resources"
             ><i class="fa-solid fa-book" aria-hidden="true"></i>Resources</a
           >
-          <a href="../web/components/index.html"
-            ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Components</a
-          >
-          <form action="./index.html" method="get">
-            <button class="nav-button" type="submit">
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Action
-            </button>
-          </form>
+          <button class="nav-button" type="button">
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Action
+          </button>
         </nav>
         <details class="mobile-nav" data-mobile-nav>
           <summary
@@ -83,22 +77,20 @@
             <a href="#resources"
               ><i class="fa-solid fa-book" aria-hidden="true"></i>Resources</a
             >
-            <a href="../web/components/index.html"
-              ><i class="fa-solid fa-cubes" aria-hidden="true"></i>Components</a
-            >
-            <form action="./index.html" method="get">
-              <button class="nav-button" type="submit">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
-                >Action
-              </button>
-            </form>
+            <button class="nav-button" type="button">
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+              >Action
+            </button>
           </nav>
         </details>
       </div>
       <nav class="breadcrumbs app-breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li>
-            <a class="breadcrumb-label" href="./index.html" title="Example"
+            <a
+              class="breadcrumb-label"
+              title="Example"
+              data-preview-noop
               >Example</a
             >
           </li>
@@ -125,7 +117,7 @@
                 only this middle viewport scrolls.
               </p>
             </div>
-            <a class="button button-primary" href="#records"
+            <a class="button button-primary" data-preview-noop
               ><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>View
               records</a
             >
@@ -308,7 +300,7 @@
             </div>
           </div>
           <article class="panel form-panel sample-app-form">
-            <form class="form-stack" autocomplete="off">
+            <div class="form-stack">
               <div class="form-field">
                 <label for="sample-display-name">Display name</label
                 ><input
@@ -337,14 +329,14 @@
                 ><span>Enable status updates</span></label
               >
               <div class="form-actions">
-                <button class="button button-secondary" type="reset">
+                <button class="button button-secondary" type="button">
                   Cancel</button
-                ><button class="button button-success" type="submit">
+                ><button class="button button-success" type="button">
                   <i class="fa-solid fa-check" aria-hidden="true"></i>Save
                   preferences
                 </button>
               </div>
-            </form>
+            </div>
           </article>
         </section>
 
@@ -388,10 +380,12 @@
     </main>
 
     <footer class="app-footer">
-      <strong class="app-footer-label">EXAMPLE</strong
-      ><span>Sample application footer</span>
+      <div class="app-footer-inner">
+        <strong class="app-footer-label">EXAMPLE</strong
+        ><span>Sample application footer</span>
+      </div>
     </footer>
-    <script src="../web/shared-components.js?v=20260830" defer></script>
+    <script src="../web/shared-components.js?v=20260831q" defer></script>
     <script src="../web/section-navigation.js?v=20260830" defer></script>
   </body>
 </html>

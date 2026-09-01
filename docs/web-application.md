@@ -118,8 +118,10 @@ hierarchy unchanged: `app-body` → header → scrolling `app-viewport` → foot
   </main>
 
   <footer class="app-footer">
-    <strong class="app-footer-label">EXAMPLE</strong>
-    <span>Build 1.0.0</span>
+    <div class="app-footer-inner">
+      <strong class="app-footer-label">EXAMPLE</strong>
+      <span>Build 1.0.0</span>
+    </div>
   </footer>
 </body>
 ```
@@ -391,8 +393,16 @@ h2 {
 }
 
 .app-footer {
-  display: flex;
   flex: 0 0 auto;
+  color: var(--slate-grey);
+  border-top: 1px solid
+    color-mix(in srgb, var(--charcoal-border) 60%, transparent);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.app-footer-inner {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -402,11 +412,6 @@ h2 {
   );
   margin: 0 auto;
   padding: 1.2rem 0 2.5rem;
-  color: var(--slate-grey);
-  border-top: 1px solid
-    color-mix(in srgb, var(--charcoal-border) 60%, transparent);
-  font-size: 0.78rem;
-  white-space: nowrap;
 }
 
 .app-footer-label {
@@ -497,7 +502,7 @@ h2 {
 
   .app-header-inner,
   .page-shell,
-  .app-footer {
+  .app-footer-inner {
     max-width: 1760px;
   }
 
@@ -513,6 +518,8 @@ h2 {
 - `.app-viewport` is the only vertical scroll container.
 - The header and footer remain visible at every scroll position.
 - The footer bottom equals the visual viewport bottom.
+- `.app-footer` draws a full-width top divider while `.app-footer-inner` keeps
+  footer content aligned with the constrained application shell.
 - Content may not escape behind the footer or create a second scrollbar.
 
 ## Navigation enhancement

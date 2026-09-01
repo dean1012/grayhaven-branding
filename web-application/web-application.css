@@ -253,8 +253,16 @@ h2 {
 }
 
 .app-footer {
-  display: flex;
   flex: 0 0 auto;
+  color: var(--slate-grey);
+  border-top: 1px solid
+    color-mix(in srgb, var(--charcoal-border) 60%, transparent);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.app-footer-inner {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -264,11 +272,6 @@ h2 {
   );
   margin: 0 auto;
   padding: 1.2rem 0 2.5rem;
-  color: var(--slate-grey);
-  border-top: 1px solid
-    color-mix(in srgb, var(--charcoal-border) 60%, transparent);
-  font-size: 0.78rem;
-  white-space: nowrap;
 }
 
 .app-footer-label {
@@ -359,7 +362,7 @@ h2 {
 
   .app-header-inner,
   .page-shell,
-  .app-footer {
+  .app-footer-inner {
     max-width: 1760px;
   }
 
