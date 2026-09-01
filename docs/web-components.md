@@ -136,7 +136,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   border-color: var(--primary-accent);
 }
 
-.button-primary:hover {
+.button-primary:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--deep-graphite);
   background: var(--elevated-hover);
   border-color: var(--elevated-hover);
@@ -147,7 +147,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   background: color-mix(in srgb, var(--deep-graphite) 34%, transparent);
 }
 
-.button-secondary:hover {
+.button-secondary:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--soft-white);
   background: var(--light-surface-accent);
   border-color: var(--primary-accent);
@@ -159,7 +159,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   border-color: var(--muted-emerald);
 }
 
-.button-success:hover {
+.button-success:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--deep-graphite);
   background: var(--alert-success);
   border-color: var(--alert-success);
@@ -171,7 +171,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   border-color: var(--alert-error);
 }
 
-.button-danger:hover {
+.button-danger:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--soft-white);
   background: color-mix(in srgb, var(--alert-error) 82%, var(--soft-white));
   border-color: color-mix(in srgb, var(--alert-error) 82%, var(--soft-white));
@@ -183,7 +183,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   border-color: color-mix(in srgb, var(--alert-error) 60%, transparent);
 }
 
-.button-stop:hover {
+.button-stop:not(:disabled):not([aria-disabled="true"]):hover {
   background: color-mix(in srgb, var(--alert-error) 25%, transparent);
   border-color: var(--alert-error);
 }
@@ -227,7 +227,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   vertical-align: middle;
 }
 
-.icon-button:hover {
+.icon-button:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--primary-accent);
   background: color-mix(in srgb, var(--primary-accent) 10%, transparent);
   border-color: var(--charcoal-border);
@@ -241,7 +241,7 @@ optional `.button-icon`. Icon-only controls require an `aria-label`.
   color: var(--alert-error);
 }
 
-.icon-button.danger:hover {
+.icon-button.danger:not(:disabled):not([aria-disabled="true"]):hover {
   color: var(--alert-error);
 }
 ```
