@@ -107,7 +107,9 @@ This example uses the success option:
 <button class="button button-success" type="button">Confirm</button>
 ```
 
-The following CSS defines every supported color and its hover state:
+The following CSS defines every supported color and its hover state. Hover
+changes stay intentionally faint: each intent receives a ten-percent tint
+adjustment rather than a pronounced replacement fill.
 
 ```css
 .button-primary {
@@ -118,8 +120,16 @@ The following CSS defines every supported color and its hover state:
 
 .button-primary:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--deep-graphite);
-  background: var(--elevated-hover);
-  border-color: var(--elevated-hover);
+  background: color-mix(
+    in srgb,
+    var(--soft-white) 10%,
+    var(--primary-accent)
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--soft-white) 10%,
+    var(--primary-accent)
+  );
 }
 
 .button-secondary {
@@ -129,7 +139,7 @@ The following CSS defines every supported color and its hover state:
 
 .button-secondary:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--soft-white);
-  background: var(--light-surface-accent);
+  background: color-mix(in srgb, var(--primary-accent) 10%, transparent);
   border-color: var(--primary-accent);
 }
 
@@ -141,8 +151,16 @@ The following CSS defines every supported color and its hover state:
 
 .button-success:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--deep-graphite);
-  background: var(--alert-success);
-  border-color: var(--alert-success);
+  background: color-mix(
+    in srgb,
+    var(--soft-white) 10%,
+    var(--muted-emerald)
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--soft-white) 10%,
+    var(--muted-emerald)
+  );
 }
 
 .button-danger {
@@ -153,8 +171,16 @@ The following CSS defines every supported color and its hover state:
 
 .button-danger:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--soft-white);
-  background: color-mix(in srgb, var(--alert-error) 70%, var(--deep-graphite));
-  border-color: color-mix(in srgb, var(--alert-error) 70%, var(--deep-graphite));
+  background: color-mix(
+    in srgb,
+    var(--deep-graphite) 10%,
+    color-mix(in srgb, var(--alert-error) 82%, var(--deep-graphite))
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--deep-graphite) 10%,
+    color-mix(in srgb, var(--alert-error) 82%, var(--deep-graphite))
+  );
 }
 
 .button-stop {
@@ -164,7 +190,11 @@ The following CSS defines every supported color and its hover state:
 }
 
 .button-stop:not(:disabled, [aria-disabled="true"]):hover {
-  background: color-mix(in srgb, var(--alert-error) 25%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--alert-error) 10%,
+    color-mix(in srgb, var(--alert-error) 14%, transparent)
+  );
   border-color: var(--alert-error);
 }
 ```
