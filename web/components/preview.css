@@ -223,8 +223,7 @@ body {
 }
 
 .component-link-row {
-  column-gap: var(--space-lg);
-  row-gap: var(--space-sm);
+  gap: var(--space-sm) var(--space-lg);
 }
 
 .component-form-grid,
@@ -260,6 +259,9 @@ html:not(.js-enabled) body:has(#surfaces:target)
 html:not(.js-enabled) body:has(#forms:target)
   :is(.component-preview-nav, .component-preview-mobile-nav)
   a[href="#forms"],
+html:not(.js-enabled) body:has(#form-validation:target)
+  :is(.component-preview-nav, .component-preview-mobile-nav)
+  a[href="#form-validation"],
 html:not(.js-enabled) body:has(#status:target)
   :is(.component-preview-nav, .component-preview-mobile-nav)
   a[href="#status"],

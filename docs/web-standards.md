@@ -69,8 +69,8 @@ Use the following token families:
   `--cool-grey`, `--primary-accent`, `--standard-hover`, `--elevated-hover`,
   `--light-surface-accent`, `--pale-steel`, `--muted-deep-accent`,
   `--charcoal-border`, `--dark-logo-charcoal`, and `--muted-emerald`.
-- Alerts: `--alert-info`, `--alert-success`, `--alert-warning`, and
-  `--alert-error`.
+- Alerts: `--alert-info`, `--alert-success`, `--alert-warning`,
+  `--alert-error`, and the accessible text token `--alert-error-foreground`.
 - Typography: `--font-primary` and the 300–800 font-weight tokens.
 - Spacing: `--space-xs` through `--space-3xl`.
 - Components: border radii, transitions, panels, and container tokens.
@@ -115,7 +115,9 @@ serve as decoration.
 - Keep all styling in linked stylesheets. Do not use `<style>` elements,
   `style` attributes, or SVG presentation attributes in HTML.
 - Avoid unnecessary specificity, IDs for styling, and `!important`.
-- Use `:focus-visible` with a visible accent-colored outline.
+- Use `:focus-visible` with a visible accent-colored outline on non-field
+  controls. Editable fields and compound field wrappers use the canonical
+  border-only focus treatment in [Web Components](web-components.md).
 - Keep hover states restrained and provide equivalent keyboard focus states.
 - Use modern color syntax consistently with the production stylesheet.
 - Keep responsive behavior explicit at the documented breakpoints.

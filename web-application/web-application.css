@@ -254,7 +254,7 @@ h2 {
 
 .app-footer {
   flex: 0 0 auto;
-  color: var(--slate-grey);
+  color: var(--cool-grey);
   border-top: 1px solid
     color-mix(in srgb, var(--charcoal-border) 60%, transparent);
   font-size: 0.78rem;

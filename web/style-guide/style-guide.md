@@ -78,7 +78,11 @@ do not apply the web-application fixed viewport shell.
         </nav>
       </details>
 
-      <a class="button button-secondary navbar-contact" href="/contact">
+      <a
+        class="button button-secondary navbar-contact"
+        href="/contact"
+        aria-label="Contact Grayhaven Systems LLC"
+      >
         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
         <span>Contact</span>
       </a>
@@ -557,7 +561,7 @@ h6 {
 }
 
 .site-footer-copyright {
-  color: var(--slate-grey);
+  color: var(--cool-grey);
   font-size: 0.8rem;
   text-align: center;
 }

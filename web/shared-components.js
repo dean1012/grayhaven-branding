@@ -273,11 +273,10 @@
     }
   );
 
-  document.querySelectorAll('[data-validate-form]').forEach(function (button) {
-    button.addEventListener('click', function (event) {
+  document.querySelectorAll('form[data-validate-form]').forEach(function (form) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault();
-      const form = button.closest('form');
-      if (form instanceof HTMLFormElement) form.reportValidity();
+      form.reportValidity();
     });
   });
 

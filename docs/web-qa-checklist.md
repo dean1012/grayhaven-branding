@@ -50,8 +50,12 @@ manual review aid for human or AI-assisted work; it is not a CI requirement.
 ## Accessibility
 
 - [ ] Navigate the page using only the keyboard.
-- [ ] Confirm every focused field and compound field wrapper changes only its
-      existing one-pixel border to Primary Accent.
+- [ ] Confirm every focused editable text-like field, select, textarea, and
+      compound field wrapper changes only its existing one-pixel border to
+      Primary Accent.
+- [ ] Confirm read-only fields retain their resting border and use the
+      documented outline; file, choice, and switch controls retain their
+      documented control-specific focus treatment.
 - [ ] Confirm links, buttons, icon controls, and other non-field controls retain
       their existing visible `:focus-visible` treatment.
 - [ ] Confirm icon-only controls have accessible names.

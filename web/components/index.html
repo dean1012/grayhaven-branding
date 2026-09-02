@@ -9,8 +9,8 @@
       rel="stylesheet"
       href="../style-guide/fontawesome.min.css?v=20260830"
    >
-    <link rel="stylesheet" href="../shared-components.css?v=20260831o">
-    <link rel="stylesheet" href="preview.css?v=20260831b">
+    <link rel="stylesheet" href="../shared-components.css?v=20260902a">
+    <link rel="stylesheet" href="preview.css?v=20260902a">
   </head>
   <body data-section-default="buttons">
     <header class="component-preview-header">
@@ -230,6 +230,14 @@
                 >
                   <i class="fa-solid fa-trash" aria-hidden="true"></i>
                 </button>
+                <button
+                  class="icon-button"
+                  type="button"
+                  aria-label="Unavailable control"
+                  disabled
+                >
+                  <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                </button>
               </div>
             </article>
             <article
@@ -313,7 +321,7 @@
                 Use the standard option for a concise summary, supporting list,
                 and actions.
               </p>
-              <ul class="capability-list">
+              <ul class="check-list-quiet">
                 <li>
                   <i class="fa-solid fa-check" aria-hidden="true"></i>First
                   capability
@@ -388,7 +396,7 @@
           <div class="component-option-grid">
             <article class="panel component-example">
               <h3>Checklist and badges</h3>
-              <ul class="capability-list">
+              <ul class="check-list-quiet">
                 <li>
                   <i class="fa-solid fa-check" aria-hidden="true"></i
                   >Standard checklist item
@@ -647,28 +655,63 @@
           <article class="panel form-panel">
             <h3>Textarea and field messages</h3>
             <div class="form-stack">
-              <label
-                >Notes<textarea
+              <div class="form-field">
+                <label for="example-notes">Notes</label>
+                <textarea
+                  id="example-notes"
                   name="example_notes"
                   rows="4"
                   placeholder="Add an optional note"
-                ></textarea
-                ><small class="field-help"
+                  aria-describedby="example-notes-help"
+                ></textarea>
+                <small class="field-help" id="example-notes-help"
                   >Help text explains format or purpose.</small
-                ></label
-              >
+                >
+              </div>
               <label
                 >Read-only input<input
                   type="text"
                   value="Read-only value"
                   readonly
              ></label>
+              <div class="form-field">
+                <label for="example-error">Input with error</label>
+                <input
+                  id="example-error"
+                  type="text"
+                  name="example_error"
+                  aria-invalid="true"
+                  aria-describedby="example-error-message"
+               >
+                <small class="field-error" id="example-error-message"
+                  >Enter a valid value.</small
+                >
+              </div>
               <label
                 >Disabled input<input
                   type="text"
                   value="Disabled value"
                   disabled
              ></label>
+              <div class="form-field">
+                <label for="example-inline-item">Inline form</label>
+                <form class="inline-form" data-preview-noop>
+                  <input
+                    id="example-inline-item"
+                    type="text"
+                    name="example_inline_item"
+                    placeholder="New item"
+                    aria-label="New item"
+                    required
+                 ><button
+                    class="icon-button accent"
+                    type="submit"
+                    aria-label="Add item"
+                  >
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                  </button>
+                </form>
+              </div>
             </div>
           </article>
           <article class="panel form-panel">
@@ -739,6 +782,15 @@
                   checked
                ><span class="switch-track" aria-hidden="true"></span
                 ><span>Enabled switch</span></label
+              >
+              <label class="switch-control"
+                ><input
+                  type="checkbox"
+                  name="example_switch_disabled"
+                  role="switch"
+                  disabled
+               ><span class="switch-track" aria-hidden="true"></span
+                ><span>Disabled switch</span></label
               >
             </div>
           </article>
@@ -976,7 +1028,7 @@
           <h2 id="form-validation-title">Native constraint validation</h2>
         </div>
         <article class="panel form-panel">
-          <form class="form-stack">
+          <form class="form-stack" data-validate-form>
             <label
               >Required text input<input
                 type="text"
@@ -1010,7 +1062,6 @@
               <button
                 class="button button-primary"
                 type="submit"
-                data-validate-form
               >
                 Validate Form
               </button>
@@ -1121,13 +1172,16 @@
           <article class="panel component-example">
             <h3>Live state options</h3>
             <div class="component-inline-row">
-              <span class="live-status" data-state="live"
+              <span class="live-status" data-state="live" aria-live="polite"
                 ><span class="running-dot" aria-hidden="true"></span
                 ><span class="live-label">Live</span></span
-              ><span class="live-status" data-state="reconnecting"
+              ><span
+                class="live-status"
+                data-state="reconnecting"
+                aria-live="polite"
                 ><span class="running-dot" aria-hidden="true"></span
                 ><span class="live-label">Reconnecting</span></span
-              ><span class="live-status" data-state="ended"
+              ><span class="live-status" data-state="ended" aria-live="polite"
                 ><span class="running-dot" aria-hidden="true"></span
                 ><span class="live-label">Ended</span></span
               >
@@ -1173,6 +1227,7 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Category</th>
+                    <th class="cell-numeric" scope="col">Count</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                   </tr>
@@ -1181,6 +1236,7 @@
                   <tr>
                     <td class="cell-primary" data-label="Name">First record</td>
                     <td data-label="Category">General</td>
+                    <td class="cell-numeric" data-label="Count">3</td>
                     <td class="cell-status" data-label="Status">
                       <span class="status-pill status-success">Ready</span>
                     </td>
@@ -1210,6 +1266,7 @@
                       Second record
                     </td>
                     <td data-label="Category">Priority</td>
+                    <td class="cell-numeric" data-label="Count">12</td>
                     <td class="cell-status" data-label="Status">
                       <span class="status-pill status-warning">Review</span>
                     </td>
@@ -1228,6 +1285,7 @@
                   <tr>
                     <td class="cell-primary" data-label="Name">Third record</td>
                     <td data-label="Category">General</td>
+                    <td class="cell-numeric" data-label="Count">7</td>
                     <td class="cell-status" data-label="Status">
                       <span class="status-pill status-neutral">Draft</span>
                     </td>
@@ -1404,7 +1462,8 @@
       </section>
     </main>
 
-    <script src="../shared-components.js?v=20260831q" defer></script>
+    <script src="../shared-components.js?v=20260902a" defer></script>
+    <script src="preview.js?v=20260902a" defer></script>
     <script src="../section-navigation.js?v=20260830" defer></script>
   </body>
 </html>

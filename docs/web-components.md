@@ -116,7 +116,7 @@ The following CSS defines every supported color and its hover state:
   border-color: var(--primary-accent);
 }
 
-.button-primary:not(:disabled):not([aria-disabled="true"]):hover {
+.button-primary:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--deep-graphite);
   background: var(--elevated-hover);
   border-color: var(--elevated-hover);
@@ -127,7 +127,7 @@ The following CSS defines every supported color and its hover state:
   background: color-mix(in srgb, var(--deep-graphite) 34%, transparent);
 }
 
-.button-secondary:not(:disabled):not([aria-disabled="true"]):hover {
+.button-secondary:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--soft-white);
   background: var(--light-surface-accent);
   border-color: var(--primary-accent);
@@ -139,7 +139,7 @@ The following CSS defines every supported color and its hover state:
   border-color: var(--muted-emerald);
 }
 
-.button-success:not(:disabled):not([aria-disabled="true"]):hover {
+.button-success:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--deep-graphite);
   background: var(--alert-success);
   border-color: var(--alert-success);
@@ -147,14 +147,14 @@ The following CSS defines every supported color and its hover state:
 
 .button-danger {
   color: var(--soft-white);
-  background: var(--alert-error);
-  border-color: var(--alert-error);
+  background: color-mix(in srgb, var(--alert-error) 82%, var(--deep-graphite));
+  border-color: color-mix(in srgb, var(--alert-error) 82%, var(--deep-graphite));
 }
 
-.button-danger:not(:disabled):not([aria-disabled="true"]):hover {
+.button-danger:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--soft-white);
-  background: color-mix(in srgb, var(--alert-error) 82%, var(--soft-white));
-  border-color: color-mix(in srgb, var(--alert-error) 82%, var(--soft-white));
+  background: color-mix(in srgb, var(--alert-error) 70%, var(--deep-graphite));
+  border-color: color-mix(in srgb, var(--alert-error) 70%, var(--deep-graphite));
 }
 
 .button-stop {
@@ -163,7 +163,7 @@ The following CSS defines every supported color and its hover state:
   border-color: color-mix(in srgb, var(--alert-error) 60%, transparent);
 }
 
-.button-stop:not(:disabled):not([aria-disabled="true"]):hover {
+.button-stop:not(:disabled, [aria-disabled="true"]):hover {
   background: color-mix(in srgb, var(--alert-error) 25%, transparent);
   border-color: var(--alert-error);
 }
@@ -260,8 +260,9 @@ disabled button does not show a hand cursor or hover feedback.
 }
 ```
 
-The color hover selectors use `:not(:disabled)` and
-`:not([aria-disabled="true"])`, so disabled buttons do not react to hover.
+The color hover selectors use
+`:not(:disabled, [aria-disabled="true"])`, so disabled buttons do not react
+to hover.
 
 ### Link styled as a button
 
@@ -306,7 +307,7 @@ name and Font Awesome icon to match the action. Choose one visual option:
   vertical-align: middle;
 }
 
-.icon-button:not(:disabled):not([aria-disabled="true"]):hover {
+.icon-button:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--primary-accent);
   background: color-mix(in srgb, var(--primary-accent) 10%, transparent);
   border-color: var(--charcoal-border);
@@ -320,7 +321,7 @@ name and Font Awesome icon to match the action. Choose one visual option:
   color: var(--alert-error);
 }
 
-.icon-button.danger:not(:disabled):not([aria-disabled="true"]):hover {
+.icon-button.danger:not(:disabled, [aria-disabled="true"]):hover {
   color: var(--alert-error);
 }
 ```
@@ -437,9 +438,9 @@ Use a button when text triggers an action instead of navigating.
 
 ## Layout and accessibility utilities
 
-These low-level helpers support component composition and are demonstrated
-naturally throughout the website and application previews. They do not form a
-separate composed component in the live catalog.
+These low-level helpers support component composition. They do not form a
+separate composed component in the live catalog; the source examples below are
+the authoritative reference.
 
 ### Shared layout CSS
 
@@ -826,11 +827,11 @@ destination.
 
 ### Shared checklist CSS
 
-Both checklist options share one structure. `.capability-list` is the quieter
+Both checklist options share one structure. `.check-list-quiet` is the quieter
 option; `.check-list` uses larger, brighter items.
 
 ```css
-.capability-list,
+.check-list-quiet,
 .check-list {
   display: flex;
   flex-direction: column;
@@ -840,7 +841,7 @@ option; `.check-list` uses larger, brighter items.
   list-style: none;
 }
 
-.capability-list li,
+.check-list-quiet li,
 .check-list li {
   display: flex;
   align-items: center;
@@ -849,7 +850,7 @@ option; `.check-list` uses larger, brighter items.
   font-size: 0.85rem;
 }
 
-.capability-list li i,
+.check-list-quiet li i,
 .check-list li i {
   flex-shrink: 0;
   color: var(--muted-emerald);
@@ -873,11 +874,11 @@ option; `.check-list` uses larger, brighter items.
 
 ### Checklist
 
-Use `.capability-list` with a check icon for the quiet option. Substitute
+Use `.check-list-quiet` with a check icon for the quiet option. Substitute
 `.check-list` and `fa-circle-check` for the more prominent sibling option.
 
 ```html
-<ul class="capability-list">
+<ul class="check-list-quiet">
   <li><i class="fa-solid fa-check" aria-hidden="true"></i>First item</li>
   <li><i class="fa-solid fa-check" aria-hidden="true"></i>Second item</li>
 </ul>
@@ -952,6 +953,9 @@ Each item contains a primary label, optional supporting text, and one action.
 ### Badge
 
 Use a badge for a short category or technology label, not a sentence.
+Badges identify categories, not success or severity. Keep the category in the
+accessible text; a consumer-specific category class may remain as a nonvisual
+selection hook but must not redefine the shared badge presentation.
 
 ```html
 <span class="badge">Category</span>
@@ -1092,7 +1096,9 @@ every label so long values truncate consistently.
 
 This base covers text, email, password, number, date/time, search, URL, and
 telephone inputs, plus `select` and `textarea`. Use native input types and
-appropriate autocomplete values.
+appropriate autocomplete values. Do not copy `autocomplete="off"` onto
+credential fields; use `username`, `current-password`, `new-password`, or
+`one-time-code` as appropriate.
 
 ### Shared field CSS
 
@@ -1117,7 +1123,7 @@ select {
     input:not([type="checkbox"], [type="radio"], [readonly]),
     select,
     textarea:not([readonly])
-  ):focus-visible {
+  ):focus-visible:not(:disabled) {
   border-color: var(--primary-accent);
   outline: none;
 }
@@ -1262,7 +1268,7 @@ Use a placeholder only as an example or hint, never as the field label.
 ```css
 input::placeholder,
 textarea::placeholder {
-  color: var(--slate-grey);
+  color: var(--cool-grey);
 }
 ```
 
@@ -1272,11 +1278,32 @@ Place one concise message immediately after its field. Choose `.field-help` or
 `.field-error` according to the message state.
 
 ```html
-<label>
-  Account name
-  <input type="text" name="account_name">
-  <small class="field-help">Use the name shown on the account.</small>
-</label>
+<div class="form-field">
+  <label for="account-name">Account name</label>
+  <input
+    id="account-name"
+    type="text"
+    name="account_name"
+    aria-describedby="account-name-help"
+  >
+  <small class="field-help" id="account-name-help">
+    Use the name shown on the account.
+  </small>
+</div>
+
+<div class="form-field">
+  <label for="contact-email">Contact email</label>
+  <input
+    id="contact-email"
+    type="email"
+    name="contact_email"
+    aria-invalid="true"
+    aria-describedby="contact-email-error"
+  >
+  <small class="field-error" id="contact-email-error">
+    Enter a valid email address.
+  </small>
+</div>
 ```
 
 ```css
@@ -1297,7 +1324,7 @@ small {
 }
 
 .field-error {
-  color: var(--alert-error);
+  color: var(--alert-error-foreground);
 }
 ```
 
@@ -1454,7 +1481,7 @@ rules shown above.
 ### Validation-only form
 
 ```html
-<form class="form-stack">
+<form class="form-stack" data-validate-form>
   <label>
     Required text input
     <input type="text" name="required_text" required>
@@ -1478,7 +1505,6 @@ rules shown above.
     <button
       class="button button-primary"
       type="submit"
-      data-validate-form
     >
       Validate Form
     </button>
@@ -1489,11 +1515,10 @@ rules shown above.
 ### Validation behavior
 
 ```javascript
-document.querySelectorAll('[data-validate-form]').forEach(function (button) {
-  button.addEventListener('click', function (event) {
+document.querySelectorAll('form[data-validate-form]').forEach(function (form) {
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
-    const form = button.closest('form');
-    if (form instanceof HTMLFormElement) form.reportValidity();
+    form.reportValidity();
   });
 });
 ```
@@ -2032,7 +2057,6 @@ the selected file names.
   padding: 0;
   margin: -1px;
   border: 0;
-  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   overflow: hidden;
   white-space: nowrap;
@@ -2728,7 +2752,7 @@ Copy these shared rules once before selecting the examples below.
 }
 
 .live-status[data-state="ended"] {
-  color: var(--alert-error);
+  color: var(--alert-error-foreground);
 }
 
 .live-status[data-state="ended"] .running-dot {
@@ -2873,7 +2897,7 @@ Use `data-state="live"` for the normal green state. The same structure supports
 `reconnecting` and `ended`; update the visible label when changing state.
 
 ```html
-<span class="live-status" data-state="live">
+<span class="live-status" data-state="live" aria-live="polite">
   <span class="running-dot" aria-hidden="true"></span>
   <span class="live-label">Live</span>
 </span>
@@ -2982,6 +3006,11 @@ remains intentional.
   overflow-wrap: anywhere;
 }
 
+.data-table .cell-numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
 .table-summary,
 .pagination {
   display: flex;
@@ -3059,6 +3088,10 @@ remains intentional.
     order: -1;
   }
 
+  .responsive-table tbody > tr > .cell-numeric {
+    text-align: left;
+  }
+
   .responsive-table .cell-actions .row-actions {
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -3097,6 +3130,7 @@ remains intentional.
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Category</th>
+        <th class="cell-numeric" scope="col">Count</th>
         <th scope="col">Status</th>
         <th scope="col">Actions</th>
       </tr>
@@ -3105,6 +3139,7 @@ remains intentional.
       <tr>
         <td class="cell-primary" data-label="Name">First record</td>
         <td data-label="Category">General</td>
+        <td class="cell-numeric" data-label="Count">3</td>
         <td class="cell-status" data-label="Status">
           <span class="status-pill status-success">Ready</span>
         </td>
