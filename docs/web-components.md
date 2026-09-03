@@ -985,7 +985,8 @@ Each item contains a primary label, optional supporting text, and one action.
 Use a badge for a short category or technology label, not a sentence.
 Badges identify categories, not success or severity. Keep the category in the
 accessible text; a consumer-specific category class may remain as a nonvisual
-selection hook but must not redefine the shared badge presentation.
+selection hook but must not redefine the shared badge presentation. A badge is
+informational rather than interactive, so it retains the normal arrow cursor.
 
 ```html
 <span class="badge">Category</span>
@@ -994,6 +995,7 @@ selection hook but must not redefine the shared badge presentation.
 ```css
 .badge {
   display: inline-block;
+  cursor: default;
   padding: 0.3rem 0.75rem;
   color: var(--primary-accent);
   background: color-mix(in srgb, var(--primary-accent) 8%, transparent);
