@@ -11,6 +11,11 @@ scrolling, footer, and application breakpoints. Build page content from the
 [shared component reference](web-components.md); do not redefine buttons,
 forms, panels, tables, status, or other reusable pieces here.
 
+Use the shared [vertical component composition](web-components.md#vertical-component-composition)
+for page sections and content inside panels. The sample application's content
+arrangement is illustrative; retain the component structures and spacing rules
+when assembling a different page.
+
 ## Asset order
 
 ```html
@@ -254,24 +259,24 @@ h2 {
   margin-left: auto;
 }
 
-.app-nav a,
+.app-nav a:not(:where(.button, .icon-button)),
 .nav-button {
   color: var(--cool-grey);
   font-size: 0.9rem;
   font-weight: var(--font-weight-medium);
 }
 
-.app-nav a:hover,
-.app-nav a:focus-visible,
-.app-nav a[aria-current],
-.app-nav a.is-active,
+.app-nav a:not(:where(.button, .icon-button)):hover,
+.app-nav a:not(:where(.button, .icon-button)):focus-visible,
+.app-nav a:not(:where(.button, .icon-button))[aria-current],
+.app-nav a:not(:where(.button, .icon-button)).is-active,
 .nav-button:hover,
 .nav-button:focus-visible {
   color: var(--primary-accent);
 }
 
-.app-nav a,
-.mobile-nav-links a,
+.app-nav a:not(:where(.button, .icon-button)),
+.mobile-nav-links a:not(:where(.button, .icon-button)),
 .nav-button {
   display: inline-flex;
   align-items: center;
@@ -345,7 +350,7 @@ h2 {
   box-shadow: var(--panel-shadow);
 }
 
-.mobile-nav-links a,
+.mobile-nav-links a:not(:where(.button, .icon-button)),
 .mobile-nav-links .nav-button {
   display: flex;
   align-items: center;
@@ -358,10 +363,10 @@ h2 {
   border-radius: var(--border-radius-sm);
 }
 
-.mobile-nav-links a:hover,
-.mobile-nav-links a:focus-visible,
-.mobile-nav-links a[aria-current],
-.mobile-nav-links a.is-active,
+.mobile-nav-links a:not(:where(.button, .icon-button)):hover,
+.mobile-nav-links a:not(:where(.button, .icon-button)):focus-visible,
+.mobile-nav-links a:not(:where(.button, .icon-button))[aria-current],
+.mobile-nav-links a:not(:where(.button, .icon-button)).is-active,
 .mobile-nav-links .nav-button:hover,
 .mobile-nav-links .nav-button:focus-visible {
   color: var(--primary-accent);
@@ -475,7 +480,7 @@ h2 {
     gap: 0.85rem;
   }
 
-  .app-nav a,
+  .app-nav a:not(:where(.button, .icon-button)),
   .nav-button {
     font-size: 0.8rem;
   }

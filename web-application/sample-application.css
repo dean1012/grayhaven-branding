@@ -26,6 +26,11 @@
   margin-bottom: var(--space-md);
 }
 
+.sample-app-grid
+  > :is(.panel, .content-card, .alert, .alert-stack, .disclosure, .summary-grid) {
+  margin-block: 0;
+}
+
 .sample-app-resources {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

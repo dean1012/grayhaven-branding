@@ -11,6 +11,11 @@ rhythm, full footer, and website breakpoints. Build ordinary page content from
 the [shared component reference](../../docs/web-components.md); do not redefine
 buttons, panels, cards, badges, links, or other reusable pieces here.
 
+Use the shared [vertical component composition](../../docs/web-components.md#vertical-component-composition)
+within website sections and panels. Keep the shell's editorial section spacing.
+The sample website's content arrangement is illustrative; retain the component
+structures and spacing rules when assembling a different page.
+
 ## Asset order
 
 ```html
@@ -265,7 +270,7 @@ h6 {
   display: none;
 }
 
-.navbar-links a {
+.navbar-links a:not(:where(.button, .icon-button)) {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -276,7 +281,7 @@ h6 {
   transition: color var(--transition-fast);
 }
 
-.navbar-links-mobile a {
+.navbar-links-mobile a:not(:where(.button, .icon-button)) {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -284,14 +289,15 @@ h6 {
   padding: 0.7rem 0.25rem;
 }
 
-.navbar-links-mobile a + a {
+.navbar-links-mobile a:not(:where(.button, .icon-button))
+  + a:not(:where(.button, .icon-button)) {
   border-top: 1px solid color-mix(in srgb, var(--charcoal-border) 70%, transparent);
 }
 
-.navbar-links a:hover,
-.navbar-links a:focus-visible,
-.navbar-links a[aria-current],
-.navbar-links a.is-active {
+.navbar-links a:not(:where(.button, .icon-button)):hover,
+.navbar-links a:not(:where(.button, .icon-button)):focus-visible,
+.navbar-links a:not(:where(.button, .icon-button))[aria-current],
+.navbar-links a:not(:where(.button, .icon-button)).is-active {
   color: var(--primary-accent);
 }
 
@@ -589,7 +595,7 @@ h6 {
     display: none;
   }
 
-  .navbar-links-mobile a {
+  .navbar-links-mobile a:not(:where(.button, .icon-button)) {
     font-size: 0.765rem;
     line-height: 1.4;
     white-space: normal;
@@ -675,7 +681,7 @@ h6 {
     margin-left: auto;
   }
 
-  .navbar-links-desktop a {
+  .navbar-links-desktop a:not(:where(.button, .icon-button)) {
     display: inline;
     width: auto;
     padding: 0;

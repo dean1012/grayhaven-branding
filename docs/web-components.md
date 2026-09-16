@@ -501,6 +501,70 @@ reading width.
 </section>
 ```
 
+### Vertical component composition
+
+Components own their appearance, internal padding, and default spacing. The
+website or application chooses their placement and arrangement. A button uses
+the same approved button classes inside a panel, navigation, footer, or page;
+its location does not define a new button variant. Keep each component's
+documented HTML, classes, and behavior hooks wherever it is placed.
+
+In normal document flow, panels, content cards, alerts, alert groups,
+disclosures, and summary grids provide `--space-md` (1.5rem) after themselves
+when another sibling follows. This works in any component order
+without an extra wrapper. Mark omitted elements with `hidden`; the final
+non-hidden component has no trailing margin. Empty notification regions are
+also excluded. Internal structures such as table
+wrappers retain their component-specific spacing.
+
+Grid and row layouts own the gaps between their items. When a layout provides
+a gap, normalize its direct items' outside block margins so spacing is counted
+once. The shared grid, form, dialog, and alert layouts already do this for
+these block components. Application layout CSS may do the same for its own
+gap-based containers. This controls placement, while component colors,
+typography, borders, padding, and behavior remain canonical. These rules apply
+at every breakpoint; each component retains its documented responsive rules.
+
+```html
+<div>
+  <section class="panel form-panel">
+    <div class="panel-heading"><h2>Summary</h2></div>
+    <p>Summary content.</p>
+  </section>
+  <div class="alert alert-warning alert-with-icon" role="status">
+    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+    <span class="alert-message">Review the details.</span>
+  </div>
+  <section class="panel form-panel"><h2>Details</h2></section>
+</div>
+```
+
+```css
+:is(.panel, .content-card, .alert, .alert-stack, .disclosure, .summary-grid) {
+  margin-block: 0;
+}
+
+:is(.panel, .content-card, .alert, .alert-stack, .disclosure, .summary-grid):where(
+  :has(~ :not([hidden], script, style, template, .notification-region:empty))
+) {
+  margin-block-end: var(--space-md);
+}
+
+:is(
+  .content-grid, .dialog-content, .form-stack, .alert-stack, .notification-region
+)
+  > :is(
+    .panel, .content-card, .alert, .alert-stack, .disclosure, .summary-grid
+  ) {
+  margin-block: 0;
+}
+```
+
+Live previews demonstrate component combinations. Their section order and
+sample-only layout classes are examples; the component markup, shared CSS,
+spacing rules, and documented breakpoints are the implementation contract.
+Reordering correctly composed components needs no new component variant.
+
 ### Section heading
 
 Use a centered section title with one concise supporting statement.
@@ -1362,9 +1426,9 @@ small {
 
 ### Form panel and action layout
 
-Use `.form-panel` inside the `.narrow-content` layout documented above,
-`.form-stack` for vertical field rhythm, and `.form-actions` for the final
-action row.
+Use `.panel.form-panel` for the form surface, `.form-stack` for vertical field
+rhythm, and `.form-actions` for the final action row. The optional
+`.narrow-content` layout limits the form's reading width.
 
 ```html
 <div class="narrow-content">
@@ -1384,10 +1448,6 @@ action row.
 ```css
 .form-panel {
   padding: 2.2rem;
-}
-
-.narrow-content > .form-panel + .form-panel {
-  margin-top: 1.5rem;
 }
 
 .form-stack {

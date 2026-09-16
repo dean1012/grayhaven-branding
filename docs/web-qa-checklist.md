@@ -112,6 +112,12 @@ manual review aid for human or AI-assisted work; it is not a CI requirement.
 
 - [ ] Compare every changed website or application component against the
       canonical Branding source; stop for approval before any deviation.
+- [ ] Verify required HTML wrappers, classes, and hooks as well as shared CSS
+      parity. If the contract lacks a needed structure or behavior, present
+      the gap for approval before implementing a variation.
+- [ ] Check mixed component order, hidden children, and nested panel content
+      against the shared spacing rules at desktop and mobile widths. Keep
+      approved preview appearance unchanged when correcting shared structure.
 - [ ] Confirm category stylesheets do not redefine or visually override shared
       components.
 - [ ] Review the page in a fresh browser session.
