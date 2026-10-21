@@ -34,6 +34,7 @@ piece or variant does not yet exist.
 ## Live previews
 
 - [Logo preview](logo/index.html)
+- [Icon preview](icons/index.html)
 - [Web Components preview](web/components/index.html)
 - [Sample website preview](web/style-guide/index.html)
 - [Sample web application preview](web-application/index.html)
@@ -44,6 +45,7 @@ Brand foundations:
 
 - [Brand Foundations](docs/brand-foundations.md)
 - [Logo Usage](docs/logo-usage.md)
+- [Icon Usage](docs/icon-usage.md)
 
 Style guides:
 
